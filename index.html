@@ -457,7 +457,7 @@
       <p style="margin-top:20px;font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(16px,1.4vw,18px);line-height:1.7;color:rgba(8,20,32,0.75);max-width:560px;margin-left:auto;margin-right:auto">{{ t.ctaText }}</p>
       <div style="margin-top:38px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
         <a href="https://wa.me/529844179283" style="font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#f7f3ec;background:#081420;padding:17px 36px;transition:background .3s ease" style-hover="background:#0d2438">{{ t.ctaWhats }}</a>
-        <a href="/cdn-cgi/l/email-protection#92e4f7fce6f3e1d2eae6fde0f7f3fee6ebf5e0fde7e2bcf1fdff" style="font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#081420;border:1px solid rgba(8,20,32,0.5);padding:17px 36px;transition:background .3s ease" style-hover="background:rgba(8,20,32,0.08)">{{ t.ctaMail }}</a>
+        <a href="/cdn-cgi/l/email-protection#3d4b5853495c4e7d4549524f585c5149445a4f52484d135e5250" style="font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#081420;border:1px solid rgba(8,20,32,0.5);padding:17px 36px;transition:background .3s ease" style-hover="background:rgba(8,20,32,0.08)">{{ t.ctaMail }}</a>
       </div>
     </div>
   </section>
@@ -479,7 +479,7 @@
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#c6a15b;margin-bottom:4px">{{ t.contactH }}</div>
           <a href="tel:+529844179283" style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(247,243,236,0.72)">Tel: (+52) 984 417 9283</a>
-          <a href="/cdn-cgi/l/email-protection#7a0c1f140e1b093a020e15081f1b160e031d08150f0a54191517" style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(247,243,236,0.72)"><span class="__cf_email__" data-cfemail="f284979c869381b28a869d8097939e868b95809d8782dc919d9f">[email&#160;protected]</span></a>
+          <a href="/cdn-cgi/l/email-protection#087e6d667c697b48707c677a6d69647c716f7a677d78266b6765" style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(247,243,236,0.72)"><span class="__cf_email__" data-cfemail="d1a7b4bfa5b0a291a9a5bea3b4b0bda5a8b6a3bea4a1ffb2bebc">[email&#160;protected]</span></a>
           <span style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(247,243,236,0.72)">Playa del Carmen, México</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:14px">
@@ -499,7 +499,7 @@
   <template id="__bundler_thumbnail"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="#081420"/><text x="50" y="60" font-family="Georgia,serif" font-size="34" fill="#c6a15b" text-anchor="middle">XTO</text></svg></template>
 </div>
 </x-dc>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:760},&quot;featuredCount&quot;:{&quot;editor&quot;:&quot;range&quot;,&quot;default&quot;:6,&quot;min&quot;:3,&quot;max&quot;:8,&quot;step&quot;:1,&quot;tsType&quot;:&quot;number&quot;,&quot;section&quot;:&quot;Contenido&quot;}}">
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:&quot;100%&quot;,&quot;height&quot;:760}}">
 class Component extends DCLogic {
   rootRef = React.createRef();
   navRef = React.createRef();
@@ -720,123 +720,47 @@ class Component extends DCLogic {
 
     const rawProps = [
       {
-        img: 'images/prop-1.png', price: '$12,500,000 MXN', es: 'Vive el lujo en The Village · 2 recámaras amueblado', en: 'Luxury living at The Village · 2-bedroom furnished',
-        beds: 2, baths: 2, area: '152 m²', tag: tagII, dev: 'The Village · Corasol', amen: amCorasol,
-        park_es: '2 cajones', park_en: '2 spaces', lvl_es: 'Nivel 2', lvl_en: 'Level 2', view_es: 'Jardín y golf', view_en: 'Garden & golf', del_es: 'Inmediata', del_en: 'Immediate',
+        img: 'images/t2105-estancia.jpg', price: '$12,500,000 MXN', es: 'Departamento amueblado de 2 recámaras en The Village Corasol · Listo para habitar', en: 'Furnished 2-bedroom condo at The Village Corasol · Move-in ready',
+        beds: 2, baths: 2.5, area: '152 m²', tag: tagII, dev: 'The Village · Corasol',
+        amen: es
+          ? ['Lobby', 'Elevador', 'Gimnasio', 'Golfito', 'Sky Bar con Jacuzzi', 'Estacionamiento subterráneo', 'Áreas comunes de lujo', 'Futuras amenidades del complejo']
+          : ['Lobby', 'Elevator', 'Gym', 'Mini-golf', 'Sky Bar with Jacuzzi', 'Underground parking', 'Luxury common areas', 'Upcoming complex amenities'],
+        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Piso 1', lvl_en: 'Level 1', view_es: 'Áreas verdes / Entorno natural', view_en: 'Green areas / Natural surroundings', del_es: 'Inmediata', del_en: 'Immediate',
         loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
-        gallery: ['images/prop-1.png', 'images/dev-hoxul.png', 'images/zone-playa.png', 'images/about.png'],
-        ov_es: 'Residencia amueblada de 2 recámaras dentro de The Village, el corazón social de Corasol. Espacios abiertos con acabados de lujo, cocina integral y una amplia terraza que integra el interior con la selva y el campo de golf. Ideal como hogar o inversión con alto potencial de rentas vacacionales.',
-        ov_en: 'Fully furnished 2-bedroom residence inside The Village, the social heart of Corasol. Open living spaces with luxury finishes, integrated kitchen and a wide terrace connecting the interior with the jungle and golf course. Perfect as a home or a high-yield vacation-rental investment.',
+        gallery: ['images/t2105-estancia.jpg', 'images/t2105-cocina.jpg', 'images/t2105-cocinafoto2.jpg', 'images/t2105-comedor.jpg', 'images/t2105-recamara principal.jpg', 'images/t2105-recamara2.jpg', 'images/t2105-baño.jpg', 'images/t2105-terraza.jpg'],
+        ov_es: 'Vive una experiencia residencial de alto nivel dentro de The Village Corasol, uno de los desarrollos más exclusivos de Playa del Carmen. Este departamento completamente amueblado ofrece una distribución amplia y funcional con 152 m², dos recámaras con baño privado, medio baño para visitas, cocina totalmente equipada, estancia de gran tamaño, área de lavado y una amplia terraza semitechada ideal para disfrutar del entorno natural. Ubicado dentro del complejo residencial Corasol, la propiedad brinda acceso a amenidades premium, rodeadas por el campo de golf Gran Coyote y a pocos minutos del mar Caribe. Es una excelente opción para quienes buscan una residencia de lujo lista para habitar o una inversión patrimonial en una de las comunidades con mayor plusvalía de la Riviera Maya.',
+        ov_en: 'Enjoy an upscale residential experience inside The Village Corasol, one of the most exclusive developments in Playa del Carmen. This fully furnished condo offers a spacious, functional 152 m² layout with two en-suite bedrooms, a guest half-bath, a fully equipped kitchen, a large living area, a laundry room and a wide semi-covered terrace perfect for enjoying the natural surroundings. Located within the Corasol residential complex, the property provides access to premium amenities, surrounded by the Gran Coyote golf course and just minutes from the Caribbean Sea. An excellent choice for those seeking a move-in-ready luxury residence or a patrimonial investment in one of the highest-appreciation communities of the Riviera Maya.',
         highlights: [
-          { es: 'Entrega inmediata, completamente amueblada y equipada', en: 'Move-in ready, fully furnished and equipped' },
-          { es: 'Acceso directo a amenidades de The Village', en: 'Direct access to The Village amenities' },
-          { es: 'Programa de rentas administrado disponible', en: 'Managed rental program available' },
-          { es: 'Terraza con vista al golf y a la selva', en: 'Terrace overlooking the golf course and jungle' },
+          { es: 'Completamente amueblado', en: 'Fully furnished' },
+          { es: '152 m² de construcción', en: '152 m² of construction' },
+          { es: 'Amplia terraza semitechada', en: 'Wide semi-covered terrace' },
+          { es: 'Cocina equipada', en: 'Equipped kitchen' },
+          { es: 'Dos recámaras con baño privado', en: 'Two en-suite bedrooms' },
+          { es: 'Medio baño para visitas', en: 'Guest half-bath' },
+          { es: 'Listo para habitar', en: 'Move-in ready' },
+          { es: 'Ubicado dentro de Corasol', en: 'Located within Corasol' },
         ],
       },
       {
-        img: 'images/prop-2.png', price: '$427,000 USD', es: 'Departamento lock-off 2 recámaras a 200 m del mar', en: '2-bedroom lock-off condo, 200 m from the sea',
-        beds: 2, baths: 2, area: '110 m²', tag: tagII, dev: 'Playa del Carmen', amen: amBeach,
-        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Nivel 3', lvl_en: 'Level 3', view_es: 'Parcial al mar', view_en: 'Partial sea view', del_es: 'Inmediata', del_en: 'Immediate',
-        loc_es: 'Centro, Playa del Carmen', loc_en: 'Downtown, Playa del Carmen',
-        gallery: ['images/prop-2.png', 'images/prop-7.png', 'images/zone-tulum.png', 'images/hero.png'],
-        ov_es: 'Departamento con diseño lock-off que permite rentar una parte mientras habitas la otra, maximizando el retorno de inversión. A solo 200 metros del mar y a pasos de la Quinta Avenida, combina ubicación privilegiada con flexibilidad total.',
-        ov_en: 'Lock-off design condo that lets you rent one section while living in the other, maximizing return on investment. Just 200 meters from the sea and steps from Fifth Avenue, it blends a prime location with total flexibility.',
+        img: 'images/patio trasero-senderos-mayakoba.jpg', price: '$8,500,000 MXN', es: 'Casa en venta en Senderos Mayakobá · 3 recámaras, estudio, rooftop y piscina privada', en: 'House for sale in Senderos Mayakobá · 3 bedrooms, studio, rooftop and private pool',
+        beds: 3, baths: 3.5, area: '276 m²', tag: tagII, dev: 'Senderos · Mayakobá',
+        amen: es
+          ? ['Casa Club', 'Alberca', 'Alberca Swim-Up', 'Gimnasio', 'Rooftop', 'Canchas deportivas', 'Áreas verdes', 'Senderos naturales', 'Seguridad 24/7', 'Acceso controlado']
+          : ['Clubhouse', 'Pool', 'Swim-up pool', 'Gym', 'Rooftop', 'Sports courts', 'Green areas', 'Nature trails', '24/7 security', 'Controlled access'],
+        park_es: '2 estacionamientos', park_en: '2 parking spaces', lvl_es: 'Casa de 3 niveles', lvl_en: '3-level house', view_es: 'Áreas verdes', view_en: 'Green areas', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'Mayakobá, Playa del Carmen', loc_en: 'Mayakobá, Playa del Carmen',
+        gallery: ['images/patio trasero-senderos-mayakoba.jpg', 'images/estancia-senderos-mayakoba.jpg', 'images/sala-senderos-mayakoba.jpg', 'images/cocina-senderos-mayakoba.jpg', 'images/vista cocina-senderos-mayakoba.jpg', 'images/interior-senderos-mayakoba.jpg', 'images/escalera interior-senderos-mayakoba.jpg', 'images/closet-senderos-mayakoba.jpg', 'images/baño2-senderos-mayakoba.jpg', 'images/tina-senderos-mayakoba.jpg', 'images/jacuzzi-senderos-mayakoba.jpg', 'images/terraza-ext--senderos-mayakoba.jpg', 'images/patio-senderos-mayakoba.jpg'],
+        ov_es: 'Descubre una residencia diseñada para quienes buscan amplitud, privacidad y un estilo de vida rodeado de naturaleza dentro de una de las comunidades más exclusivas de la Riviera Maya. Esta espectacular casa de 276 m² ofrece una arquitectura contemporánea con espacios abiertos, iluminación natural y acabados de excelente calidad. Su distribución incluye 3 recámaras, estudio, sala de TV, 3.5 baños, cocina integral de diseño, rooftop y una piscina privada que convierten cada espacio en una experiencia de confort. Además, incorpora paneles solares para una mayor eficiencia energética, estacionamiento para dos vehículos y acceso a las exclusivas amenidades de Senderos Mayakobá, ideales para disfrutar en familia. Una propiedad lista para habitar que combina lujo, funcionalidad y una excelente ubicación dentro de Playa del Carmen.',
+        ov_en: 'Discover a residence designed for those seeking space, privacy and a lifestyle surrounded by nature within one of the most exclusive communities of the Riviera Maya. This spectacular 276 m² house offers contemporary architecture with open spaces, natural light and excellent-quality finishes. Its layout includes 3 bedrooms, a studio, a TV room, 3.5 bathrooms, a designer integrated kitchen, a rooftop and a private pool that turn every space into an experience of comfort. It also incorporates solar panels for greater energy efficiency, parking for two vehicles and access to the exclusive amenities of Senderos Mayakobá, ideal for enjoying with family. A move-in-ready property that blends luxury, functionality and an excellent location within Playa del Carmen.',
         highlights: [
-          { es: 'Diseño lock-off: dos rentas independientes', en: 'Lock-off design: two independent rentals' },
-          { es: 'A 200 m del mar y de la Quinta Avenida', en: '200 m from the sea and Fifth Avenue' },
-          { es: 'Rooftop con alberca y área social', en: 'Rooftop with pool and lounge' },
-          { es: 'Alta ocupación en renta vacacional', en: 'High vacation-rental occupancy' },
-        ],
-      },
-      {
-        img: 'images/prop-3.png', price: '$7,650,500 MXN', es: 'Hoxul · Corasol · 2 recámaras con vista al golf', en: 'Hoxul · Corasol · 2-bedroom with golf view',
-        beds: 2, baths: 2, area: '91.72 m²', tag: tagPV, dev: 'Hoxul · Corasol', amen: amCorasol,
-        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Nivel 1', lvl_en: 'Level 1', view_es: 'Campo de golf', view_en: 'Golf course', del_es: '2027', del_en: '2027',
-        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
-        gallery: ['images/prop-3.png', 'images/dev-hoxul.png', 'images/prop-5.png', 'images/zone-playa.png'],
-        ov_es: 'Residencia de preventa en Hoxul, el desarrollo boutique de solo 64 unidades dentro de Corasol. Arquitectura contemporánea inspirada en el "lujo de lo salvaje", con vista directa al campo de golf y precios de lanzamiento con excelente plusvalía proyectada.',
-        ov_en: 'Pre-sale residence at Hoxul, the boutique development of just 64 units inside Corasol. Contemporary architecture inspired by "wild luxury", with direct golf-course views and launch pricing offering excellent projected appreciation.',
-        highlights: [
-          { es: 'Precio de preventa con plusvalía proyectada', en: 'Pre-sale price with projected appreciation' },
-          { es: 'Solo 64 residencias exclusivas', en: 'Only 64 exclusive residences' },
-          { es: 'Vista directa al campo de golf Nicklaus', en: 'Direct Nicklaus golf-course view' },
-          { es: 'Plan de pagos flexible durante construcción', en: 'Flexible payment plan during construction' },
-        ],
-      },
-      {
-        img: 'images/prop-4.png', price: '$8,290,000 MXN', es: 'The Village 201 · 1 recámara · Luxury lifestyle en Corasol', en: 'The Village 201 · 1-bedroom · Luxury lifestyle at Corasol',
-        beds: 1, baths: 2, area: '101.68 m²', tag: tagII, dev: 'The Village · Corasol', amen: amCorasol,
-        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Nivel 2', lvl_en: 'Level 2', view_es: 'Selva y amenidades', view_en: 'Jungle & amenities', del_es: 'Inmediata', del_en: 'Immediate',
-        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
-        gallery: ['images/prop-4.png', 'images/prop-1.png', 'images/dev-hoxul.png', 'images/about.png'],
-        ov_es: 'Amplia residencia de una recámara con más de 100 m² pensada para quienes buscan un estilo de vida de lujo sin renunciar al espacio. Ubicada en The Village, con acceso a todas las amenidades de Corasol y entrega inmediata.',
-        ov_en: 'Spacious one-bedroom residence with over 100 m², designed for those seeking a luxury lifestyle without giving up space. Located in The Village, with access to all Corasol amenities and immediate delivery.',
-        highlights: [
-          { es: 'Más de 100 m² para una sola recámara', en: 'Over 100 m² for a single bedroom' },
-          { es: 'Entrega inmediata', en: 'Immediate delivery' },
-          { es: 'Acceso a golf, playa y club', en: 'Access to golf, beach and club' },
-          { es: 'Ideal para pareja o inversión premium', en: 'Ideal for a couple or premium investment' },
-        ],
-      },
-      {
-        img: 'images/prop-5.png', price: '$15,950,000 MXN', es: 'Hoxul · Corasol · 3 recámaras con vista al mar y golf', en: 'Hoxul · Corasol · 3-bedroom with sea & golf view',
-        beds: 3, baths: 3, area: '186.34 m²', tag: tagPV, dev: 'Hoxul · Corasol', amen: amCorasol,
-        park_es: '2 cajones', park_en: '2 spaces', lvl_es: 'Nivel 4', lvl_en: 'Level 4', view_es: 'Mar y golf', view_en: 'Sea & golf', del_es: '2027', del_en: '2027',
-        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
-        gallery: ['images/prop-5.png', 'images/dev-hoxul.png', 'images/prop-3.png', 'images/hero.png'],
-        ov_es: 'Residencia de 3 recámaras en Hoxul con doble vista al mar y al campo de golf. Casi 190 m² de diseño contemporáneo, amplios ventanales y terraza para disfrutar los atardeceres del Caribe. Una de las unidades más codiciadas del desarrollo.',
-        ov_en: 'Three-bedroom residence at Hoxul with dual sea and golf-course views. Nearly 190 m² of contemporary design, floor-to-ceiling windows and a terrace to enjoy Caribbean sunsets. One of the most sought-after units in the development.',
-        highlights: [
-          { es: 'Doble vista: mar y campo de golf', en: 'Dual view: sea and golf course' },
-          { es: '186 m² con terraza panorámica', en: '186 m² with panoramic terrace' },
-          { es: 'Preventa en desarrollo boutique', en: 'Pre-sale in a boutique development' },
-          { es: 'Alto potencial de plusvalía', en: 'High appreciation potential' },
-        ],
-      },
-      {
-        img: 'images/prop-6.png', price: '$34,850,000 MXN', es: 'Penthouse 5 recámaras en Hoxul · Corasol', en: '5-bedroom penthouse at Hoxul · Corasol',
-        beds: 5, baths: 7, area: '416.22 m²', tag: tagPV, dev: 'Hoxul · Corasol', amen: amCorasol,
-        park_es: '3 cajones', park_en: '3 spaces', lvl_es: 'Penthouse', lvl_en: 'Penthouse', view_es: 'Panorámica 360°', view_en: '360° panoramic', del_es: '2027', del_en: '2027',
-        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
-        gallery: ['images/prop-6.png', 'images/dev-hoxul.png', 'images/prop-5.png', 'images/about.png'],
-        ov_es: 'El penthouse insignia de Hoxul: más de 400 m² con 5 recámaras, 7 baños y una terraza privada con vista panorámica de 360° al mar, la selva y el golf. La máxima expresión del "lujo de lo salvaje" en Corasol, para el comprador más exigente.',
-        ov_en: 'The flagship penthouse of Hoxul: over 400 m² with 5 bedrooms, 7 bathrooms and a private terrace boasting 360° panoramic views of the sea, jungle and golf. The ultimate expression of "wild luxury" in Corasol, for the most discerning buyer.',
-        highlights: [
-          { es: 'Penthouse insignia de más de 400 m²', en: 'Flagship penthouse over 400 m²' },
-          { es: 'Terraza privada con vista 360°', en: 'Private terrace with 360° views' },
-          { es: '5 recámaras y 7 baños', en: '5 bedrooms and 7 bathrooms' },
-          { es: 'Pieza única e irrepetible en el desarrollo', en: 'One-of-a-kind unit in the development' },
-        ],
-      },
-      {
-        img: 'images/prop-7.png', price: '$680,000 USD', es: 'Beachfront Condo 2 recámaras · Lockoff · Terraza privada', en: 'Beachfront condo · 2-bedroom lock-off · Private terrace',
-        beds: 2, baths: 2, area: '112 m²', tag: tagII, dev: 'Playa del Carmen', amen: amBeach,
-        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Nivel 5', lvl_en: 'Level 5', view_es: 'Frente al mar', view_en: 'Oceanfront', del_es: 'Inmediata', del_en: 'Immediate',
-        loc_es: 'Playa del Carmen', loc_en: 'Playa del Carmen',
-        gallery: ['images/prop-7.png', 'images/prop-2.png', 'images/zone-tulum.png', 'images/hero.png'],
-        ov_es: 'Condominio frente al mar con diseño lock-off y terraza privada con vista abierta al Caribe. Departamento de entrega inmediata en una de las mejores ubicaciones costeras de Playa del Carmen, con rendimientos de renta comprobados.',
-        ov_en: 'Oceanfront condo with lock-off design and a private terrace overlooking the Caribbean. Move-in-ready unit in one of the best coastal locations of Playa del Carmen, with proven rental returns.',
-        highlights: [
-          { es: 'Verdadero frente de mar', en: 'True oceanfront' },
-          { es: 'Terraza privada con vista al Caribe', en: 'Private terrace facing the Caribbean' },
-          { es: 'Diseño lock-off para maximizar rentas', en: 'Lock-off design to maximize rentals' },
-          { es: 'Entrega inmediata', en: 'Immediate delivery' },
-        ],
-      },
-      {
-        img: 'images/prop-8.png', price: '$320,000 USD', es: 'Nick Price · 2 recámaras amueblado · Incluye carrito de golf', en: 'Nick Price · 2-bedroom furnished · Golf cart included',
-        beds: 2, baths: 3, area: '122 m²', tag: tagII, dev: 'Nick Price · Corasol', amen: amCorasol,
-        park_es: '1 cajón + carrito', park_en: '1 space + cart', lvl_es: 'Nivel 1', lvl_en: 'Level 1', view_es: 'Campo de golf', view_en: 'Golf course', del_es: 'Inmediata', del_en: 'Immediate',
-        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
-        gallery: ['images/prop-8.png', 'images/dev-hoxul.png', 'images/zone-playa.png', 'images/prop-3.png'],
-        ov_es: 'Residencia amueblada de 2 recámaras en la sección Nick Price de Corasol, con vista al campo de golf y carrito de golf incluido. Lista para habitar y disfrutar del estilo de vida de golf y playa desde el primer día.',
-        ov_en: 'Furnished 2-bedroom residence in the Nick Price section of Corasol, with golf-course views and a golf cart included. Ready to move in and enjoy the golf-and-beach lifestyle from day one.',
-        highlights: [
-          { es: 'Carrito de golf incluido', en: 'Golf cart included' },
-          { es: 'Completamente amueblado y equipado', en: 'Fully furnished and equipped' },
-          { es: 'Vista al campo de golf Nicklaus', en: 'Nicklaus golf-course view' },
-          { es: 'Entrega inmediata', en: 'Immediate delivery' },
+          { es: '276 m² de construcción', en: '276 m² of construction' },
+          { es: '3 recámaras + estudio', en: '3 bedrooms + studio' },
+          { es: 'Piscina privada', en: 'Private pool' },
+          { es: 'Rooftop', en: 'Rooftop' },
+          { es: 'Sala de TV', en: 'TV room' },
+          { es: 'Paneles solares', en: 'Solar panels' },
+          { es: '2 estacionamientos', en: '2 parking spaces' },
+          { es: 'Comunidad privada con seguridad', en: 'Private gated community' },
         ],
       },
     ];
@@ -878,7 +802,7 @@ class Component extends DCLogic {
           op: i === gi ? '1' : '0.6',
         })),
         waLink: 'https://wa.me/529844179283?text=' + encodeURIComponent((es ? 'Hola, me interesa esta propiedad: ' : 'Hi, I am interested in this property: ') + ttl),
-        mailLink: 'mailto:ventas@xtorealtygroup.com?subject=' + encodeURIComponent((es ? 'Información: ' : 'Information: ') + ttl),
+        mailLink: 'mailto:ventas@xtorealty.com?subject=' + encodeURIComponent((es ? 'Información: ' : 'Information: ') + ttl),
       };
     }
 
