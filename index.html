@@ -457,7 +457,7 @@
       <p style="margin-top:20px;font-family:'Jost',sans-serif;font-weight:300;font-size:clamp(16px,1.4vw,18px);line-height:1.7;color:rgba(8,20,32,0.75);max-width:560px;margin-left:auto;margin-right:auto">{{ t.ctaText }}</p>
       <div style="margin-top:38px;display:flex;flex-wrap:wrap;gap:14px;justify-content:center">
         <a href="https://wa.me/529844179283" style="font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#f7f3ec;background:#081420;padding:17px 36px;transition:background .3s ease" style-hover="background:#0d2438">{{ t.ctaWhats }}</a>
-        <a href="/cdn-cgi/l/email-protection#3d4b5853495c4e7d4549524f585c5149445a4f52484d135e5250" style="font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#081420;border:1px solid rgba(8,20,32,0.5);padding:17px 36px;transition:background .3s ease" style-hover="background:rgba(8,20,32,0.08)">{{ t.ctaMail }}</a>
+        <a href="/cdn-cgi/l/email-protection#1264777c667361526a667d6077737e666b75607d67623c717d7f" style="font-family:'Jost',sans-serif;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:#081420;border:1px solid rgba(8,20,32,0.5);padding:17px 36px;transition:background .3s ease" style-hover="background:rgba(8,20,32,0.08)">{{ t.ctaMail }}</a>
       </div>
     </div>
   </section>
@@ -479,7 +479,7 @@
         <div style="display:flex;flex-direction:column;gap:14px">
           <div style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:#c6a15b;margin-bottom:4px">{{ t.contactH }}</div>
           <a href="tel:+529844179283" style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(247,243,236,0.72)">Tel: (+52) 984 417 9283</a>
-          <a href="/cdn-cgi/l/email-protection#087e6d667c697b48707c677a6d69647c716f7a677d78266b6765" style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(247,243,236,0.72)"><span class="__cf_email__" data-cfemail="d1a7b4bfa5b0a291a9a5bea3b4b0bda5a8b6a3bea4a1ffb2bebc">[email&#160;protected]</span></a>
+          <a href="/cdn-cgi/l/email-protection#e096858e948193a098948f9285818c949987928f9590ce838f8d" style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(247,243,236,0.72)"><span class="__cf_email__" data-cfemail="ed9b8883998c9ead9599829f888c8199948a9f82989dc38e8280">[email&#160;protected]</span></a>
           <span style="font-family:'Jost',sans-serif;font-size:15px;color:rgba(247,243,236,0.72)">Playa del Carmen, México</span>
         </div>
         <div style="display:flex;flex-direction:column;gap:14px">
@@ -721,7 +721,8 @@ class Component extends DCLogic {
     const rawProps = [
       {
         img: 'images/t2105-estancia.jpg', price: '$12,500,000 MXN', es: 'Departamento amueblado de 2 recámaras en The Village Corasol · Listo para habitar', en: 'Furnished 2-bedroom condo at The Village Corasol · Move-in ready',
-        beds: 2, baths: 2.5, area: '152 m²', tag: tagII, dev: 'The Village · Corasol',
+        spec_es: '2 Rec · 2.5 Baños · 152 m²', spec_en: '2 Bd · 2.5 Ba · 152 m²',
+        beds: '2', baths: '2.5', area: '152 m²', tag: tagII, dev: 'The Village · Corasol',
         amen: es
           ? ['Lobby', 'Elevador', 'Gimnasio', 'Golfito', 'Sky Bar con Jacuzzi', 'Estacionamiento subterráneo', 'Áreas comunes de lujo', 'Futuras amenidades del complejo']
           : ['Lobby', 'Elevator', 'Gym', 'Mini-golf', 'Sky Bar with Jacuzzi', 'Underground parking', 'Luxury common areas', 'Upcoming complex amenities'],
@@ -742,14 +743,38 @@ class Component extends DCLogic {
         ],
       },
       {
+        img: 'images/lorenaochoa105-estancia.jpeg', price: '$7,800,000 MXN', es: 'Amplio departamento amueblado de 4 recámaras con alberca privada en Corasol · Lorena Ochoa Residences', en: 'Spacious furnished 4-bedroom condo with private pool in Corasol · Lorena Ochoa Residences',
+        spec_es: '4 Rec · 3 Baños · 194 m²', spec_en: '4 Bd · 3 Ba · 194 m²',
+        beds: '4', baths: '3', area: '194 m²', tag: tagII, dev: 'Lorena Ochoa · Corasol',
+        amen: es
+          ? ['Alberca Infinity', 'Rooftop', 'Cancha de tenis', 'Acceso controlado', 'Seguridad 24/7', 'Estacionamiento', 'Áreas verdes']
+          : ['Infinity pool', 'Rooftop', 'Tennis court', 'Controlled access', '24/7 security', 'Parking', 'Green areas'],
+        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Planta baja', lvl_en: 'Ground floor', view_es: 'Jardines y áreas verdes', view_en: 'Gardens & green areas', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
+        gallery: ['images/lorenaochoa105-estancia.jpeg', 'images/lorenaochoa105-sala.jpeg', 'images/lorenaochoa105-cocina1.jpeg', 'images/lorenaochoa105-cocina2.jpeg', 'images/lorenaochoa105-estudio.jpeg', 'images/lorenaochoa105-rec1.jpeg', 'images/lorenaochoa105-rec2.jpeg', 'images/lorenaochoa105-walkingcloset.jpeg', 'images/lorenaochoa105-terraza1.jpeg', 'images/lorenaochoa105-terraza3.jpeg', 'images/lorenaochoa105-alberca2.jpeg'],
+        ov_es: 'Descubre una excelente oportunidad para vivir o invertir dentro de Corasol, una de las comunidades residenciales más exclusivas de Playa del Carmen. Este amplio departamento completamente amueblado ofrece una distribución ideal para familias o para quienes buscan espacios generosos y privacidad. Cuenta con 4 recámaras, 3 baños completos, sala, comedor, cocina totalmente equipada y una espectacular terraza con alberca privada que extiende los espacios interiores hacia un ambiente de relajación rodeado de jardines tropicales. Con un total de 194 m² (122 m² interiores y 72 m² de terraza y alberca), esta residencia combina amplitud, confort y una ubicación privilegiada dentro de Lorena Ochoa Residences, con acceso a amenidades de primer nivel y seguridad las 24 horas.',
+        ov_en: 'Discover an excellent opportunity to live or invest inside Corasol, one of the most exclusive residential communities in Playa del Carmen. This spacious, fully furnished condo offers an ideal layout for families or for those seeking generous spaces and privacy. It features 4 bedrooms, 3 full bathrooms, a living room, dining room, a fully equipped kitchen and a spectacular terrace with a private pool that extends the interior spaces into a relaxing environment surrounded by tropical gardens. With a total of 194 m² (122 m² indoors and 72 m² of terrace and pool), this residence blends space, comfort and a privileged location within Lorena Ochoa Residences, with access to first-class amenities and 24-hour security.',
+        highlights: [
+          { es: '4 amplias recámaras', en: '4 spacious bedrooms' },
+          { es: 'Alberca privada', en: 'Private pool' },
+          { es: 'Terraza de 72 m²', en: '72 m² terrace' },
+          { es: 'Totalmente amueblado', en: 'Fully furnished' },
+          { es: 'Cocina equipada', en: 'Equipped kitchen' },
+          { es: 'Rodeado de jardines', en: 'Surrounded by gardens' },
+          { es: 'Excelente opción para familias o renta vacacional', en: 'Great for families or vacation rental' },
+          { es: 'Ubicado dentro de Corasol', en: 'Located within Corasol' },
+        ],
+      },
+      {
         img: 'images/patio trasero-senderos-mayakoba.jpg', price: '$8,500,000 MXN', es: 'Casa en venta en Senderos Mayakobá · 3 recámaras, estudio, rooftop y piscina privada', en: 'House for sale in Senderos Mayakobá · 3 bedrooms, studio, rooftop and private pool',
-        beds: 3, baths: 3.5, area: '276 m²', tag: tagII, dev: 'Senderos · Mayakobá',
+        spec_es: '3 Rec + Estudio · 3.5 Baños · 276 m²', spec_en: '3 Bd + Studio · 3.5 Ba · 276 m²',
+        beds: '3 + Estudio', baths: '3.5', area: '276 m²', tag: tagII, dev: 'Senderos · Mayakobá',
         amen: es
           ? ['Casa Club', 'Alberca', 'Alberca Swim-Up', 'Gimnasio', 'Rooftop', 'Canchas deportivas', 'Áreas verdes', 'Senderos naturales', 'Seguridad 24/7', 'Acceso controlado']
           : ['Clubhouse', 'Pool', 'Swim-up pool', 'Gym', 'Rooftop', 'Sports courts', 'Green areas', 'Nature trails', '24/7 security', 'Controlled access'],
         park_es: '2 estacionamientos', park_en: '2 parking spaces', lvl_es: 'Casa de 3 niveles', lvl_en: '3-level house', view_es: 'Áreas verdes', view_en: 'Green areas', del_es: 'Inmediata', del_en: 'Immediate',
         loc_es: 'Mayakobá, Playa del Carmen', loc_en: 'Mayakobá, Playa del Carmen',
-        gallery: ['images/patio trasero-senderos-mayakoba.jpg', 'images/estancia-senderos-mayakoba.jpg', 'images/sala-senderos-mayakoba.jpg', 'images/cocina-senderos-mayakoba.jpg', 'images/vista cocina-senderos-mayakoba.jpg', 'images/interior-senderos-mayakoba.jpg', 'images/escalera interior-senderos-mayakoba.jpg', 'images/closet-senderos-mayakoba.jpg', 'images/baño2-senderos-mayakoba.jpg', 'images/tina-senderos-mayakoba.jpg', 'images/jacuzzi-senderos-mayakoba.jpg', 'images/terraza-ext--senderos-mayakoba.jpg', 'images/patio-senderos-mayakoba.jpg'],
+        gallery: ['images/patio trasero-senderos-mayakoba.jpg', 'images/estancia-senderos-mayakoba.jpg', 'images/estancia2-senderos-mayakoba.jpg', 'images/sala-senderos-mayakoba.jpg', 'images/cocina-senderos-mayakoba.jpg', 'images/vista cocina-senderos-mayakoba.jpg', 'images/interior-senderos-mayakoba.jpg', 'images/escalera interior-senderos-mayakoba.jpg', 'images/closet-senderos-mayakoba.jpg', 'images/baño2-senderos-mayakoba.jpg', 'images/baño inodoro-senderos-mayakoba.jpg', 'images/lavabo-senderos-mayakoba.jpg', 'images/tina-senderos-mayakoba.jpg', 'images/jacuzzi-senderos-mayakoba.jpg', 'images/terraza-ext--senderos-mayakoba.jpg', 'images/terraza2-senderos-mayakoba.jpg', 'images/patio-senderos-mayakoba.jpg'],
         ov_es: 'Descubre una residencia diseñada para quienes buscan amplitud, privacidad y un estilo de vida rodeado de naturaleza dentro de una de las comunidades más exclusivas de la Riviera Maya. Esta espectacular casa de 276 m² ofrece una arquitectura contemporánea con espacios abiertos, iluminación natural y acabados de excelente calidad. Su distribución incluye 3 recámaras, estudio, sala de TV, 3.5 baños, cocina integral de diseño, rooftop y una piscina privada que convierten cada espacio en una experiencia de confort. Además, incorpora paneles solares para una mayor eficiencia energética, estacionamiento para dos vehículos y acceso a las exclusivas amenidades de Senderos Mayakobá, ideales para disfrutar en familia. Una propiedad lista para habitar que combina lujo, funcionalidad y una excelente ubicación dentro de Playa del Carmen.',
         ov_en: 'Discover a residence designed for those seeking space, privacy and a lifestyle surrounded by nature within one of the most exclusive communities of the Riviera Maya. This spectacular 276 m² house offers contemporary architecture with open spaces, natural light and excellent-quality finishes. Its layout includes 3 bedrooms, a studio, a TV room, 3.5 bathrooms, a designer integrated kitchen, a rooftop and a private pool that turn every space into an experience of comfort. It also incorporates solar panels for greater energy efficiency, parking for two vehicles and access to the exclusive amenities of Senderos Mayakobá, ideal for enjoying with family. A move-in-ready property that blends luxury, functionality and an excellent location within Playa del Carmen.',
         highlights: [
@@ -763,13 +788,172 @@ class Component extends DCLogic {
           { es: 'Comunidad privada con seguridad', en: 'Private gated community' },
         ],
       },
+      {
+        img: 'images/The Boat - Estancia.jpg', price: '$6,750,000 MXN', es: 'Departamento lock-off de 2 recámaras a pasos de la playa en The Boat Residences', en: '2-bedroom lock-off condo steps from the beach at The Boat Residences',
+        spec_es: '2 Rec · 2 Baños · 102 m²', spec_en: '2 Bd · 2 Ba · 102 m²',
+        beds: '2', baths: '2', area: '102 m²', tag: tagII, dev: 'The Boat Residences · Playa del Carmen',
+        amen: es
+          ? ['Rooftop panorámico', 'Piscina', 'Gimnasio', 'Coworking', 'Restaurante Bar', 'Mirador', 'Lobby', 'Espejo de agua en planta baja', 'Elevadores', 'Estacionamiento subterráneo', 'Amplias terrazas']
+          : ['Panoramic rooftop', 'Pool', 'Gym', 'Coworking', 'Restaurant & bar', 'Lookout', 'Lobby', 'Ground-floor water feature', 'Elevators', 'Underground parking', 'Wide terraces'],
+        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Piso 1', lvl_en: 'Level 1', view_es: 'Vista a áreas verdes', view_en: 'Green-area view', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'Coco Beach, Playa del Carmen', loc_en: 'Coco Beach, Playa del Carmen',
+        gallery: ['images/The Boat - Estancia.jpg', 'images/The Boat - Cocina.jpg', 'images/The Boat - Comedor.jpg', 'images/The Boat - Recamara Principal.jpg', 'images/The Boat - Recamara Lockoff.jpg', 'images/The Boat - Baño.jpg', 'images/The Boat - Terraza.jpg', 'images/The Boat - Depto Interior.jpg', 'images/The Boat - Alberca Principal.jpg', 'images/The Boat - Rooftop.JPG', 'images/The Boat - Mirador.jpg', 'images/The Boat - Camastros.JPG', 'images/The Boat - Gym.JPG', 'images/The Boat - Restaurant Bar.jpg', 'images/The Boat - Fuente Interior.jpg', 'images/The Boat - Recepcion.jpg'],
+        ov_es: 'Vive o invierte en una de las zonas con mayor demanda turística de Playa del Carmen. Este exclusivo departamento Lock-Off de 102 m² se encuentra a solo unos pasos de las playas del Caribe Mexicano y de la Quinta Avenida, ofreciendo una ubicación privilegiada rodeada de restaurantes, cafeterías, boutiques y servicios. Totalmente amueblado y equipado, cuenta con dos recámaras, dos baños completos, cocina integral, estancia y una amplia terraza privada. Su distribución Lock-Off permite utilizarlo como una sola residencia o dividirlo en dos espacios independientes, maximizando el potencial de ingresos por renta vacacional. El rooftop panorámico ofrece impresionantes vistas al mar Caribe y atardeceres espectaculares, complementado por amenidades diseñadas para disfrutar del estilo de vida de Playa del Carmen. Una excelente oportunidad para inversionistas y quienes buscan una propiedad lista para habitar en una ubicación estratégica.',
+        ov_en: 'Live or invest in one of the highest tourist-demand areas of Playa del Carmen. This exclusive 102 m² Lock-Off condo sits just steps from the beaches of the Mexican Caribbean and Fifth Avenue, offering a privileged location surrounded by restaurants, cafés, boutiques and services. Fully furnished and equipped, it features two bedrooms, two full bathrooms, an integrated kitchen, a living area and a wide private terrace. Its Lock-Off layout lets you use it as a single residence or split it into two independent spaces, maximizing vacation-rental income potential. The panoramic rooftop offers stunning Caribbean Sea views and spectacular sunsets, complemented by amenities designed for the Playa del Carmen lifestyle. An excellent opportunity for investors and those seeking a move-in-ready property in a strategic location.',
+        highlights: [
+          { es: 'Modalidad Lock-Off', en: 'Lock-Off layout' },
+          { es: 'A pasos de la playa', en: 'Steps from the beach' },
+          { es: 'Totalmente amueblado y equipado', en: 'Fully furnished and equipped' },
+          { es: 'Ideal para renta vacacional', en: 'Ideal for vacation rental' },
+          { es: 'Rooftop con vista al mar', en: 'Rooftop with sea view' },
+          { es: 'Terraza privada', en: 'Private terrace' },
+          { es: 'Excelente ubicación en Coco Beach', en: 'Great location in Coco Beach' },
+          { es: 'Alta demanda turística', en: 'High tourist demand' },
+        ],
+      },
+      {
+        img: 'images/casadelmar-vistamar.jpg', price: '$420,000 USD', es: 'Departamento amueblado de 2 recámaras con terraza y vista al mar', en: 'Furnished 2-bedroom condo with terrace and sea view',
+        spec_es: '2 Rec · 2 Baños · 140 m²', spec_en: '2 Bd · 2 Ba · 140 m²',
+        beds: '2', baths: '2', area: '140 m²', tag: tagII, dev: 'Casa del Mar · Coco Beach',
+        amen: es
+          ? ['Rooftop con vista al mar', 'Alberca', 'Elevador', 'Servicio de lavandería', 'Acceso controlado', 'Estacionamiento']
+          : ['Rooftop with sea view', 'Pool', 'Elevator', 'Laundry service', 'Controlled access', 'Parking'],
+        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Piso 2', lvl_en: 'Level 2', view_es: 'Vista parcial al mar desde terraza', view_en: 'Partial sea view from terrace', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'Coco Beach, Playa del Carmen', loc_en: 'Coco Beach, Playa del Carmen',
+        gallery: ['images/casadelmar-vistamar.jpg', 'images/casadelmar-interior.jpg', 'images/casadelmar-cocina.jpg', 'images/casadelmar-cocina2.jpg', 'images/casadelmar-comedor.jpg', 'images/casadelmar-recamara.jpg', 'images/casadelmar-pasillo.jpg', 'images/casadelmar-terraza.jpg', 'images/casadelmar-alberca.jpg', 'images/casadelmar-cabanna.jpg', 'images/casadelmar-roof.jpg', 'images/Casa del Mar roof.jpg', 'images/Casa del Mar pool.jpg', 'images/Casa del Mar camastros.jpg', 'images/Casa del Mar camastros noche.jpg'],
+        ov_es: 'Vive a solo 100 metros del Mar Caribe en uno de los edificios mejor ubicados de Playa del Carmen. Este elegante departamento de 140 m², completamente amueblado y equipado, ofrece espacios amplios y funcionales con dos recámaras, dos baños completos, estancia, comedor y una cocina integral equipada. Su amplia terraza con vista al mar permite disfrutar del clima tropical y de espectaculares amaneceres y atardeceres, mientras que el rooftop con alberca panorámica ofrece una experiencia exclusiva para residentes e invitados. Ubicado en la zona de Coco Beach, a unos pasos de la playa y muy cerca de la Quinta Avenida, restaurantes, cafeterías y boutiques, esta propiedad representa una excelente oportunidad tanto para disfrutarla como residencia como para generar ingresos mediante renta vacacional.',
+        ov_en: 'Live just 100 meters from the Caribbean Sea in one of the best-located buildings in Playa del Carmen. This elegant 140 m² condo, fully furnished and equipped, offers spacious, functional areas with two bedrooms, two full bathrooms, a living room, dining room and an equipped integrated kitchen. Its wide sea-view terrace lets you enjoy the tropical climate and spectacular sunrises and sunsets, while the rooftop with a panoramic pool offers an exclusive experience for residents and guests. Located in the Coco Beach area, steps from the beach and very close to Fifth Avenue, restaurants, cafés and boutiques, this property is an excellent opportunity both to enjoy as a residence and to generate vacation-rental income.',
+        highlights: [
+          { es: 'Vista al mar desde la terraza', en: 'Sea view from the terrace' },
+          { es: 'A solo 100 metros de la playa', en: 'Just 100 meters from the beach' },
+          { es: 'Totalmente amueblado', en: 'Fully furnished' },
+          { es: '140 m²', en: '140 m²' },
+          { es: 'Amplia terraza', en: 'Wide terrace' },
+          { es: 'Excelente ubicación en Coco Beach', en: 'Great location in Coco Beach' },
+          { es: 'Ideal para renta vacacional', en: 'Ideal for vacation rental' },
+          { es: 'Listo para habitar', en: 'Move-in ready' },
+        ],
+      },
+      {
+        img: 'images/sala-nick405.webp', price: '$5,800,000 MXN', es: 'Departamento de 2 recámaras con amplia terraza en Nick Price Residences', en: '2-bedroom condo with wide terrace at Nick Price Residences',
+        spec_es: '2 Rec · 3 Baños · 122 m²', spec_en: '2 Bd · 3 Ba · 122 m²',
+        beds: '2', baths: '3', area: '122 m²', tag: tagII, dev: 'Nick Price · Corasol',
+        amen: es
+          ? ['Alberca', 'Rooftop', 'Acceso controlado', 'Seguridad 24/7', 'Cancha de tenis', 'Estacionamiento subterráneo', 'Áreas verdes']
+          : ['Pool', 'Rooftop', 'Controlled access', '24/7 security', 'Tennis court', 'Underground parking', 'Green areas'],
+        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Piso 4', lvl_en: 'Level 4', view_es: 'Áreas verdes y entorno del campo de golf', view_en: 'Green areas & golf-course surroundings', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
+        gallery: ['images/sala-nick405.webp', 'images/comedor-nick405.webp', 'images/comedor-nick405 (2).webp', 'images/cocina-nick405.webp', 'images/isla-nick405.webp', 'images/recamara 1-nick405.webp', 'images/recamara 2-nick405.webp', 'images/baño-depto-nick405.webp', 'images/terraza-nick405.webp', 'images/rooftop-nick-price.jpg', 'images/pool-rooftop-nick-price.jpg', 'images/alberca-nick-price.webp', 'images/entrada-nick-price.jpg', 'images/torre-nick-price.jpg'],
+        ov_es: 'Descubre una excelente oportunidad para vivir o invertir dentro de Corasol, una de las comunidades residenciales con mayor prestigio y plusvalía de Playa del Carmen. Este elegante departamento de 122 m² ofrece espacios amplios, una distribución funcional y una amplia terraza ideal para disfrutar del entorno natural que caracteriza al complejo. Cuenta con dos recámaras, tres baños completos, sala, comedor y cocina totalmente equipada, creando un ambiente cómodo tanto para residencia permanente como para escapadas vacacionales. Nick Price Residences ofrece acceso a amenidades de primer nivel, seguridad las 24 horas y una ubicación privilegiada rodeada del campo de golf Gran Coyote, áreas verdes y a pocos minutos de las playas del Caribe Mexicano. Una excelente opción para quienes buscan calidad de vida y una inversión con gran potencial de apreciación.',
+        ov_en: 'Discover an excellent opportunity to live or invest inside Corasol, one of the most prestigious, high-appreciation residential communities in Playa del Carmen. This elegant 122 m² condo offers spacious rooms, a functional layout and a wide terrace ideal for enjoying the natural surroundings that define the complex. It features two bedrooms, three full bathrooms, a living room, dining room and a fully equipped kitchen, creating a comfortable setting for both permanent living and vacation getaways. Nick Price Residences offers access to first-class amenities, 24-hour security and a privileged location surrounded by the Gran Coyote golf course, green areas and just minutes from the beaches of the Mexican Caribbean. An excellent choice for those seeking quality of life and an investment with strong appreciation potential.',
+        highlights: [
+          { es: '122 m² de construcción', en: '122 m² of construction' },
+          { es: 'Amplia terraza', en: 'Wide terrace' },
+          { es: '2 recámaras', en: '2 bedrooms' },
+          { es: '3 baños completos', en: '3 full bathrooms' },
+          { es: 'Cocina equipada', en: 'Equipped kitchen' },
+          { es: 'Excelente distribución', en: 'Excellent layout' },
+          { es: 'Ubicado dentro de Corasol', en: 'Located within Corasol' },
+          { es: 'Ideal para vivir o invertir', en: 'Ideal to live or invest' },
+        ],
+      },
+      {
+        img: 'images/lajoya-fachada.png', price: '$4,730,000 MXN', es: 'Casa de 3 recámaras con 3 terrazas en Campestre La Joya', en: '3-bedroom house with 3 terraces in Campestre La Joya',
+        spec_es: '3 Rec · 3.5 Baños · 264 m²', spec_en: '3 Bd · 3.5 Ba · 264 m²',
+        beds: '3', baths: '3.5', area: '264 m²', tag: tagII, dev: 'Campestre La Joya',
+        amen: es
+          ? ['Alberca', 'Palapa con baños', 'Asador', 'Áreas verdes', 'Juegos infantiles', 'Ciclopista', 'Acceso controlado', 'Seguridad 24/7']
+          : ['Pool', 'Palapa with restrooms', 'Grill', 'Green areas', 'Playground', 'Bike path', 'Controlled access', '24/7 security'],
+        park_es: '3 estacionamientos', park_en: '3 parking spaces', lvl_es: 'Casa de 3 niveles', lvl_en: '3-level house', view_es: 'Áreas verdes', view_en: 'Green areas', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'La Joya, Playa del Carmen', loc_en: 'La Joya, Playa del Carmen',
+        gallery: ['images/lajoya-fachada.png', 'images/lajoya-sala.png', 'images/lajoya-comedor.png', 'images/lajoya-cocina.png', 'images/lajoya-rec1.png', 'images/lajoya-rec2.png', 'images/lajoya-rec3.png', 'images/lajoya-closet.png', 'images/lajoya-terrazatrasera.png', 'images/lajoya-terrazaroof.png'],
+        ov_es: 'Descubre una residencia diseñada para disfrutar de amplios espacios, privacidad y una excelente calidad de vida dentro de Campestre La Joya, una de las comunidades familiares más consolidadas de Playa del Carmen. Esta casa ofrece 264 m² totales (186 m² de construcción y 78 m² distribuidos en tres terrazas), con una distribución funcional que incluye tres recámaras, tres baños completos y un medio baño, estancia, comedor, cocina integral equipada, área de lavado y una terraza trasera completamente acondicionada para reuniones y momentos al aire libre. La propiedad cuenta con espacio para tres vehículos y la posibilidad de venderse amueblada o sin amueblar, adaptándose a las necesidades del comprador. Además, la privada ofrece amenidades ideales para toda la familia, rodeadas de áreas verdes y seguridad las 24 horas.',
+        ov_en: 'Discover a residence designed to enjoy spacious rooms, privacy and an excellent quality of life within Campestre La Joya, one of the most established family communities in Playa del Carmen. This house offers 264 m² total (186 m² of construction and 78 m² across three terraces), with a functional layout including three bedrooms, three full bathrooms and a half-bath, a living room, dining room, an equipped integrated kitchen, a laundry room and a fully fitted rear terrace for gatherings and outdoor moments. The property has room for three vehicles and can be sold furnished or unfurnished, adapting to the buyer\u2019s needs. The private community also offers amenities ideal for the whole family, surrounded by green areas and 24-hour security.',
+        highlights: [
+          { es: '264 m² totales', en: '264 m² total' },
+          { es: '3 terrazas', en: '3 terraces' },
+          { es: '3 estacionamientos', en: '3 parking spaces' },
+          { es: 'Terraza trasera equipada', en: 'Equipped rear terrace' },
+          { es: 'Cocina integral', en: 'Integrated kitchen' },
+          { es: 'Se puede vender amueblada o sin amueblar', en: 'Can be sold furnished or unfurnished' },
+          { es: 'Privada con seguridad', en: 'Gated community with security' },
+          { es: 'Ideal para familias', en: 'Ideal for families' },
+        ],
+      },
+      {
+        img: 'images/lolkatun14-fachada.jpg', price: '$4,200,000 MXN', es: 'Casa amueblada de 2 recámaras con alberca privada en Lolkatun', en: 'Furnished 2-bedroom house with private pool in Lolkatun',
+        spec_es: '2 Rec · 2 Baños', spec_en: '2 Bd · 2 Ba',
+        beds: '2', baths: '2', area: 'Sin información', tag: tagII, dev: 'Lolkatun · Xcalacoco',
+        amen: es
+          ? ['Seguridad 24/7', 'Acceso controlado', 'Parque central', 'Áreas verdes']
+          : ['24/7 security', 'Controlled access', 'Central park', 'Green areas'],
+        park_es: '2 estacionamientos', park_en: '2 parking spaces', lvl_es: 'Casa de 3 niveles', lvl_en: '3-level house', view_es: 'Jardín y áreas verdes', view_en: 'Garden & green areas', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'Lolkatun, Zona Xcalacoco, Playa del Carmen', loc_en: 'Lolkatun, Xcalacoco area, Playa del Carmen',
+        gallery: ['images/lolkatun14-fachada.jpg', 'images/lolkatun14-sala.jpg', 'images/lolkatun14-comedor.jpg', 'images/lolkatun14-cocina.jpg', 'images/lolkatun14-terraza1.jpg', 'images/lolkatun14-alberca1.jpg', 'images/lolkatun14-patio.jpg', 'images/lolkatun14-casa.jpg'],
+        ov_es: 'Vive rodeado de tranquilidad y naturaleza en Lolkatun Residencial, una comunidad privada ubicada en la zona de Xcalacoco, una de las áreas con mayor crecimiento y plusvalía de Playa del Carmen. Esta confortable casa se entrega completamente amueblada y ofrece una excelente distribución con dos recámaras, dos baños completos, estancia, cocina equipada, terraza, patio trasero y una alberca privada ideal para disfrutar del clima caribeño durante todo el año. Su ubicación, a pocos minutos de Playa Xcalacoco y de reconocidos hoteles, beach clubs y desarrollos residenciales de alta gama, la convierte en una excelente opción tanto para vivir como para generar ingresos mediante renta vacacional o de larga estancia.',
+        ov_en: 'Live surrounded by calm and nature at Lolkatun Residencial, a private community located in the Xcalacoco area, one of the fastest-growing, high-appreciation areas of Playa del Carmen. This comfortable house is delivered fully furnished and offers an excellent layout with two bedrooms, two full bathrooms, a living area, an equipped kitchen, a terrace, a back patio and a private pool ideal for enjoying the Caribbean climate year-round. Its location, minutes from Playa Xcalacoco and renowned hotels, beach clubs and high-end residential developments, makes it an excellent choice both to live in and to generate income through vacation or long-stay rentals.',
+        highlights: [
+          { es: 'Alberca privada', en: 'Private pool' },
+          { es: 'Totalmente amueblada', en: 'Fully furnished' },
+          { es: 'A minutos de Playa Xcalacoco', en: 'Minutes from Playa Xcalacoco' },
+          { es: 'Patio trasero', en: 'Back patio' },
+          { es: 'Terraza', en: 'Terrace' },
+          { es: 'Cocina equipada', en: 'Equipped kitchen' },
+          { es: 'Comunidad privada', en: 'Private community' },
+          { es: 'Excelente para vivir o invertir', en: 'Great to live or invest' },
+        ],
+      },
+      {
+        img: 'images/lorenaochoa204-estancia.jpg', price: '$7,520,000 MXN', es: 'Departamento amueblado de 2 recámaras con amplia terraza en Lorena Ochoa Residences', en: 'Furnished 2-bedroom condo with wide terrace at Lorena Ochoa Residences',
+        spec_es: '2 Rec · 2.5 Baños · 128 m²', spec_en: '2 Bd · 2.5 Ba · 128 m²',
+        beds: '2', baths: '2.5', area: '128 m²', tag: tagII, dev: 'Lorena Ochoa · Corasol',
+        amen: es
+          ? ['Alberca Infinity', 'Rooftop', 'Cancha de tenis', 'Acceso controlado', 'Seguridad 24/7', 'Estacionamiento', 'Áreas verdes']
+          : ['Infinity pool', 'Rooftop', 'Tennis court', 'Controlled access', '24/7 security', 'Parking', 'Green areas'],
+        park_es: '1 cajón', park_en: '1 space', lvl_es: 'Piso 2', lvl_en: 'Level 2', view_es: 'Jardines y áreas verdes', view_en: 'Gardens & green areas', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
+        gallery: ['images/lorenaochoa204-estancia.jpg', 'images/lorenaochoa204-cocina.jpg', 'images/lorenaochoa204-cocina2.jpg', 'images/lorenaochoa204-rec1.jpg', 'images/lorenaochoa204-rec2.jpg', 'images/lorenaochoa204-rec3.jpg', 'images/lorenaochoa204-baño.jpg', 'images/lorenaochoa204-baño2.jpg', 'images/lorenaochoa204-terraza.jpg', 'images/lorenaochoa204-terraza2.jpg'],
+        ov_es: 'Vive dentro de Corasol, una de las comunidades residenciales más exclusivas de Playa del Carmen, en este elegante departamento completamente amueblado de 128 m². Su distribución ofrece 86 m² interiores y una espectacular terraza privada de 42 m², creando espacios ideales para disfrutar del clima tropical y la tranquilidad del entorno. La residencia cuenta con dos recámaras, dos baños completos y medio baño para visitas, sala, comedor y cocina integral equipada, combinando amplitud, confort y funcionalidad. Lorena Ochoa Residences brinda un estilo de vida rodeado de naturaleza, seguridad y amenidades de primer nivel, a pocos minutos de la playa y del campo de golf Gran Coyote. Es una excelente opción como residencia permanente, casa vacacional o inversión patrimonial en una de las zonas con mayor plusvalía de la Riviera Maya.',
+        ov_en: 'Live inside Corasol, one of the most exclusive residential communities in Playa del Carmen, in this elegant, fully furnished 128 m² condo. Its layout offers 86 m² indoors and a spectacular 42 m² private terrace, creating ideal spaces to enjoy the tropical climate and the calm of the surroundings. The residence features two bedrooms, two full bathrooms and a guest half-bath, a living room, dining room and an equipped integrated kitchen, combining space, comfort and functionality. Lorena Ochoa Residences offers a lifestyle surrounded by nature, security and first-class amenities, just minutes from the beach and the Gran Coyote golf course. An excellent choice as a permanent residence, vacation home or patrimonial investment in one of the highest-appreciation areas of the Riviera Maya.',
+        highlights: [
+          { es: '128 m² totales', en: '128 m² total' },
+          { es: 'Terraza privada de 42 m²', en: '42 m² private terrace' },
+          { es: 'Totalmente amueblado', en: 'Fully furnished' },
+          { es: '2 recámaras', en: '2 bedrooms' },
+          { es: '2.5 baños', en: '2.5 bathrooms' },
+          { es: 'Cocina equipada', en: 'Equipped kitchen' },
+          { es: 'Excelente distribución', en: 'Excellent layout' },
+          { es: 'Ubicado dentro de Corasol', en: 'Located within Corasol' },
+        ],
+      },
+      {
+        img: 'images/aerea amanecer-amate.jpg', price: '$9,000,000 MXN', es: 'Lote residencial Golf Front en El Amate · Corasol', en: 'Golf-front residential lot in El Amate · Corasol',
+        spec_es: '589 m² · Golf Front', spec_en: '589 m² · Golf Front',
+        beds: '—', baths: '—', area: '589 m²', tag: tagII, dev: 'El Amate · Corasol', isLot: true,
+        amen: es
+          ? ['Acceso al Gran Coyote Golf Club', 'Posibilidad de membresía Corasol', 'Costa Beach Club', 'The Park (áreas deportivas y recreativas)', 'Downtown Corasol', 'Casa Club Gran Coyote', 'Cafeterías, farmacia y tiendas', 'Auditorio al aire libre']
+          : ['Gran Coyote Golf Club access', 'Optional Corasol membership', 'Costa Beach Club', 'The Park (sports & recreation)', 'Downtown Corasol', 'Gran Coyote clubhouse', 'Cafés, pharmacy & shops', 'Open-air auditorium'],
+        park_es: 'N/A', park_en: 'N/A', lvl_es: 'Lote residencial', lvl_en: 'Residential lot', view_es: 'Frente al campo de golf', view_en: 'Golf-course front', del_es: 'Inmediata', del_en: 'Immediate',
+        loc_es: 'Corasol, Playa del Carmen', loc_en: 'Corasol, Playa del Carmen',
+        gallery: ['images/aerea amanecer-amate.jpg', 'images/aerea2-amate.jpg', 'images/acceso-amate.jpg', 'images/vialidad-amate.jpg', 'images/mapa-amate.jpg'],
+        ov_es: 'Construye la residencia que siempre imaginaste en El Amate, la comunidad de lotes más exclusiva de Corasol. Este extraordinario terreno residencial ofrece 589 m² de superficie total, conformados por 456 m² de terreno escriturable y 133 m² de área de comodato, con una privilegiada ubicación Golf Front frente al hoyo 15 del reconocido Gran Coyote Golf Club. Rodeado por selva tropical protegida y a tan solo 350 metros del Mar Caribe, este lote combina privacidad, naturaleza y una ubicación inigualable dentro de un entorno de baja densidad conformado por únicamente 32 lotes residenciales. Como propietario tendrás la posibilidad de acceder al exclusivo estilo de vida Corasol, con cercanía a Downtown Corasol, Costa Beach Club, Gran Coyote Golf Club y The Park, convirtiéndolo en una inversión patrimonial de largo plazo en una de las zonas con mayor plusvalía de la Riviera Maya.',
+        ov_en: 'Build the residence you always imagined in El Amate, the most exclusive lot community in Corasol. This extraordinary residential lot offers 589 m² of total surface, comprising 456 m² of deeded land and 133 m² of bailment area, with a privileged Golf Front location facing hole 15 of the renowned Gran Coyote Golf Club. Surrounded by protected tropical jungle and just 350 meters from the Caribbean Sea, this lot combines privacy, nature and an unbeatable location within a low-density setting of only 32 residential lots. As an owner you will have the possibility to access the exclusive Corasol lifestyle, close to Downtown Corasol, Costa Beach Club, Gran Coyote Golf Club and The Park, making it a long-term patrimonial investment in one of the highest-appreciation areas of the Riviera Maya.',
+        highlights: [
+          { es: 'Vista directa al Hoyo 15 del Gran Coyote Golf Club', en: 'Direct view of hole 15 of the Gran Coyote Golf Club' },
+          { es: '589 m² totales (456 m² escriturables + 133 m² de comodato)', en: '589 m² total (456 m² deeded + 133 m² bailment)' },
+          { es: 'Ubicación Golf Front', en: 'Golf Front location' },
+          { es: 'A 350 metros del Mar Caribe', en: '350 meters from the Caribbean Sea' },
+          { es: 'Comunidad de solo 32 lotes', en: 'Community of only 32 lots' },
+          { es: 'Baja densidad', en: 'Low density' },
+          { es: 'Rodeado de selva protegida', en: 'Surrounded by protected jungle' },
+          { es: 'Excelente plusvalía', en: 'Excellent appreciation' },
+        ],
+      },
     ];
     this._propGalleries = rawProps.map((p) => p.gallery);
-    const bd = es ? 'Rec' : 'Bd';
-    const ba = es ? 'Baños' : 'Ba';
-    const properties = rawProps.slice(0, featuredCount).map((p, i) => ({
+    const properties = rawProps.map((p, i) => ({
       img: p.img, price: p.price, tag: p.tag, title: es ? p.es : p.en,
-      specs: p.beds + ' ' + bd + ' · ' + p.baths + ' ' + ba + ' · ' + p.area,
+      specs: es ? p.spec_es : p.spec_en,
       detailsLabel: t.detailsLabel,
       onOpen: () => this.openProp(i),
     }));
@@ -848,9 +1032,9 @@ class Component extends DCLogic {
     ].map((x) => ({ img: x.img, name: x.name, title: es ? x.es_t : x.en_t, quote: es ? x.es_q : x.en_q }));
 
     const team = [
-      { img: 'images/emmanuel.png', name: 'Emmanuel Carreño', role: es ? 'Director General' : 'Real Estate Advisor' },
-      { img: 'images/Blanca.png', name: 'Blanca Barreto', role: es ? 'Asesora Inmobiliaria' : 'Real Estate Advisor' },
-      
+      { img: 'images/team-emma.png', name: 'Emma', role: es ? 'Asesora Inmobiliaria' : 'Real Estate Advisor' },
+      { img: 'images/team-blanca.png', name: 'Blanca', role: es ? 'Asesora Inmobiliaria' : 'Real Estate Advisor' },
+      { img: 'images/team-cesar.png', name: 'César', role: es ? 'Asesor Inmobiliario' : 'Real Estate Advisor' },
     ];
 
     const blog = [
