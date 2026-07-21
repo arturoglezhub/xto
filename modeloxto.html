@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:#081420;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:#c6a15b;text-decoration:none;transition:color .3s ease}
+  a:hover{color:#d9b978}
+  ::selection{background:#c6a15b;color:#081420}
+  input:focus{outline:none;border-color:#c6a15b!important}
+  @media print{
+    .no-print{display:none!important}
+    body{background:#fff!important}
+    *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  }
+</style>
+</helmet>
+
+<div style="background:#081420;font-family:'Jost',sans-serif;color:#f4efe7;overflow-x:hidden;min-height:100vh;position:relative">
+
+  <div style="position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(198,161,91,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(198,161,91,0.06) 1px,transparent 1px);background-size:60px 60px;mask-image:radial-gradient(ellipse 90% 55% at 50% 0%,#000 15%,transparent 80%);-webkit-mask-image:radial-gradient(ellipse 90% 55% at 50% 0%,#000 15%,transparent 80%)"></div>
+
+  <sc-if value="{{ notAuthed }}" hint-placeholder-val="{{ true }}">
+    <div style="position:relative;z-index:2;min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px">
+      <img src="images/logo-light.png" alt="XTO Realty Group" style="height:46px;width:auto;margin-bottom:40px"/>
+      <div style="background:#f4efe7;width:100%;max-width:430px;padding:clamp(30px,5vw,46px);color:#0d1c2b">
+        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px">
+          <span style="width:34px;height:1px;background:#c6a15b"></span>
+          <span style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#b08d47">Acceso ejecutivo</span>
+        </div>
+        <h3 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:#0d1c2b;line-height:1.05">Integración vertical</h3>
+        <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:14px;color:#5c5850;margin-top:8px">Presentación reservada para clientes y aliados de XTO Realty Group México.</p>
+        <form onSubmit="{{ submitLogin }}" style="margin-top:26px;display:flex;flex-direction:column;gap:14px">
+          <input ref="{{ userRef }}" type="text" required placeholder="Usuario" autocomplete="username" style="font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.2);padding:14px 16px;transition:border-color .3s ease"/>
+          <input ref="{{ passRef }}" type="password" required placeholder="Contraseña" autocomplete="current-password" style="font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.2);padding:14px 16px;transition:border-color .3s ease"/>
+          <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+            <p style="font-family:'Jost',sans-serif;font-size:13px;color:#a8443a;margin-top:-2px">{{ error }}</p>
+          </sc-if>
+          <button type="submit" style="margin-top:6px;cursor:pointer;background:#c6a15b;color:#081420;border:none;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;font-weight:500;padding:16px" style-hover="background:#d9b978">Entrar</button>
+        </form>
+        <a href="index.html" style="display:inline-block;margin-top:20px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.06em;color:#6b675f;border-bottom:1px solid rgba(13,28,43,0.2);padding-bottom:3px">← Regresar a inicio</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <sc-if value="{{ authed }}" hint-placeholder-val="{{ false }}">
+  <div style="position:relative;z-index:1">
+
+    <nav class="no-print" style="position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;padding:14px clamp(20px,4vw,48px);background:rgba(8,20,32,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(247,243,236,0.08)">
+      <img src="images/logo-light.png" alt="XTO Realty Group" style="height:36px;width:auto;display:block"/>
+      <div style="display:flex;align-items:center;gap:clamp(10px,1.6vw,18px)">
+        <button onClick="{{ nativeShare }}" aria-label="Compartir" style="cursor:pointer;display:flex;align-items:center;gap:8px;background:transparent;border:1px solid rgba(247,243,236,0.28);color:#f4efe7;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;padding:10px 16px;transition:border-color .3s ease,color .3s ease" style-hover="border-color:#c6a15b;color:#d9b978">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15V3"/><path d="M8 7l4-4 4 4"/><path d="M5 12v7a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-7"/></svg>
+          <span style="display:inline-block">Compartir</span>
+        </button>
+        <button onClick="{{ backToHome }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;background:#c6a15b;border:none;color:#081420;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:11px 18px;transition:background .3s ease" style-hover="background:#d9b978">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+          Home
+        </button>
+      </div>
+    </nav>
+
+    <header style="max-width:1120px;margin:0 auto;padding:clamp(56px,7vw,92px) clamp(20px,4vw,48px) 0">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;gap:24px;flex-wrap:wrap;padding-bottom:18px;border-bottom:1px solid rgba(247,243,236,0.16)">
+        <div style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.28em;text-transform:uppercase;color:#f4efe7;font-weight:400">XTO Realty Group México</div>
+        <div style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;color:rgba(247,243,236,0.55)">Playa del Carmen · Ciudad de México · León</div>
+      </div>
+      <div style="padding:clamp(44px,6vw,68px) 0 clamp(52px,7vw,76px)">
+        <p style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c6a15b;font-weight:500">Integración vertical</p>
+        <h1 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6vw,82px);line-height:1.02;letter-spacing:-.01em;color:#f7f3ec;max-width:17ch;margin-top:22px">La absorción se define desde que el proyecto <em style="font-style:italic;color:#c6a15b">toma forma</em>, no en la sala de ventas.</h1>
+        <p style="margin-top:32px;max-width:62ch;font-family:'Jost',sans-serif;font-size:clamp(16px,1.4vw,19px);line-height:1.68;color:rgba(247,243,236,0.8);font-weight:300">Somos una plataforma comercial integrada verticalmente. Asesoramos el proyecto antes de que el producto esté completamente definido, con el enfoque puesto en todas las etapas que siguen hasta lograr la absorción al 100%. Aportamos inteligencia de mercado, lectura arquitectónica, marketing, comercialización, ventas y red de brokers bajo un solo equipo y una sola meta.</p>
+      </div>
+    </header>
+
+    <section style="max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px) clamp(64px,8vw,96px)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:28px;gap:16px;flex-wrap:wrap;border-top:1px solid rgba(247,243,236,0.16);padding-top:40px">
+        <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(24px,3vw,32px);color:#f7f3ec;letter-spacing:-.01em">Dónde entra cada quien</h2>
+        <p style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c6a15b;font-weight:500">Línea de vida del proyecto</p>
+      </div>
+      <div style="position:relative;height:138px">
+        <div style="position:absolute;left:0;right:0;top:68px;height:1px;background:rgba(247,243,236,0.3)"></div>
+        <div style="position:absolute;top:36px;left:0;width:100%;height:24px;display:flex;align-items:center;background:#c6a15b;color:#081420"><b style="font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0 14px;white-space:nowrap">XTO — desde que el proyecto toma forma</b></div>
+        <div style="position:absolute;top:4px;left:60%;width:40%;height:22px;display:flex;align-items:center;background:repeating-linear-gradient(45deg,rgba(247,243,236,0.06),rgba(247,243,236,0.06) 5px,rgba(247,243,236,0.13) 5px,rgba(247,243,236,0.13) 10px);border:1px solid rgba(247,243,236,0.2);color:rgba(247,243,236,0.7)"><b style="font-family:'Jost',sans-serif;font-size:10px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;padding:0 12px;white-space:nowrap">Comercializadora convencional</b></div>
+        <div style="position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr)">
+          <div style="position:relative;border-left:1px dashed rgba(247,243,236,0.16);padding-top:80px"><span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,243,236,0.55);padding-left:10px;display:block;line-height:1.4">Planeación<br>y factibilidad</span></div>
+          <div style="position:relative;border-left:1px dashed rgba(247,243,236,0.16);padding-top:80px"><span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,243,236,0.55);padding-left:10px;display:block;line-height:1.4">Definición<br>de producto</span></div>
+          <div style="position:relative;border-left:1px dashed rgba(247,243,236,0.16);padding-top:80px"><span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,243,236,0.55);padding-left:10px;display:block;line-height:1.4">Planos<br>ejecutivos</span></div>
+          <div style="position:relative;border-left:1px dashed rgba(247,243,236,0.16);padding-top:80px"><span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,243,236,0.55);padding-left:10px;display:block;line-height:1.4">Obra</span></div>
+          <div style="position:relative;border-left:1px dashed rgba(247,243,236,0.16);border-right:1px dashed rgba(247,243,236,0.16);padding-top:80px"><span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,243,236,0.55);padding-left:10px;display:block;line-height:1.4">Venta<br>y entrega</span></div>
+        </div>
+      </div>
+      <p style="margin-top:18px;font-family:'Jost',sans-serif;font-size:14px;line-height:1.6;color:rgba(247,243,236,0.55);max-width:62ch;font-weight:300">Mientras el producto todavía se puede mover, corregirlo cuesta una reunión. Una vez definido, cada ajuste se paga durante toda la vida comercial del desarrollo.</p>
+    </section>
+
+    <section style="max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px) clamp(64px,8vw,96px)">
+      <div style="border-bottom:1px solid rgba(247,243,236,0.16);padding-bottom:14px;margin-bottom:36px"><h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3.2vw,36px);color:#f7f3ec;letter-spacing:-.01em">Tres capacidades en un solo equipo</h2></div>
+      <div style="display:grid;grid-template-columns:{{ pillarCols }};border-top:1px solid rgba(247,243,236,0.12)">
+        <article style="padding:32px 28px 34px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)">
+          <p style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b">Inteligencia</p>
+          <p style="font-family:'Jost',sans-serif;font-size:13px;font-weight:500;color:#f4efe7;margin-top:8px;letter-spacing:.01em">Datos con nivel de confianza declarado</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:#f7f3ec;margin:12px 0 12px;letter-spacing:-.01em;line-height:1.2">Transparencia</h3>
+          <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.66;color:rgba(247,243,236,0.72);font-weight:300">No entregamos una fotografía estática del mercado. Operamos un sistema vivo de absorción por nodo, meses de inventario, price-to-market y perfil de comprador verificado. Cada dato se etiqueta y toda fuente con incentivo comercial se marca como tal.</p>
+        </article>
+        <article style="padding:32px 28px 34px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)">
+          <p style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b">Experiencia de mercado</p>
+          <p style="font-family:'Jost',sans-serif;font-size:13px;font-weight:500;color:#f4efe7;margin-top:8px;letter-spacing:.01em">Leemos planos desde la decisión de compra</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:#f7f3ec;margin:12px 0 12px;letter-spacing:-.01em;line-height:1.2">Criterio</h3>
+          <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.66;color:rgba(247,243,236,0.72);font-weight:300">Más de dos décadas de comercialización de desarrollos, formación en arquitectura y experiencia directiva en absorción. Revisamos la intención de producto, superficies contra techo de precio, área vendible frente a amenidades y secuencia de fases. La autoría del diseño sigue siendo de su despacho; nosotros aportamos el criterio de mercado basado en datos y experiencia.</p>
+        </article>
+        <article style="padding:32px 28px 34px;border-bottom:1px solid rgba(247,243,236,0.12)">
+          <p style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b">Comercialización</p>
+          <p style="font-family:'Jost',sans-serif;font-size:13px;font-weight:500;color:#f4efe7;margin-top:8px;letter-spacing:.01em">Agencia completa dentro de la casa</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:#f7f3ec;margin:12px 0 12px;letter-spacing:-.01em;line-height:1.2">Continuidad</h3>
+          <p style="font-family:'Jost',sans-serif;font-size:15px;line-height:1.66;color:rgba(247,243,236,0.72);font-weight:300">Marca, sitio web, contenido, campañas de performance, CRM auditable, red de brokers y acompañamiento bancario, legal y de escrituración. Estamos de inicio a fin del proyecto: Conocemos los detalles, las necesidades y creamos soluciones continuas durante todos los procesos.</p>
+        </article>
+      </div>
+    </section>
+
+    <section style="max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px) clamp(64px,8vw,96px)">
+      <div style="border-bottom:1px solid rgba(247,243,236,0.16);padding-bottom:14px;margin-bottom:36px"><h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3.2vw,36px);color:#f7f3ec;letter-spacing:-.01em">Qué cambia con la integración vertical</h2></div>
+      <div style="border-top:1px solid rgba(247,243,236,0.3)">
+        <div style="display:grid;grid-template-columns:{{ contrastCols }};border-bottom:1px solid rgba(247,243,236,0.12)">
+          <div style="padding:14px 20px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,243,236,0.5)">Variable</div>
+          <div style="padding:14px 20px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,243,236,0.5)">Proveedores independientes</div>
+          <div style="padding:14px 20px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b">Modelo XTO</div>
+        </div>
+        <sc-for list="{{ contrast }}" as="c" hint-placeholder-count="5">
+          <div style="display:grid;grid-template-columns:{{ contrastCols }};border-bottom:1px solid rgba(247,243,236,0.12)">
+            <div style="padding:18px 20px;font-family:'Jost',sans-serif;font-size:15px;line-height:1.55;font-weight:500;color:#f7f3ec">{{ c.v }}</div>
+            <div style="padding:18px 20px;font-family:'Jost',sans-serif;font-size:15px;line-height:1.55;color:rgba(247,243,236,0.55);font-weight:300">{{ c.old }}</div>
+            <div style="padding:18px 20px;font-family:'Jost',sans-serif;font-size:15px;line-height:1.55;color:#f4efe7;background:rgba(198,161,91,0.08)">{{ c.xto }}</div>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section style="background:#0b1826;border-top:2px solid #c6a15b;padding:clamp(52px,6vw,72px) 0;margin-bottom:clamp(64px,8vw,96px)">
+      <div style="max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px)">
+        <div style="display:grid;grid-template-columns:{{ recordCols }};gap:clamp(32px,4vw,56px);align-items:start;margin-bottom:clamp(38px,4vw,52px)">
+          <div>
+            <p style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c6a15b;font-weight:500">Trayectoria</p>
+            <h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);line-height:1.1;letter-spacing:-.01em;color:#f7f3ec;margin-top:18px">Dos décadas moviendo <em style="font-style:italic;color:#c6a15b">producto real</em> en mercados reales.</h2>
+            <p style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b;margin-top:26px">Emmanuel Carreño<span style="display:block;font-size:13px;letter-spacing:0;text-transform:none;color:rgba(247,243,236,0.6);margin-top:5px;font-weight:300">Director General · XTO Realty Group México</span></p>
+          </div>
+          <div>
+            <p style="font-family:'Jost',sans-serif;font-size:16px;line-height:1.68;color:rgba(247,243,236,0.78);font-weight:300;margin-bottom:18px">Veinte años de participación activa en estrategias de comercialización, posicionamiento y desarrollo de proyectos residenciales y turísticos en México. Una trayectoria construida sobre estructuras comerciales eficientes, alianzas estratégicas y metodologías de venta orientadas a resultados sostenibles.</p>
+            <p style="font-family:'Jost',sans-serif;font-size:16px;line-height:1.68;color:rgba(247,243,236,0.78);font-weight:300">Experiencia directa en desarrollos verticales premium, productos boutique y branded residences; en preventa y absorción escalonada; en redes de brokers de alcance nacional y en estrategias de generación de demanda para segmento luxury. Es el criterio que hoy se aplica desde la primera conversación sobre el producto.</p>
+          </div>
+        </div>
+        <div style="display:grid;grid-template-columns:{{ figCols }};border-top:1px solid rgba(247,243,236,0.2)">
+          <div style="padding:28px 22px 24px;border-right:1px solid rgba(247,243,236,0.12)"><div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1;letter-spacing:-.01em;color:#f7f3ec">+4,300</div><div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(247,243,236,0.55);margin-top:12px;line-height:1.5">Unidades con participación en comercialización</div></div>
+          <div style="padding:28px 22px 24px;border-right:1px solid rgba(247,243,236,0.12)"><div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1;letter-spacing:-.01em;color:#f7f3ec">$8,400<span style="font-size:.5em"> MDP</span></div><div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(247,243,236,0.55);margin-top:12px;line-height:1.5">Valor agregado en proyectos con participación</div></div>
+          <div style="padding:28px 22px 24px;border-right:1px solid rgba(247,243,236,0.12)"><div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1;letter-spacing:-.01em;color:#f7f3ec">+20</div><div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(247,243,236,0.55);margin-top:12px;line-height:1.5">Años de experiencia en el sector inmobiliario</div></div>
+          <div style="padding:28px 22px 24px"><div style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1;letter-spacing:-.01em;color:#f7f3ec">3</div><div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.13em;text-transform:uppercase;color:rgba(247,243,236,0.55);margin-top:12px;line-height:1.5">Plazas de operación: CDMX, Riviera Maya y Bajío</div></div>
+        </div>
+      </div>
+    </section>
+
+    <section style="max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px) clamp(64px,8vw,96px)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(247,243,236,0.16);padding-bottom:14px;margin-bottom:36px;gap:16px;flex-wrap:wrap"><h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3.2vw,36px);color:#f7f3ec;letter-spacing:-.01em">Tres plazas, cobertura nacional</h2><p style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c6a15b;font-weight:500">Radio de operación</p></div>
+      <div style="display:grid;grid-template-columns:{{ officesCols }};border-top:1px solid rgba(247,243,236,0.3)">
+        <div style="padding:26px 26px 28px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#f7f3ec;letter-spacing:-.01em">Playa del Carmen</div>
+          <div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#c6a15b;margin:7px 0 12px">Riviera Maya</div>
+          <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.6;color:rgba(247,243,236,0.72);font-weight:300">Corredor Cancún–Puerto Morelos–Playa del Carmen–Tulum. Producto turístico, segunda residencia, lujo y branded residences, con comprador nacional e internacional.</p>
+        </div>
+        <div style="padding:26px 26px 28px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#f7f3ec;letter-spacing:-.01em">León</div>
+          <div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#c6a15b;margin:7px 0 12px">Bajío y Pacífico centro</div>
+          <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.6;color:rgba(247,243,236,0.72);font-weight:300">Del corredor industrial del Bajío hasta Costa Alegre. Mercado residencial en expansión, comprador con capacidad de segunda residencia y red inmobiliaria regional.</p>
+        </div>
+        <div style="padding:26px 26px 28px;border-bottom:1px solid rgba(247,243,236,0.12)">
+          <div style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#f7f3ec;letter-spacing:-.01em">Ciudad de México</div>
+          <div style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#c6a15b;margin:7px 0 12px">Alcance nacional</div>
+          <p style="font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.6;color:rgba(247,243,236,0.72);font-weight:300">Origen del comprador de inversión y de la banca. Desde aquí se articula la red de brokers que llega a Monterrey en el norte y a Los Cabos en el Pacífico.</p>
+        </div>
+      </div>
+      <p style="margin-top:22px;font-family:'Jost',sans-serif;font-size:14.5px;line-height:1.65;color:rgba(247,243,236,0.55);font-weight:300;max-width:70ch">La distribución no es logística, es comercial: Permite colocar producto del Caribe frente al comprador del Bajío y del centro del país, y llevar a un desarrollo de la Riviera Maya una demanda que un broker local no alcanza.</p>
+    </section>
+
+    <section style="max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px) clamp(72px,9vw,104px)">
+      <div style="display:flex;justify-content:space-between;align-items:baseline;border-bottom:1px solid rgba(247,243,236,0.16);padding-bottom:14px;margin-bottom:28px;gap:16px;flex-wrap:wrap"><h2 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3.2vw,36px);color:#f7f3ec;letter-spacing:-.01em">Cómo producimos la inteligencia de mercado</h2><p style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c6a15b;font-weight:500">Metodología</p></div>
+      <p style="max-width:68ch;font-family:'Jost',sans-serif;font-size:clamp(15px,1.3vw,17px);line-height:1.68;color:rgba(247,243,236,0.75);font-weight:300;margin-bottom:44px">La inteligencia de mercado que sostiene cada decisión de producto no se compra: Se produce. Opera como un ciclo continuo con un agente de inteligencia artificial dedicado, supervisado por el equipo, que recolecta, contrasta y jerarquiza información de forma permanente en lugar de hacerlo una sola vez por proyecto.</p>
+
+      <div style="display:grid;grid-template-columns:{{ flowCols }};border-top:1px solid rgba(247,243,236,0.3)">
+        <article style="padding:26px 24px 30px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)">
+          <p style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;color:#c6a15b">Fase 01</p>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#f7f3ec;margin:12px 0 10px;line-height:1.25">Recolección</h4>
+          <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.62;color:rgba(247,243,236,0.72);font-weight:300">Barrido continuo de fuentes públicas, institucionales y de mercado.</p>
+          <ul style="margin-top:12px;list-style:none;display:flex;flex-direction:column;gap:0">
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Institucionales: INEGI, SHF, Banxico, SEDETUR, PROFEPA</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Consultoras: 4S, Tasvalúo, Softec, Savills, Tinsa</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Prensa especializada y registros regulatorios</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Oferta directa de competencia y portales</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>CRM propio y expediente del proyecto</li>
+          </ul>
+        </article>
+        <article style="padding:26px 24px 30px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)">
+          <p style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;color:#c6a15b">Fase 02</p>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#f7f3ec;margin:12px 0 10px;line-height:1.25">Contraste</h4>
+          <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.62;color:rgba(247,243,236,0.72);font-weight:300">Ningún dato entra por una sola vía. Se busca convergencia entre fuentes independientes y se identifica quién tiene interés económico en el resultado.</p>
+          <ul style="margin-top:12px;list-style:none;display:flex;flex-direction:column;gap:0">
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Cruce mínimo de fuentes independientes</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Marcado de fuentes con incentivo comercial</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Detección explícita de contradicciones</li>
+          </ul>
+        </article>
+        <article style="padding:26px 24px 30px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)">
+          <p style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;color:#c6a15b">Fase 03</p>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#f7f3ec;margin:12px 0 10px;line-height:1.25">Etiquetado</h4>
+          <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.62;color:rgba(247,243,236,0.72);font-weight:300">Cada afirmación recibe su nivel de confianza antes de poder usarse. Lo contradicho queda bloqueado para uso público hasta resolverse.</p>
+          <ul style="margin-top:12px;list-style:none;display:flex;flex-direction:column;gap:0">
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Confirmado — Fuente institucional o múltiple</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Convergente — Coinciden fuentes independientes</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Señal — Indicio único, sin confirmar</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Contradicho — Bloqueado</li>
+          </ul>
+        </article>
+        <article style="padding:26px 24px 30px;border-bottom:1px solid rgba(247,243,236,0.12)">
+          <p style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;color:#c6a15b">Fase 04</p>
+          <h4 style="font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#f7f3ec;margin:12px 0 10px;line-height:1.25">Aplicación</h4>
+          <p style="font-family:'Jost',sans-serif;font-size:14px;line-height:1.62;color:rgba(247,243,236,0.72);font-weight:300">El dato no termina en un reporte: Entra a la decisión de producto, precio, fase y mensaje, y vuelve a medirse contra el embudo real de venta.</p>
+          <ul style="margin-top:12px;list-style:none;display:flex;flex-direction:column;gap:0">
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Mezcla de producto y superficies</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Política de precios y fases</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Segmento, mensaje y canal</li>
+            <li style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.02em;color:rgba(247,243,236,0.55);padding:3px 0 3px 12px;position:relative;line-height:1.5"><span style="position:absolute;left:0;color:#c6a15b">·</span>Reajuste con datos de embudo</li>
+          </ul>
+        </article>
+      </div>
+
+      <div style="margin-top:44px;display:grid;grid-template-columns:{{ agentCols }};gap:clamp(28px,4vw,56px);align-items:start;border-left:2px solid #c6a15b;padding-left:clamp(22px,3vw,32px)">
+        <div>
+          <p style="font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c6a15b;font-weight:500">Capa tecnológica</p>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(24px,2.6vw,28px);color:#f7f3ec;letter-spacing:-.01em;line-height:1.2;margin-top:14px">Una capa de razonamiento que trabaja de forma continua junto al equipo.</h3>
+        </div>
+        <div>
+          <p style="font-family:'Jost',sans-serif;font-size:16px;line-height:1.7;color:rgba(247,243,236,0.78);font-weight:300;margin-bottom:16px">Operamos una arquitectura de agentes de inteligencia artificial construida sobre modelos de razonamiento de última generación —Claude, de Anthropic, como motor principal, complementado con modelos especializados para búsqueda, análisis documental y procesamiento visual— conectados a bases de datos propias del proyecto y a fuentes de mercado en tiempo real.</p>
+          <p style="font-family:'Jost',sans-serif;font-size:16px;line-height:1.7;color:rgba(247,243,236,0.78);font-weight:300;margin-bottom:16px">Lo distintivo no es la automatización, sino la capacidad de razonar sobre información incompleta: Relacionar una señal de absorción con una decisión de producto, detectar que dos fuentes cuentan historias distintas del mismo mercado, o anticipar cómo un cambio regulatorio se traduce en demanda. Es trabajo analítico sostenido, disponible todos los días del proyecto y no solo cuando se encarga un estudio.</p>
+          <p style="font-family:'Jost',sans-serif;font-size:16px;line-height:1.7;color:rgba(247,243,236,0.78);font-weight:300">El equipo dirige, cuestiona y decide. La tecnología amplía cuánto podemos revisar y con qué profundidad; el criterio comercial y la responsabilidad del resultado siguen siendo nuestros.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:22px">
+            <span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border:1px solid rgba(247,243,236,0.16);color:rgba(247,243,236,0.72)">Razonamiento</span>
+            <span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border:1px solid rgba(247,243,236,0.16);color:rgba(247,243,236,0.72)">Memoria de proyecto</span>
+            <span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border:1px solid rgba(247,243,236,0.16);color:rgba(247,243,236,0.72)">Análisis documental</span>
+            <span style="font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border:1px solid rgba(247,243,236,0.16);color:rgba(247,243,236,0.72)">Monitoreo continuo</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer style="border-top:1px solid rgba(247,243,236,0.16);max-width:1120px;margin:0 auto;padding:26px clamp(20px,4vw,48px) 56px;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;color:rgba(247,243,236,0.5)">
+      <div>XTO Realty Group México · Playa del Carmen · Ciudad de México · León</div>
+      <div style="color:#c6a15b">Absorción con evidencia, no con promesas.</div>
+    </footer>
+
+    <sc-if value="{{ shareMenu }}" hint-placeholder-val="{{ false }}">
+      <div class="no-print" onClick="{{ closeShare }}" style="position:fixed;inset:0;z-index:80;background:rgba(6,15,24,0.7);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;padding:20px">
+        <div onClick="{{ stop }}" style="background:#f4efe7;width:100%;max-width:380px;padding:30px 28px;position:relative;color:#0d1c2b">
+          <button onClick="{{ closeShare }}" aria-label="Cerrar" style="position:absolute;top:14px;right:16px;cursor:pointer;background:transparent;border:none;font-size:24px;line-height:1;color:#0d1c2b">×</button>
+          <div style="display:flex;align-items:center;gap:12px;margin-bottom:8px"><span style="width:34px;height:1px;background:#c6a15b"></span><span style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#b08d47">Compartir</span></div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#0d1c2b;line-height:1.1">Enviar esta presentación</h3>
+          <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:13px;color:#5c5850;margin-top:6px">Elige cómo compartir el contenido.</p>
+          <div style="display:flex;flex-direction:column;gap:10px;margin-top:22px">
+            <button onClick="{{ shareWhatsApp }}" style="cursor:pointer;display:flex;align-items:center;gap:12px;background:#081420;color:#f7f3ec;border:none;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:15px 18px;text-align:left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="#c6a15b"><path d="M12 2a10 10 0 0 0-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1 0 12 2zm0 18a8 8 0 0 1-4.1-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8 8 0 1 1 12 20zm4.4-6c-.2-.1-1.4-.7-1.6-.8s-.4-.1-.5.1-.6.8-.7.9-.3.2-.5 0a6.5 6.5 0 0 1-3.2-2.8c-.2-.4.2-.4.6-1.2a.4.4 0 0 0 0-.4l-.7-1.7c-.2-.5-.4-.4-.5-.4h-.5a.9.9 0 0 0-.7.3 2.8 2.8 0 0 0-.9 2.1 4.9 4.9 0 0 0 1 2.6 11 11 0 0 0 4.3 3.8c1.6.6 1.8.5 2.1.5a2.5 2.5 0 0 0 1.7-1.2 2 2 0 0 0 .1-1.2c0-.1-.2-.2-.5-.3z"/></svg>
+              Enviar por WhatsApp
+            </button>
+            <button onClick="{{ downloadPdf }}" style="cursor:pointer;display:flex;align-items:center;gap:12px;background:transparent;color:#0d1c2b;border:1px solid rgba(13,28,43,0.25);font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.14em;text-transform:uppercase;padding:15px 18px;text-align:left">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b08d47" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg>
+              Descargar como PDF
+            </button>
+          </div>
+        </div>
+      </div>
+    </sc-if>
+
+  </div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1200,&quot;height&quot;:900},&quot;previewUnlocked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Vista previa&quot;},&quot;whatsappNumber&quot;:{&quot;editor&quot;:&quot;text&quot;,&quot;default&quot;:&quot;&quot;,&quot;tsType&quot;:&quot;string&quot;,&quot;section&quot;:&quot;Compartir&quot;}}">
+class Component extends DCLogic {
+  userRef = React.createRef();
+  passRef = React.createRef();
+  state = { authed: false, error: '', isDesktop: true, shareMenu: false };
+
+  componentDidMount() {
+    try { if (sessionStorage.getItem('xto_iv_auth') === '1') this.setState({ authed: true }); } catch (e) {}
+    this.mq = window.matchMedia('(min-width:860px)');
+    this.onRz = () => this.setState({ isDesktop: this.mq.matches });
+    this.onRz();
+    this.mq.addEventListener('change', this.onRz);
+  }
+  componentWillUnmount() { if (this.mq) this.mq.removeEventListener('change', this.onRz); }
+
+  submitLogin = (e) => {
+    e.preventDefault();
+    const u = ((this.userRef.current && this.userRef.current.value) || '').trim().toLowerCase();
+    const p = (this.passRef.current && this.passRef.current.value) || '';
+    if (u === 'Overview' && p === 'Ejecutivo2026') {
+      try { sessionStorage.setItem('xto_iv_auth', '1'); } catch (e) {}
+      this.setState({ authed: true, error: '' });
+    } else {
+      this.setState({ error: 'Usuario o contraseña incorrectos.' });
+    }
+  };
+
+  backToHome = () => {
+    try { sessionStorage.removeItem('xto_iv_auth'); } catch (e) {}
+    this.setState({ authed: false });
+    window.location.href = 'index.html';
+  };
+
+  nativeShare = async () => {
+    const data = {
+      title: 'XTO Realty Group México — Integración vertical',
+      text: 'XTO Realty Group México — Integración vertical. Absorción con evidencia, no con promesas.',
+      url: window.location.href
+    };
+    try {
+      if (navigator.share) { await navigator.share(data); return; }
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+    }
+    this.setState({ shareMenu: true });
+  };
+  closeShare = () => this.setState({ shareMenu: false });
+
+  shareWhatsApp = () => {
+    const num = (this.props.whatsappNumber || '').replace(/[^0-9]/g, '');
+    const msg = encodeURIComponent('XTO Realty Group México — Integración vertical. Absorción con evidencia, no con promesas. ' + window.location.href);
+    const base = num ? ('https://wa.me/' + num + '?text=') : 'https://wa.me/?text=';
+    window.open(base + msg, '_blank');
+    this.setState({ shareMenu: false });
+  };
+  downloadPdf = () => { this.setState({ shareMenu: false }); setTimeout(() => window.print(), 60); };
+  stop = (e) => e.stopPropagation();
+
+  renderVals() {
+    const authed = this.state.authed || !!this.props.previewUnlocked;
+    const desk = this.state.isDesktop;
+    return {
+      userRef: this.userRef, passRef: this.passRef,
+      authed, notAuthed: !authed,
+      error: this.state.error, hasError: !!this.state.error,
+      isDesktop: desk, shareMenu: this.state.shareMenu,
+      pillarCols: desk ? 'repeat(3,1fr)' : '1fr',
+      contrastCols: desk ? '1.1fr 1.4fr 1.6fr' : '1fr',
+      recordCols: desk ? '1fr 1.3fr' : '1fr',
+      figCols: desk ? 'repeat(4,1fr)' : 'repeat(2,1fr)',
+      officesCols: desk ? 'repeat(3,1fr)' : '1fr',
+      flowCols: desk ? 'repeat(4,1fr)' : '1fr',
+      agentCols: desk ? '1fr 1.35fr' : '1fr',
+      contrast: [
+        { v: 'Momento de entrada', old: 'Con el producto ya definido.', xto: 'Desde que el proyecto toma forma, mientras el producto todavía se puede mover.' },
+        { v: 'Responsable del resultado', old: 'Distribuido. Nadie responde por la absorción.', xto: 'Un solo equipo, con la absorción como meta única.' },
+        { v: 'Costo de coordinación', old: 'Lo absorbe el desarrollador.', xto: 'Interno. No se traslada al cliente.' },
+        { v: 'Marketing', old: 'Comunica el producto que recibe.', xto: 'Ayudó a definir el producto que comunica.' },
+        { v: 'Ajuste de producto', old: 'Tardío y caro, o no ocurre.', xto: 'Temprano y económico. Ocurre mientras hay margen de decisión.' }
+      ],
+      submitLogin: this.submitLogin, backToHome: this.backToHome,
+      nativeShare: this.nativeShare, closeShare: this.closeShare,
+      shareWhatsApp: this.shareWhatsApp, downloadPdf: this.downloadPdf, stop: this.stop
+    };
+  }
+}
+</script>
+</body>
+</html>
