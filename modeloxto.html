@@ -42,7 +42,7 @@
         <h3 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:#0d1c2b;line-height:1.05">Integración vertical</h3>
         <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:14px;color:#5c5850;margin-top:8px">Presentación reservada para clientes y aliados de XTO Realty Group México.</p>
         <form onSubmit="{{ submitLogin }}" style="margin-top:26px;display:flex;flex-direction:column;gap:14px">
-          <input ref="{{ userRef }}" type="text" required placeholder="Usuario" autocomplete="username" style="font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.2);padding:14px 16px;transition:border-color .3s ease"/>
+          <input ref="{{ userRef }}" type="email" required placeholder="Correo electrónico" autocomplete="email" style="font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.2);padding:14px 16px;transition:border-color .3s ease"/>
           <input ref="{{ passRef }}" type="password" required placeholder="Contraseña" autocomplete="current-password" style="font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.2);padding:14px 16px;transition:border-color .3s ease"/>
           <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
             <p style="font-family:'Jost',sans-serif;font-size:13px;color:#a8443a;margin-top:-2px">{{ error }}</p>
@@ -66,7 +66,7 @@
         </button>
         <button onClick="{{ backToHome }}" style="cursor:pointer;display:flex;align-items:center;gap:7px;background:#c6a15b;border:none;color:#081420;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:11px 18px;transition:background .3s ease" style-hover="background:#d9b978">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
-          Home
+          Regreso a Home
         </button>
       </div>
     </nav>
@@ -309,7 +309,7 @@ class Component extends DCLogic {
     e.preventDefault();
     const u = ((this.userRef.current && this.userRef.current.value) || '').trim().toLowerCase();
     const p = (this.passRef.current && this.passRef.current.value) || '';
-    if (u === 'Overview' && p === 'Ejecutivo2026') {
+    if (u === 'overview@xtorealtygroup.com' && p === 'Ejecutivo2026') {
       try { sessionStorage.setItem('xto_iv_auth', '1'); } catch (e) {}
       this.setState({ authed: true, error: '' });
     } else {
