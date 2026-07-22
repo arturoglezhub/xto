@@ -101,9 +101,9 @@
             <h3 style="font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;color:#0d1c2b;line-height:1.05">{{ t.loginTitle }}</h3>
             <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:14px;color:#5c5850;margin-top:8px">{{ t.loginSub }}</p>
             <form onSubmit="{{ submitLogin }}" style="margin-top:24px;display:flex;flex-direction:column;gap:14px">
-              <input ref="{{ emailRef }}" type="email" required placeholder="{{ t.emailPh }}" style="font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.18);padding:14px 16px;transition:border-color .3s ease"/>
-              <input ref="{{ passRef }}" type="password" required placeholder="{{ t.passPh }}" style="font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.18);padding:14px 16px;transition:border-color .3s ease"/>
-              <button type="submit" style="margin-top:6px;cursor:pointer;background:#c6a15b;color:#081420;border:none;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.16em;text-transform:uppercase;padding:15px;transition:background .3s ease" style-hover="background:#d9b978">{{ t.signIn }}</button>
+              <input name="email" ref="{{ emailRef }}" type="email" required placeholder="{{ t.emailPh }}" style="..." />
+              <input name="password" ref="{{ passRef }}" type="password" required placeholder="{{ t.passPh }}" style="..." />
+              <button type="submit" ...>{{ t.signIn }}</button>
             </form>
             <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:12px;color:#8a8578;margin-top:16px;text-align:center">{{ t.loginNote }}</p>
           </div>
@@ -605,12 +605,13 @@ class Component extends DCLogic {
  
   submitLogin = (e) => {
     e.preventDefault();
-    const email = (this.emailRef.current && this.emailRef.current.value) || '';
-    // Si tienes un input de contraseña referenciado, puedes capturarlo aquí también:
-    const pass = (this.passRef.current && this.passRef.current.value) || '';
+    
+    // Capturamos los valores directamente desde el evento del formulario para evitar conflictos de referencias
+    const formData = new FormData(e.target);
+    const email = (formData.get('email') || (this.emailRef.current && this.emailRef.current.value) || '').trim();
+    const pass = formData.get('password') || (this.passRef.current && this.passRef.current.value) || '';
 
-    // 1. Define tu base de datos de usuarios, credenciales y páginas de destino.
-    // Puedes agregar cuantos usuarios necesites en el futuro simplemente sumando elementos aquí.
+    // Tu base de datos escalable de usuarios y destinos
     const usuariosPermitidos = [
       {
         correo: 'zyriane@xto.com',
@@ -618,31 +619,26 @@ class Component extends DCLogic {
         destino: 'zyrianetowers.html'
       },
       {
-        correo: 'admin@xto.com',
-        password: 'admin2026',
+        correo: 'presentacion@xto.com',
+        password: 'xto2026',
         destino: 'modeloxto.html'
-      },
-      {
-        correo: 'socio@xto.com',
-        password: 'socio2026',
-        destino: 'portafolio.html' // Ejemplo de futura página
       }
+      // Puedes seguir agregando más usuarios aquí en el futuro:
+      // { correo: 'nuevo@xto.com', password: 'password123', destino: 'otrapp.html' }
     ];
 
-    // 2. Buscamos si las credenciales coinciden con algún registro
+    // Buscamos la coincidencia exacta de correo y contraseña
     const usuarioEncontrado = usuariosPermitidos.find(
       (u) => u.correo.toLowerCase() === email.toLowerCase() && u.password === pass
     );
 
     if (usuarioEncontrado) {
-      // Si las credenciales son correctas, guardamos sesión y redirigimos
       const name = email.split('@')[0] || 'Miembro';
       this.setState({ loggedIn: true, userName: name });
       
-      // Redirección automática al archivo HTML correspondiente
+      // Redirige al archivo HTML correspondiente al usuario autenticado
       window.location.href = usuarioEncontrado.destino;
     } else {
-      // Si fallan, puedes mostrar una alerta o manejar el error visualmente
       alert('Correo o contraseña incorrectos. Por favor, verifícalos.');
     }
   };
