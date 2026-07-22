@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Zyriane Towers — Estudio de Mercado</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *{margin:0;padding:0;box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{background:#081420;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;font-family:'Jost',sans-serif;color:#f4efe7; overflow-x:hidden}
+  a{color:#c6a15b;text-decoration:none;transition:color .3s ease}
+  a:hover{color:#d9b978}
+  ::selection{background:#c6a15b;color:#081420}
+  input:focus{outline:none;border-color:#c6a15b!important}
+  
+  .pv{background:#081420;min-height:100vh;position:relative; z-index:1}
+  .wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(28px,6vw,72px)}
+  
+  .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(198,161,91,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(198,161,91,0.06) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse 90% 55% at 50% 0%,#000 15%,transparent 80%);mask-image:radial-gradient(ellipse 90% 55% at 50% 0%,#000 15%,transparent 80%)}
+  .eyebrow{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c6a15b;font-weight:500; display:flex; align-items:center; gap:12px; flex-wrap:wrap}
+  .badge{background:rgba(198,161,91,0.15); border:1px solid #c6a15b; color:#d9b978; padding:4px 10px; border-radius:2px; font-weight:500; letter-spacing:0.1em}
+  .serif{font-family:'Cormorant Garamond',serif}
+  .gold{color:#c6a15b}
+
+  /* Reveal Animations */
+  [data-rv]{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+  .js-anim [data-rv]{opacity:0;transform:translateY(22px)}
+  .js-anim [data-rv][data-in]{opacity:1;transform:none}
+  [data-rv][data-d="1"]{transition-delay:.1s}
+  [data-rv][data-d="2"]{transition-delay:.2s}
+  [data-rv][data-d="3"]{transition-delay:.3s}
+  @media (prefers-reduced-motion:reduce){[data-rv]{opacity:1!important;transform:none!important}}
+
+  /* nav */
+  .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(28px,6vw,72px);background:rgba(8,20,32,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(247,243,236,0.08); transition:transform 0.4s ease}
+  .nav img{height:34px;width:auto;display:block}
+  .navbtns{display:flex;align-items:center;gap:10px}
+  .btn{cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:11px 18px;transition:all .3s cubic-bezier(0.25, 0.8, 0.25, 1);border:none;white-space:nowrap}
+  .btn-ghost{background:transparent;border:1px solid rgba(247,243,236,0.28);color:#f4efe7}
+  .btn-ghost:hover{border-color:#c6a15b;color:#d9b978; background:rgba(198,161,91,0.05); transform:translateY(-2px)}
+  .btn-gold{background:#c6a15b;color:#081420}
+  .btn-gold:hover{background:#e3c88e; transform:translateY(-2px); box-shadow:0 6px 16px rgba(198,161,91,0.2)}
+
+  /* hero */
+  .hero{position:relative;min-height:clamp(520px,86vh,760px);display:flex;align-items:flex-end;overflow:hidden}
+  .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.4; transform:scale(1.03); transition:transform 10s ease-out}
+  .js-anim .hero-img{transform:scale(1)}
+  .hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,32,0.6) 0%,rgba(8,20,32,0.4) 40%,rgba(8,20,32,0.98) 100%)}
+  .hero-in{position:relative;z-index:2;width:100%;padding-bottom:clamp(48px,7vw,80px)}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,5.8vw,72px);line-height:1.05;letter-spacing:-.01em;color:#f7f3ec;max-width:22ch; margin-top:22px}
+  .hero .lede{margin-top:24px;max-width:60ch;font-size:clamp(16px,1.6vw,20px);line-height:1.6;color:rgba(247,243,236,0.85);font-weight:300}
+
+  .section{padding:clamp(56px,8vw,104px) 0}
+  .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid rgba(247,243,236,0.16);padding-bottom:16px;margin-bottom:clamp(28px,4vw,44px)}
+  .sec-head h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(28px,3.4vw,42px);color:#f7f3ec;letter-spacing:-.01em}
+
+  /* offices / recomendations */
+  .offices{display:grid;grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(247,243,236,0.12); border:1px solid rgba(247,243,236,0.12)}
+  .off{padding:34px 30px; background:#081420; transition:transform 0.4s cubic-bezier(0.25, 0.8, 0.25, 1), box-shadow 0.4s ease}
+  .off:hover{transform:translateY(-6px); box-shadow:0 12px 30px rgba(0,0,0,0.4); z-index:2; position:relative}
+  .off .rg{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b}
+  .off .nm{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:26px;color:#f7f3ec;margin:14px 0 14px;letter-spacing:-.01em;line-height:1.2}
+  .off p{font-size:15px;line-height:1.68;color:rgba(247,243,236,0.76);font-weight:300}
+  
+  /* lists for tldr / caveats */
+  ul.list-box{list-style:none;margin-top:16px}
+  ul.list-box li{position:relative;padding-left:24px;margin-bottom:16px;font-size:16.5px;line-height:1.68;color:rgba(247,243,236,0.85);font-weight:300}
+  ul.list-box li::before{content:"";position:absolute;left:0;top:10px;width:6px;height:6px;background:#c6a15b;border-radius:50%}
+  ul.list-box li strong{color:#f7f3ec; font-weight:500}
+
+  /* lists inside body */
+  ol.action-list{counter-reset:my-counter; list-style:none; padding-left:0; margin-top:20px}
+  ol.action-list li{position:relative; padding-left:36px; margin-bottom:18px; font-size:16px; line-height:1.7; color:rgba(247,243,236,0.8); font-weight:300}
+  ol.action-list li::before{content:counter(my-counter, decimal-leading-zero); counter-increment:my-counter; position:absolute; left:0; top:2px; font-family:'Jost',sans-serif; font-size:11px; font-weight:600; color:#c6a15b}
+  ol.action-list li strong{color:#f7f3ec; font-weight:400}
+
+  /* comparison */
+  .cmp{border-top:1px solid rgba(247,243,236,0.3); margin-bottom: 48px;}
+  .cmp-head,.cmp-row{display:grid;grid-template-columns:1fr 0.8fr 1.6fr}
+  .cmp-head>div{padding:14px 20px;font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:rgba(247,243,236,0.5)}
+  .cmp-head .gd{color:#c6a15b}
+  .cmp-row{border-bottom:1px solid rgba(247,243,236,0.08); transition:background 0.3s ease}
+  .cmp-row:hover{background:rgba(247,243,236,0.03)}
+  .cmp-row>div{padding:20px 20px;font-size:15px;line-height:1.55}
+  .cmp-var{font-weight:500;color:#f7f3ec}
+  .cmp-old{font-family:'Jost',sans-serif;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;font-size:12px;display:flex;align-items:center}
+  .cmp-xto{color:rgba(247,243,236,0.75); font-weight:300}
+  
+  /* Status colors */
+  .st-fuerte{color:#7cb342;}
+  .st-mod{color:#fbc02d;}
+  .st-debil{color:#e53935;}
+
+  /* GRAPHIC COMPONENT */
+  .xto-chart-container{margin-top: clamp(40px, 5vw, 64px);background:#0b1826;border:1px solid rgba(198,161,91,0.25);padding:clamp(32px,4vw,48px);border-radius:4px; transition:box-shadow 0.5s ease}
+  .xto-chart-container:hover{box-shadow:0 10px 40px rgba(0,0,0,0.3)}
+  .xto-chart-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:34px;padding-bottom:16px;border-bottom:1px solid rgba(247,243,236,0.1)}
+  .xto-chart-header h3{font-family:'Cormorant Garamond',serif;font-size:clamp(24px,3vw,32px);font-weight:500;color:#f7f3ec}
+  .xto-chart-toggle{display:inline-flex;background:rgba(8,20,32,0.8);padding:4px;border:1px solid rgba(247,243,236,0.15); border-radius:3px}
+  .xto-toggle-btn{background:transparent;border:none;color:rgba(247,243,236,0.6);padding:8px 16px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .3s ease; border-radius:2px}
+  .xto-toggle-btn.active{background:#c6a15b;color:#081420;font-weight:500}
+
+  .xto-chart-body{display:flex;flex-direction:column;gap:26px}
+  .xto-chart-metric{display:flex;flex-direction:column;gap:10px}
+  .xto-chart-labels{display:flex;justify-content:space-between;align-items:baseline;font-size:14.5px}
+  .xto-metric-title{color:#f7f3ec;font-weight:400}
+  .xto-metric-val{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:#c6a15b;transition:color .4s ease}
+  .xto-chart-track{width:100%;height:10px;background:rgba(247,243,236,0.06);position:relative;overflow:hidden; border-radius:5px}
+  .xto-chart-fill{height:100%;background:linear-gradient(90deg, #967433 0%, #c6a15b 100%);width:0%;transition:width 1.2s cubic-bezier(.22,.61,.36,1); border-radius:5px}
+  .xto-chart-track.old .xto-chart-fill{background:rgba(247,243,236,0.25)}
+
+  /* record */
+  .record{background:#0b1826;border-top:2px solid #c6a15b}
+  .record .top{display:grid;grid-template-columns:1fr 2fr;gap:clamp(28px,4vw,64px);align-items:start}
+  .record h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,3.8vw,48px);line-height:1.05;letter-spacing:-.01em;color:#f7f3ec}
+  
+  /* methodology timeline for full content */
+  .vt{position:relative;padding-left:0; margin-top:20px}
+  .vt-item{position:relative;display:grid;grid-template-columns:50px 1fr;gap:clamp(24px,4vw,36px);padding:0 0 clamp(44px,5vw,64px) 0}
+  .vt-item:last-child{padding-bottom:0}
+  .vt-rail{position:relative;display:flex;flex-direction:column;align-items:flex-end;text-align:right}
+  .vt-num{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3vw,38px);line-height:.9;color:#c6a15b;letter-spacing:-.01em;transition:color .8s ease}
+  .js-anim .vt-num{color:rgba(247,243,236,0.15)}
+  .js-anim .vt-item[data-in] .vt-num{color:#c6a15b}
+  .vt-body{position:relative;border-left:1px solid rgba(247,243,236,0.12);padding:2px 0 0 clamp(24px,4vw,40px)}
+  .vt-item:last-child .vt-body{border-left-color:transparent}
+  .vt-dot{position:absolute;left:-7px;top:6px;width:13px;height:13px;border-radius:50%;background:#c6a15b;border:2px solid #c6a15b;box-shadow:0 0 0 4px rgba(198,161,91,0.15);transition:border-color .6s ease,background .6s ease,box-shadow .6s ease}
+  .js-anim .vt-dot{background:#081420;border-color:rgba(247,243,236,0.2);box-shadow:none}
+  .js-anim .vt-item[data-in] .vt-dot{border-color:#c6a15b;background:#c6a15b;box-shadow:0 0 0 4px rgba(198,161,91,0.15)}
+  .vt-body h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(22px,2.4vw,28px);color:#f7f3ec;letter-spacing:-.01em;line-height:1.2; margin-bottom:18px}
+  .vt-body p{font-size:16px;line-height:1.75;color:rgba(247,243,236,0.8);font-weight:300;margin-bottom:14px;max-width:85ch}
+  .vt-body p strong{color:#f7f3ec; font-weight:500}
+
+  footer.ft{border-top:1px solid rgba(247,243,236,0.16);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;color:rgba(247,243,236,0.4);padding:32px 0 64px}
+
+  /* login gate */
+  .gate{position:fixed;inset:0;z-index:9999;background:#081420;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px 20px; transition:opacity 0.6s cubic-bezier(0.22, 1, 0.36, 1), visibility 0.6s}
+  .gate.hidden-gate{opacity:0; visibility:hidden; pointer-events:none}
+  .gate img.mk{height:48px;width:auto;margin-bottom:44px}
+  .gate .card{background:#f4efe7;width:100%;max-width:440px;padding:clamp(34px,5vw,52px);color:#0d1c2b; box-shadow:0 20px 40px rgba(0,0,0,0.3); border-radius:2px}
+  .gate h3{font-family:'Cormorant Garamond',serif;font-size:36px;font-weight:600;line-height:1.05; margin-bottom:10px}
+  .gate input{font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.2);padding:14px 16px;transition:border-color .3s ease;width:100%}
+  .gate input:focus{border-color:#c6a15b; box-shadow:0 0 0 3px rgba(198,161,91,0.1)}
+
+  [hidden]{display:none!important}
+
+  /* RESPONSIVE MÓVIL */
+  @media (max-width:760px){
+    .wrap{padding:0 24px!important;width:100%!important}
+    .nav{padding:12px 20px!important}
+    .btn{padding:10px 14px;font-size:11px;letter-spacing:.08em}
+    .btn .lbl-full{display:none}
+    .hero-in{padding-bottom:44px!important}
+    .hero h1{font-size:clamp(34px, 8vw, 46px)!important;max-width:100%!important}
+    .hero .lede{font-size:16px!important;max-width:100%!important}
+    .section{padding:48px 0!important}
+    .sec-head{margin-bottom:28px!important}
+    .sec-head h2{font-size:30px!important}
+    .offices{grid-template-columns:1fr!important; gap:0; border:none!important; background:transparent}
+    .off{border-right:none!important; border-bottom:1px solid rgba(247,243,236,0.12)!important; padding:24px 0!important; background:transparent!important}
+    .off:hover{transform:none; box-shadow:none}
+    .cmp-head{display:none!important}
+    .cmp-row{grid-template-columns:1fr!important;gap:0;padding:12px 0 16px;border-bottom:1px solid rgba(247,243,236,0.14)}
+    .cmp-row>div{padding:6px 4px}
+    .cmp-var{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;padding-bottom:4px}
+    .cmp-old,.cmp-xto{background:transparent;font-size:15px;padding-left:16px;position:relative}
+    .cmp-old::before{content:"Veredicto";display:block;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:rgba(247,243,236,0.4);margin-bottom:3px}
+    .cmp-xto::before{content:"Base de evidencia";display:block;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;color:#c6a15b;margin-bottom:3px}
+    .cmp-xto{border-left:2px solid #c6a15b;margin-top:8px}
+    .xto-chart-container{padding:24px 20px!important;margin-top:40px!important}
+    .xto-chart-header{flex-direction:column!important;align-items:flex-start!important;gap:14px!important}
+    .record .top{grid-template-columns:1fr!important; gap:32px!important}
+    .vt-item{grid-template-columns:1fr!important;gap:0}
+    .vt-rail{flex-direction:row!important;align-items:baseline!important;text-align:left!important;gap:12px!important;margin-bottom:16px}
+    .vt-body{border-left:none!important;padding-left:0!important}
+    .vt-dot{display:none!important}
+    .vt-num{font-size:34px!important}
+  }
+
+  @media print{
+    @page{margin:0}
+    .no-print{display:none!important}
+    html,body,.pv{background:#081420!important}
+    *{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}
+    [data-rv]{opacity:1!important;transform:none!important}
+    .grid-bg{display:none}
+    .hero{min-height:auto;padding:40px 0}
+    .hero-img{opacity:.4}
+    .section{padding:34px 0}
+    .off,.cmp-row,.record .top,.hero h1,.sec-head,.vt-item,.xto-chart-container{break-inside:avoid;page-break-inside:avoid}
+    .vt-num{color:#c6a15b!important}
+    .vt-dot{border-color:#c6a15b!important;background:#c6a15b!important}
+    .offices{break-inside:avoid}
+    h1,h2,h3,h4{break-after:avoid}
+  }
+</style>
+</head>
+<body>
+<div class="pv">
+  <div class="grid-bg"></div>
+
+  <!-- LOGIN -->
+  <div class="gate" id="gate">
+    <img class="mk" src="images/logo.png" alt="XTO Realty Group"/>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:12px"><span style="width:34px;height:1px;background:#c6a15b"></span><span style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#b08d47">Acceso ejecutivo</span></div>
+      <h3>Estudio de Mercado Zyriane</h3>
+      <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:14.5px;color:#5c5850;margin-top:8px">Presentación reservada para clientes y aliados de XTO Realty Group México.</p>
+      <form id="loginForm" style="margin-top:28px;display:flex;flex-direction:column;gap:16px">
+        <input id="userInput" type="email" required placeholder="Correo electrónico" autocomplete="email"/>
+        <input id="passInput" type="password" required placeholder="Contraseña" autocomplete="current-password"/>
+        <p id="loginError" style="font-family:'Jost',sans-serif;font-size:13px;color:#a8443a;margin-top:-4px" hidden></p>
+        <button type="submit" class="btn btn-gold" style="justify-content:center;padding:16px;font-size:13px">Ingresar al Reporte</button>
+      </form>
+      <a href="index.html" style="display:inline-block;margin-top:24px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.06em;color:#6b675f;border-bottom:1px solid rgba(13,28,43,0.2);padding-bottom:3px;transition:color 0.3s">← Regresar a inicio</a>
+    </div>
+  </div>
+
+  <!-- CONTENIDO -->
+  <div id="content" style="opacity:0; visibility:hidden; transition:opacity 1s ease 0.3s, visibility 1s">
+
+    <nav class="nav no-print">
+      <img src="images/logo.png" alt="XTO Realty Group"/>
+      <div class="navbtns">
+        <button type="button" id="btnPdf" class="btn btn-ghost" aria-label="Descargar PDF">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg>
+          <span class="lbl-full">Descargar PDF</span>
+        </button>
+        <button type="button" id="btnHome" class="btn btn-gold" aria-label="Regresar">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
+          Salir
+        </button>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <img class="hero-img" src="images/hero2.png" alt=""/>
+      <div class="hero-ov"></div>
+      <div class="hero-in wrap">
+        <p class="eyebrow" data-rv>
+          XTO Realty Group México 
+          <span class="badge">Reporte primeras 48 horas</span>
+        </p>
+        <h1 data-rv data-d="1">Estudio de Mercado Inmobiliario — Zyriane Towers, Irapuato, Guanajuato</h1>
+        <p class="lede" data-rv data-d="2">Uso mixto vertical (torre de oficinas de usos múltiples + tres torres residenciales).</p>
+      </div>
+    </header>
+
+    <section class="record">
+      <div class="wrap section">
+        <div class="top">
+          <div data-rv>
+            <p class="eyebrow">Resumen Ejecutivo</p>
+            <h2 style="margin-top:16px">Veredicto Estratégico</h2>
+          </div>
+          <div data-rv data-d="1">
+            <ul class="list-box">
+              <li><strong>La demanda más sólida y comprobable está en el uso residencial vertical para parejas jóvenes y jóvenes profesionistas, y en los consultorios médicos;</strong> la demanda hotelera y de oficinas corporativas clase A es la más débil. Irapuato no tiene mercado formal de oficinas clase A rastreado por ningún broker, y su ocupación hotelera promedio (33.9%, DataTur a oct-2025) es de las más bajas del Bajío.</li>
+              <li><strong>El riesgo de inseguridad es el factor crítico que atraviesa todo el proyecto:</strong> según Marcela Figueroa Franco, titular del SESNSP (Mañanera del 14-jul-2026), Guanajuato encabezó los homicidios dolosos del país en el 1S2026 con 789 víctimas (8.8% del total nacional), pese a una caída del 68% en el promedio diario desde febrero 2025; la extorsión al comercio sigue alta. Esto deprime precios y penaliza los usos que dependen de flujo peatonal y pernocta de foráneos (hotel, comercio a pie de calle, oficinas).</li>
+              <li><strong>Recomendación central: reponderar el programa</strong> hacia residencial vertical + consultorios médicos + coworking ligero, tratando el hotel y las oficinas corporativas puras como componentes de alto riesgo que exigen anclas contractuales previas (operador hotelero de marca, contrato médico institucional) antes de comprometer metros cuadrados.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" style="padding-top:0">
+      <div class="sec-head"><h2 data-rv>Key Findings — Veredictos de Demanda</h2></div>
+      
+      <!-- TABLA 1 -->
+      <h3 data-rv style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#c6a15b;margin-bottom:20px">Componente 1 — Torre de oficinas de usos múltiples</h3>
+      <div class="cmp" data-rv>
+        <div class="cmp-head"><div>Uso</div><div>Veredicto</div><div class="gd">Base de evidencia</div></div>
+        
+        <div class="cmp-row"><div class="cmp-var">(a) Consultorios médicos</div><div class="cmp-old st-fuerte">FUERTE</div><div class="cmp-xto">Hospitales privados de referencia con consultorios saturados + crecimiento del gremio médico estatal.</div></div>
+        
+        <div class="cmp-row"><div class="cmp-var">(b) Coworking</div><div class="cmp-old st-mod">MODERADA</div><div class="cmp-xto">Operadores presentes (Regus/IWG, Bajío Coworking) pero sin datos de ocupación; mercado incipiente.</div></div>
+        
+        <div class="cmp-row"><div class="cmp-var">(c) Oficinas corporativas clase A/B</div><div class="cmp-old st-debil">DÉBIL / INSUFICIENTE</div><div class="cmp-xto">Irapuato carece de inventario formal clase A; la demanda corporativa se concentra en León.</div></div>
+        
+        <div class="cmp-row"><div class="cmp-var">(d) Hotel</div><div class="cmp-old st-debil">DÉBIL-MODERADA</div><div class="cmp-xto">Ocupación promedio 33.9%, de las más bajas del Bajío; sin evidencia de escasez de cuartos.</div></div>
+      </div>
+
+      <!-- TABLA 2 -->
+      <h3 data-rv style="font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:#c6a15b;margin-bottom:20px">Componente 2 — Tres torres residenciales</h3>
+      <div class="cmp" data-rv>
+        <div class="cmp-head"><div>Perfil</div><div>Veredicto</div><div class="gd">Base de evidencia</div></div>
+        
+        <div class="cmp-row"><div class="cmp-var">Parejas jóvenes / recién casados</div><div class="cmp-old st-fuerte">FUERTE</div><div class="cmp-xto">Perfil que lidera la adopción de vivienda vertical en el Bajío.</div></div>
+        
+        <div class="cmp-row"><div class="cmp-var">Estudiantes / solteros recién independizados</div><div class="cmp-old st-fuerte">MODERADA-FUERTE</div><div class="cmp-xto">El nicho sólido es el joven profesionista del nearshoring, no tanto el estudiante foráneo.</div></div>
+        
+        <div class="cmp-row"><div class="cmp-var">Familias de 4 con niños</div><div class="cmp-old st-mod">MODERADA (fricción)</div><div class="cmp-xto">El Bajío sigue prefiriendo casa horizontal para familia; segmento de mayor resistencia al departamento.</div></div>
+      </div>
+
+      <!-- GRAFICA ANIMADA -->
+      <div class="xto-chart-container" data-rv data-d="1">
+        <div class="xto-chart-header">
+          <div>
+            <p class="eyebrow" style="font-size:10px;margin-bottom:6px">Evaluación de Desempeño</p>
+            <h3>Potencial de Demanda por Componente</h3>
+          </div>
+          <div class="xto-chart-toggle">
+            <button type="button" class="xto-toggle-btn active" id="btnModeXto">Demanda Sólida</button>
+            <button type="button" class="xto-toggle-btn" id="btnModeOld">Alto Riesgo</button>
+          </div>
+        </div>
+        <div class="xto-chart-body" id="xtoChartBody">
+          <div class="xto-chart-metric">
+            <div class="xto-chart-labels">
+              <span class="xto-metric-title">Residencial (Parejas jóvenes / profesionistas)</span>
+              <span class="xto-metric-val" id="mVal1">Fuerte</span>
+            </div>
+            <div class="xto-chart-track" id="mTrack1"><div class="xto-chart-fill" style="width:90%"></div></div>
+          </div>
+          <div class="xto-chart-metric">
+            <div class="xto-chart-labels">
+              <span class="xto-metric-title">Uso Médico (Consultorios)</span>
+              <span class="xto-metric-val" id="mVal2">Fuerte</span>
+            </div>
+            <div class="xto-chart-track" id="mTrack2"><div class="xto-chart-fill" style="width:85%"></div></div>
+          </div>
+          <div class="xto-chart-metric">
+            <div class="xto-chart-labels">
+              <span class="xto-metric-title">Coworking ligero</span>
+              <span class="xto-metric-val" id="mVal3">Moderada</span>
+            </div>
+            <div class="xto-chart-track" id="mTrack3"><div class="xto-chart-fill" style="width:50%"></div></div>
+          </div>
+          <div class="xto-chart-metric">
+            <div class="xto-chart-labels">
+              <span class="xto-metric-title">Hotel y Oficinas Corporativas Clase A</span>
+              <span class="xto-metric-val" id="mVal4">Débil</span>
+            </div>
+            <div class="xto-chart-track" id="mTrack4"><div class="xto-chart-fill" style="width:30%"></div></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section wrap" style="padding-top:0">
+      <div class="sec-head"><h2 data-rv>Análisis a Detalle</h2></div>
+      
+      <div class="vt">
+        
+        <!-- 1 -->
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">01</span></div><div class="vt-body"><span class="vt-dot"></span>
+          <h4>Contexto demográfico y urbano (CONFIRMADO — INEGI, IPLANEG, CONAPO)</h4>
+          <p>Irapuato tiene <strong>592,953 habitantes</strong> (Censo INEGI 2020), 2º municipio más poblado de Guanajuato (9.62% del estado), con 302,183 mujeres y 290,770 hombres. Densidad de <strong>696.7 hab/km²</strong> sobre 851.1 km². La <strong>edad mediana es de 28 años</strong> —población joven, favorable para producto vertical—. La <strong>tasa de crecimiento anual 2010–2020 fue de 1.2%</strong> (CONFIRMADO, "Visión en Cifras" IPLANEG/INEGI). En 2020 había 123,449 niñas y niños (20.8%) y 409,113 mayores de 18 años (69%).</p>
+          <p>El patrón de urbanización es <strong>expansivo y disperso</strong>: entre 1980 y 2018 la población creció 2.3 veces pero la mancha urbana 5.9 veces (CONFIRMADO, PMDUOET/IPLANEG), con ocupación de baja densidad hacia la periferia. La expansión reciente se orienta a la <strong>zona norte</strong> (nuevos desarrollos como Haciendas Residencial Irapuato de Artigas Arquitectos —FUENTE CON INCENTIVO COMERCIAL: contenido patrocinado en Periódico AM—). Esto refuerza que la redensificación vertical en zonas centrales y en el eje norte es coherente con la política urbana municipal (PMDUOET/IMPLAN Irapuato; Plan Municipal de Desarrollo 2050).</p>
+          <p><strong>Migración:</strong> los flujos hacia Irapuato son moderados. El Censo 2020 registró como principales orígenes migratorios internacionales EE.UU. (767), Japón (216) y Colombia (107), con causas familiares, económicas y de vivienda (CONFIRMADO, Data México/INEGI). No hay evidencia de una ola migratoria interna masiva reciente. La población flotante corporativa (directivos y técnicos del corredor industrial) es un grupo real pero <strong>no cuantificado a nivel Irapuato</strong> (VACÍO DE DATOS).</p>
+        </div></div>
+
+        <!-- 2 -->
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">02</span></div><div class="vt-body"><span class="vt-dot"></span>
+          <h4>Seguridad — riesgo crítico (CONFIRMADO — SESNSP; CONVERGENTE — Coparmex/Canaco)</h4>
+          <p>Según <strong>Marcela Figueroa Franco, titular del SESNSP</strong>, en la Mañanera del Pueblo del <strong>14-jul-2026</strong>, Guanajuato encabezó los homicidios dolosos del país en el 1S2026 con <strong>789 víctimas (8.8% del total nacional)</strong>, seguido de Baja California (731, 8.1%) y Chihuahua (704, 7.8%). Simultáneamente, el promedio diario cayó de <strong>12.7 homicidios (febrero 2025) a 4.0 (junio 2026)</strong> —una reducción interanual del 50.9% en el semestre, la 5ª mayor del país—. Es decir, coexisten dos realidades: mejora acelerada de la tendencia, pero volumen absoluto todavía #1 nacional.</p>
+          <p>En Irapuato la violencia es tangible: el <strong>24 de junio de 2025 un tiroteo masivo en un festival dejó 12 muertos y 20 heridos</strong> (CONFIRMADO). La <strong>extorsión</strong> es el problema más corrosivo para el uso comercial/oficinas: Guanajuato se mantiene 6º nacional en víctimas de extorsión; Coparmex ubica al estado con índice de extorsión "alto" (60.1, 8ª posición); en 2025 se registraron 3,028 extorsiones con una caída de apenas 3.7% en 2026; cámaras empresariales reportan el cierre de al menos 30 negocios por cobro de piso (CONVERGENTE — Coparmex, Canaco, Concanaco). Cinco de cada 10 empresas socias de Coparmex han sido víctimas de al menos un delito.</p>
+          <p><strong>Implicación inmobiliaria:</strong> la literatura de precios hedónicos confirma que la inseguridad deprime precios de vivienda en el corredor industrial. Para Zyriane, la inseguridad: (1) <strong>favorece</strong> el producto vertical con acceso controlado y amenidades seguras (ventaja competitiva del "búnker urbano" con servicios internos); (2) <strong>penaliza</strong> fuertemente los usos que dependen de flujo peatonal y pernocta de foráneos (hotel, comercio a pie de calle); y (3) <strong>exige</strong> comunicar la seguridad como atributo central de marca y de valuación.</p>
+        </div></div>
+
+        <!-- 3 -->
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">03</span></div><div class="vt-body"><span class="vt-dot"></span>
+          <h4>Vivienda: precios, crédito y verticalización</h4>
+          <p>Precio de vivienda en Guanajuato <strong>+8.4% anual en 1T2026</strong> (Índice SHF, CONFIRMADO), ligeramente por debajo del promedio nacional de 8.7%; León +8.2%. Guanajuato figura entre los estados con mayor actividad hipotecaria (10–11 mil MDP, BBVA Research 1S2026), y junto con Querétaro y otras entidades del Bajío-Occidente concentra una parte creciente del crédito. A nivel nacional predomina la adquisición de vivienda usada con crédito.</p>
+          <p><strong>Tasas:</strong> Banxico cerró su ciclo de recortes en <strong>6.50%</strong> (decisión del 7-mayo-2026, vigente desde el 8-mayo), el punto más bajo desde el máximo de 11.25% de 2023. Sin embargo, el traspaso a hipotecas es limitado: según el Área de Estudios Económicos de BBVA México, <em>"Las tasas de interés hipotecarias han mostrado cierta rigidez a la baja, de tal forma que las tasas implícitas de la cartera siguen ubicándose cerca del 10.0 por ciento anual"</em> (Reporte Mensual de Banca y Sistema Financiero, vía Diario, 16-jul-2026); la tasa hipotecaria promedio en México cerró diciembre 2025 en <strong>11.54% con un CAT de 14%</strong>, según el Banco de México. Por banco, las tasas fijas van de 9.90% (Inbursa) a 11.50% (HSBC). BBVA anticipa que la demanda de crédito seguirá desacelerándose por la debilidad del empleo formal. Esto encarece el ticket para el comprador de menores ingresos y <strong>favorece el mercado de renta y el producto de inversión (buy-to-rent)</strong>.</p>
+          <p><strong>Precios de departamentos en Irapuato (SEÑAL — portales con sesgo de oferta, no transacción):</strong> renta de producto nuevo en zona norte ~$20,000–25,000 MXN/mes; venta de departamentos desde $728,000 hasta $5,000,000+ MXN; en Villas de Irapuato (segmento alto), departamentos ~$3.27M de venta y ~$14,638 de renta.</p>
+          <p><strong>Verticalización:</strong> el Bajío sigue dominado por vivienda horizontal (en León ~82% del mercado es casa horizontal; sólo ~18% departamentos), pero la vivienda vertical crece entre jóvenes profesionistas, solteros y parejas jóvenes (CONVERGENTE — Inmuebles24, Expansión, Periódico AM). En León el segmento vertical más dinámico es el de <strong>$700,000–$2,000,000 MXN</strong> dirigido a jóvenes profesionales y ejecutivos, "sin saturación" según operadores locales, mientras que el alto residencial ($4M+) se percibe cerca de la saturación. <strong>Lectura para Zyriane:</strong> el sweet spot de demanda vertical está en unidades compactas de 1–2 recámaras y ticket medio, no en departamentos grandes de lujo.</p>
+        </div></div>
+
+        <!-- 4 -->
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">04</span></div><div class="vt-body"><span class="vt-dot"></span>
+          <h4>Componente oficinas — los cuatro usos</h4>
+          <p><strong>(a) Consultorios médicos — DEMANDA FUERTE.</strong> Irapuato concentra una masa crítica de hospitales privados con consultorios: <strong>Hospital MAC Irapuato</strong> (torre de 11 pisos, 172 consultorios), <strong>Hospital Centro Médico Irapuato</strong> (39 especialidades, +14 años de operación), <strong>Hospital Ciudad Médica</strong>, <strong>Clínica María Reyna Gineco-Pediatría</strong>, <strong>Clínica de Maternidad Guadalupana</strong>, más el Hospital General y unidades IMSS/ISSSTE. El gremio médico crece a nivel estatal: el IMSS Guanajuato sumó <strong>más de 300 especialistas en 2026</strong> y las plazas de residencia médica nacionales pasaron de 3,500 (2018) a ~9,800 (2026); Guanajuato cuenta con más de 630 unidades médicas y ~4,000 médicas y médicos en el sistema estatal (CONVERGENTE — IMSS/gobierno estatal). La demanda de consultorios modernos con estacionamiento y ubicación clínica es estructural y con capacidad de pago (el médico es un grupo social con solidez de compra/renta). <strong>Es el ancla más defendible de la torre.</strong></p>
+          <p><strong>(b) Coworking — DEMANDA MODERADA.</strong> Existe demanda real pero acotada. Operadores confirmados en Irapuato: <strong>Regus/IWG</strong> (centro Cardinal, Av. Guerrero, zona Santa Fe) y <strong>Bajío Coworking</strong> (local, frente al Tec de Monterrey). No hay presencia de IOS Offices (su sede más cercana es León), WeWork ni Vinco. Tarifas: Bajío Coworking $3,000–$3,500 MXN+IVA/mes por escritorio (hot desk / fijo), oficinas privadas de $5,000 a $14,500 MXN+IVA/mes; Regus desde ~US$199/mes escritorio dedicado y ~US$215/persona/mes oficina privada. <strong>No hay datos públicos de ocupación</strong> (VACÍO). El perfil objetivo (freelancers, startups, trabajadores remotos y personal del nearshoring) existe, pero es un mercado incipiente que soporta un componente de coworking ligero, no una gran planta.</p>
+          <p><strong>(c) Oficinas corporativas clase A/B — DEMANDA DÉBIL / INSUFICIENTE EVIDENCIA.</strong> Hallazgo determinante: <strong>Irapuato NO tiene inventario formal de oficinas clase A rastreado por CBRE, JLL, Colliers, Solili ni Newmark.</strong> Estos brokers cubren el Bajío únicamente para el segmento <strong>industrial</strong>. El único mercado corporativo formal del corredor es <strong>León</strong>, que sirve de proxy: según la plataforma Solili, al cierre de <strong>agosto 2025 la renta promedio de oficinas en León fue de US$9.62/m²/mes</strong>, "50% por debajo" del promedio nacional (corredor Campestre–Country US$9.49; López Mateos US$10.23), y Solili reportó (1-jul-2026) que <em>"la tasa de vacancia de oficinas en León aumenta 1.4 puntos porcentuales en el último año"</em>. León concentra los nuevos proyectos de oficina del Bajío (~46% del pipeline regional según Líder Empresarial). Es decir: la demanda corporativa formal del corredor gravita hacia León, no hacia Irapuato, y sus rentas están entre las más bajas del país —señal de mercado poco profundo—. <strong>Un componente de oficina corporativa pura en Irapuato es el uso de mayor riesgo de vacancia.</strong></p>
+          <p><strong>(d) Hotel — DEMANDA DÉBIL-MODERADA.</strong> La <strong>ocupación hotelera promedio de Irapuato fue 33.9% a octubre 2025</strong> (DataTur, vía Periódico AM), posición #24–26 entre los destinos del interior del país, por debajo de León (42.3%), Querétaro (58.4%) y Chihuahua (60.6%). Según <strong>Raúl González, presidente de la Asociación de Hoteles y Moteles de Irapuato</strong> (Periódico Correo, 8-jun-2026), la ciudad cuenta con <strong>3,300 habitaciones disponibles</strong> y el turismo deportivo eleva la ocupación puntual hasta el 70% en eventos, contrastando con el promedio anual de 33.9%. El segmento es casi exclusivamente de negocios (City Express by Marriott Irapuato, 104 hab.; City Express Irapuato Norte, 122 hab.), anclado en INFORUM, la Expo Agroalimentaria/ExpoFresas y los parques industriales (Castro del Río, Apolo, Mazda), con el aeropuerto BJX a ~34 min. <strong>No hay ADR/RevPAR público verificado</strong>; sólo tarifas "desde" de OTA de ~US$48–58/noche, que no equivalen a ADR. <strong>Conclusión:</strong> demanda hotelera existente pero de baja ocupación estructural y sin evidencia de escasez de cuartos que justifique un componente hotelero nuevo de gran escala.</p>
+        </div></div>
+        
+        <!-- 5 -->
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">05</span></div><div class="vt-body"><span class="vt-dot"></span>
+          <h4>Componente residencial — los tres perfiles</h4>
+          <p><strong>Perfil 1 (estudiantes/solteros recién independizados) — DEMANDA MODERADA-FUERTE, redefinida.</strong> La matrícula universitaria en Irapuato es moderada: la Universidad de Guanajuato tuvo ~30,300 matriculados en 2022, de los cuales <strong>2,414 en el municipio de Irapuato</strong> y 3,162 en Salamanca (la División de Ingenierías del campus Irapuato-Salamanca está físicamente en Salamanca). Operan además el ITESI y universidades privadas (Tec de Monterrey campus Irapuato, entre otras). Buena parte del estudiantado es local, lo que limita la demanda de vivienda estudiantil foránea pura. <strong>El nicho verdaderamente sólido de este perfil no es el estudiante universitario foráneo, sino el joven profesionista soltero (25–35) del nearshoring y de los servicios</strong>, que valora movilidad, amenidades y ubicación. No hay datos publicados de renta estudiantil en Irapuato (VACÍO).</p>
+          <p><strong>Perfil 2 (familias de 4 con niños) — DEMANDA MODERADA con fricción cultural.</strong> En el Bajío la familia con hijos sigue prefiriendo casa horizontal con jardín; el departamento para familia de 4 es el segmento de mayor resistencia cultural y el de absorción más lenta. Es viable como complemento minoritario del mix, no como núcleo.</p>
+          <p><strong>Perfil 3 (parejas jóvenes/recién casados) — DEMANDA FUERTE.</strong> Es el perfil que nacionalmente y en el Bajío está adoptando el departamento (movilidad, flexibilidad, amenidades, seguridad). Coincide con la ventana de formación de hogares, con el producto vertical de 1–2 recámaras y con el segmento de ticket medio ($700K–$2M) que los operadores de León reportan sin saturación. <strong>Debe ser el núcleo del componente residencial.</strong></p>
+        </div></div>
+        
+        <!-- 6 -->
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">06</span></div><div class="vt-body"><span class="vt-dot"></span>
+          <h4>Empleo, IED y nearshoring (CONFIRMADO — Secretaría de Economía)</h4>
+          <p>La <strong>IED de Guanajuato cayó 46% en 2025</strong>, a <strong>774 MDD desde 1,442 MDD en 2024</strong>, descendiendo del 6º al 10º lugar nacional (CONFIRMADO — Secretaría de Economía, vía Periódico AM/El Pípila). La titular de Economía estatal lo calificó de "tormenta perfecta" (aranceles al acero/aluminio, desabasto en cadenas de suministro, desaceleración automotriz). Guanajuato tiene 47 parques industriales en 17 municipios; el corredor Irapuato-Abasolo es uno de los polos; el sector automotriz genera >70% de la demanda industrial del Bajío. <strong>Matiz crítico:</strong> la tesis de "nearshoring que llena oficinas y hoteles" debe moderarse fuertemente —la IED se contrajo y el empleo formal se desaceleró (crecimiento ~1.1%)—, lo que reduce la demanda derivada de oficinas corporativas y hotel de negocios en el corto plazo. La demanda derivada del nearshoring que sí se sostiene es la de <strong>vivienda</strong> (compra y renta) para el personal técnico y profesional que permanece en la región.</p>
+        </div></div>
+      </div>
+    </section>
+
+    <section class="section wrap" style="padding-top:0">
+      <div class="sec-head"><h2 data-rv>Recommendations</h2><p class="eyebrow" data-rv>Escenarios de ejecución</p></div>
+      <div class="offices">
+        <div class="off" data-rv>
+          <div class="rg">Recomendada / Menor Riesgo</div>
+          <div class="nm">Ruta A — "Salud + Vivienda"</div>
+          <p>Reponderar la torre de usos múltiples con <strong>consultorios médicos como ancla principal</strong> (demanda fuerte y comprobada), complementados con un coworking ligero, y enfocar las tres torres residenciales en <strong>parejas jóvenes y jóvenes profesionistas</strong> (unidades compactas de 1–2 recámaras, ticket medio). Eliminar o posponer el hotel; reducir la oficina corporativa pura. <em>Umbral que confirma la decisión:</em> firma de un contrato de anclaje médico por ≥40% de los m² de consultorios en preventa.</p>
+        </div>
+        <div class="off" data-rv data-d="1">
+          <div class="rg">Condicionada</div>
+          <div class="nm">Ruta B — "Mixto con hotel"</div>
+          <p>Mantener el hotel <strong>sólo si</strong> se asegura un operador de marca (Marriott/City Express, IHG) bajo contrato de administración o franquicia, con un <em>feasibility</em> independiente que muestre ocupación estabilizada ≥50% y ADR verificado. Sin ese ancla, convertir los pisos de hotel en <strong>extended-stay / serviced apartments</strong> para población flotante corporativa, que combina mejor con el residencial y con la baja ocupación hotelera estructural de la ciudad.</p>
+        </div>
+        <div class="off" data-rv data-d="2">
+          <div class="rg">Máxima Resiliencia</div>
+          <div class="nm">Ruta C — "Residencial dominante"</div>
+          <p>Si la absorción de oficinas corporativas resulta insuficiente —lo más probable dado que Irapuato carece de mercado clase A—, reconvertir esos m² a más departamentos y a un zócalo de servicios médicos/farmacia/laboratorio. Es la ruta más robusta ante la caída de IED y la debilidad corporativa.</p>
+        </div>
+      </div>
+
+      <div data-rv style="margin-top:54px; padding-top:40px; border-top:1px solid rgba(247,243,236,0.12)">
+        <h3 style="font-family:'Cormorant Garamond',serif; font-size:28px; color:#c6a15b; margin-bottom:12px; font-weight:600">Pasos concretos inmediatos:</h3>
+        <ol class="action-list">
+          <li>Levantar un <strong>estudio de campo de absorción residencial por micro-zona</strong> (norte vs. centro) y de ocupación real de los coworkings locales —datos que hoy no existen públicamente—.</li>
+          <li>Encargar un <strong>feasibility hotelero independiente</strong> con datos STR/DataTur comprados antes de comprometer cualquier m² de hotel.</li>
+          <li><strong>Validar el contrato de anclaje médico</strong> antes de dimensionar los consultorios.</li>
+          <li>Diseñar la <strong>seguridad</strong> (acceso controlado, separación de flujos, amenidades internas) como atributo central de marca y de valuación —convierte el principal riesgo de la plaza en ventaja competitiva del producto vertical—.</li>
+          <li>Estructurar una oferta explícita <strong>buy-to-rent</strong> para inversionistas, aprovechando que las hipotecas ~10% empujan a la población hacia la renta.</li>
+        </ol>
+      </div>
+    </section>
+    
+    <section class="section wrap" style="padding-top:0">
+      <div class="sec-head" style="margin-bottom:28px; border-bottom: none;"><h2 data-rv style="font-size: 32px; color:#c6a15b">Datos y referencias por confirmar</h2></div>
+      <div data-rv>
+        <ul class="list-box">
+          <li><strong>No existe mercado formal de oficinas clase A en Irapuato</strong> rastreado por brokers; toda cifra corporativa usa <strong>León</strong> como proxy del corredor (renta ~US$9.62/m²/mes ago-2025, Solili).</li>
+          <li><strong>No hay ADR/RevPAR público verificado para Irapuato</strong>; sólo tarifas "desde" de OTA (~US$48–58/noche, no equivalen a ADR) y una cifra de inventario de 3,300 habitaciones aportada por la asociación hotelera local.</li>
+          <li><strong>No hay datos de ocupación de coworkings</strong> locales ni de absorción residencial por micro-zona; requieren levantamiento en campo o compra a Softec/Tinsa/4S Real Estate.</li>
+          <li><strong>No hay datos publicados de demanda de vivienda estudiantil</strong> en Irapuato.</li>
+          <li>Los <strong>precios de departamentos</strong> provienen de portales (Trovit, Vivanuncios, Propiedades.com): reflejan oferta, no transacción; deben corroborarse con avalúos/cierres reales.</li>
+          <li>Las cifras de matrícula UG son de <strong>2022</strong> (última desagregación municipal disponible en Data México); el número exacto de consultorios/médicos por hospital privado en Irapuato no está consolidado en fuente oficial (VACÍO).</li>
+          <li><strong>Fuentes con incentivo comercial</strong> (desarrolladores, inmobiliarias, contenido patrocinado, operadores de coworking) marcadas como SEÑAL a lo largo del documento.</li>
+          <li>La proyección CONAPO municipal específica de Irapuato al 2030 existe (Portal Social Guanajuato / CONAPO 2020–2040) pero no se pudo desagregar el dato puntual en esta fase; se recomienda extraerlo del dataset municipal para el modelo financiero.</li>
+          <li>Dato a monitorear que cambiaría el análisis: una recuperación de la IED estatal en 2026 (meta oficial de alcanzar 50% del objetivo sexenal) reactivaría la demanda corporativa y hotelera y podría reponderar los escenarios B/C.</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer class="ft wrap">
+      <div>XTO Realty Group México · Playa del Carmen · Ciudad de México · León, Guanajuato</div>
+      <div class="gold">Absorción con evidencia.</div>
+    </footer>
+
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var AUTH_KEY = 'zyriane_auth';
+  
+  var VALID_USER = 'zyriane@xto.com';
+  var VALID_PASS = 'zyriane2026';
+
+  var gate = document.getElementById('gate');
+  var content = document.getElementById('content');
+  var form = document.getElementById('loginForm');
+  var userInput = document.getElementById('userInput');
+  var passInput = document.getElementById('passInput');
+  var loginError = document.getElementById('loginError');
+
+  function showContent() {
+    // Animación suave de desbloqueo
+    gate.classList.add('hidden-gate');
+    
+    // Mostramos contenido tras una leve espera para efecto
+    setTimeout(function() {
+      content.hidden = false;
+      // Forzamos un reflow antes de quitar opacidad
+      void content.offsetWidth;
+      content.style.opacity = '1';
+      content.style.visibility = 'visible';
+      requestAnimationFrame(setupReveal);
+    }, 400);
+  }
+
+  function isAuthed() {
+    try { return sessionStorage.getItem(AUTH_KEY) === '1'; } catch (e) { return false; }
+  }
+
+  if (isAuthed()) { 
+    gate.style.display = 'none';
+    content.hidden = false;
+    content.style.opacity = '1';
+    content.style.visibility = 'visible';
+    requestAnimationFrame(setupReveal);
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var u = (userInput.value || '').trim().toLowerCase();
+    var p = passInput.value || '';
+    if (u === VALID_USER && p === VALID_PASS) {
+      try { sessionStorage.setItem(AUTH_KEY, '1'); } catch (err) {}
+      loginError.hidden = true;
+      showContent();
+    } else {
+      loginError.textContent = 'Usuario o contraseña incorrectos.';
+      loginError.hidden = false;
+      
+      // Pequeño shake de error
+      var card = gate.querySelector('.card');
+      card.style.transform = 'translateX(-10px)';
+      setTimeout(function(){ card.style.transform = 'translateX(10px)'; }, 100);
+      setTimeout(function(){ card.style.transform = 'translateX(-10px)'; }, 200);
+      setTimeout(function(){ card.style.transform = 'none'; }, 300);
+      card.style.transition = 'transform 0.1s ease';
+    }
+  });
+
+  var btnHome = document.getElementById('btnHome');
+  if (btnHome) {
+    btnHome.addEventListener('click', function () {
+      try { sessionStorage.removeItem(AUTH_KEY); } catch (err) {}
+      window.location.href = 'index.html';
+    });
+  }
+
+  var btnPdf = document.getElementById('btnPdf');
+  if (btnPdf) {
+    btnPdf.addEventListener('click', function () { window.print(); });
+  }
+
+  /* LOGICA DE LA GRAFICA */
+  var btnXto = document.getElementById('btnModeXto');
+  var btnOld = document.getElementById('btnModeOld');
+  var mVal1 = document.getElementById('mVal1');
+  var mVal2 = document.getElementById('mVal2');
+  var mVal3 = document.getElementById('mVal3');
+  var mVal4 = document.getElementById('mVal4');
+  var mTracks = [
+    document.getElementById('mTrack1'),
+    document.getElementById('mTrack2'),
+    document.getElementById('mTrack3'),
+    document.getElementById('mTrack4')
+  ];
+
+  var dataXto = { v1: 'Fuerte', v2: 'Fuerte', v3: 'Moderada', v4: 'Débil', w: [90, 85, 50, 30] };
+  var dataOld = { v1: 'Bajo', v2: 'Moderado', v3: 'Moderado', v4: 'Alto Riesgo', w: [15, 25, 45, 80] };
+
+  function renderChart(data, isXto) {
+    mVal1.textContent = data.v1;
+    mVal2.textContent = data.v2;
+    mVal3.textContent = data.v3;
+    mVal4.textContent = data.v4;
+
+    mTracks.forEach(function(track, i) {
+      var fill = track.querySelector('.xto-chart-fill');
+      fill.style.width = data.w[i] + '%';
+      if (isXto) {
+        track.classList.remove('old');
+      } else {
+        track.classList.add('old');
+      }
+    });
+  }
+
+  if (btnXto && btnOld) {
+    btnXto.addEventListener('click', function() {
+      btnXto.classList.add('active');
+      btnOld.classList.remove('active');
+      renderChart(dataXto, true);
+    });
+
+    btnOld.addEventListener('click', function() {
+      btnOld.classList.add('active');
+      btnXto.classList.remove('active');
+      renderChart(dataOld, false);
+    });
+  }
+
+  function setupReveal() {
+    try {
+      var els = document.querySelectorAll('#content [data-rv]');
+      if (!els.length) return;
+
+      document.body.classList.add('js-anim');
+
+      var reveal = function (el) { el.setAttribute('data-in', '1'); };
+      var inView = function (el) {
+        var r = el.getBoundingClientRect();
+        var h = window.innerHeight || document.documentElement.clientHeight;
+        return r.top < h * 0.92 && r.bottom > 0;
+      };
+
+      if (!('IntersectionObserver' in window)) {
+        Array.prototype.forEach.call(els, reveal);
+        return;
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { reveal(en.target); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+      Array.prototype.forEach.call(els, function (el) {
+        if (inView(el)) { reveal(el); } else { io.observe(el); }
+      });
+
+      setTimeout(function () { Array.prototype.forEach.call(els, reveal); }, 1200);
+    } catch (err) {
+      document.body.classList.remove('js-anim');
+    }
+  }
+})();
+</script>
+</body>
+</html>
