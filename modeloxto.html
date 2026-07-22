@@ -402,12 +402,12 @@ class Component extends DCLogic {
   componentDidMount() {
     try { document.title = 'XTO — Integración Vertical'; } catch (e) {}
     try { if (sessionStorage.getItem('xto_iv_auth') === '1') this.setState({ authed: true }); } catch (e) {}
-    if (this.isAuthed()) setTimeout(this.setupReveal, 60);
+    if (this.isAuthed()) this.setupReveal();
   }
   componentDidUpdate(prevProps, prevState) {
-    if (this.isAuthed() && !(prevState.authed || prevProps.previewUnlocked)) setTimeout(this.setupReveal, 60);
+    if (this.isAuthed() && !(prevState.authed || prevProps.previewUnlocked)) this.setupReveal();
   }
-  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._revealFallback) clearTimeout(this._revealFallback); }
+  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._revealFallback) cancelAnimationFrame(this._revealFallback); }
 
   setupReveal = () => {
     if (this._io) return;
@@ -418,11 +418,10 @@ class Component extends DCLogic {
     this._io = new IntersectionObserver((entries) => {
       entries.forEach((e) => { if (e.isIntersecting) { reveal(e.target); this._io.unobserve(e.target); } });
     }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    els.forEach((el) => this._io.observe(el));
-    // Immediate pass for elements already in view (IO can miss these right after navigation)
-    requestAnimationFrame(() => els.forEach((el) => { if (inView(el)) { reveal(el); this._io.unobserve(el); } }));
-    // Safety net: never leave content invisible
-    this._revealFallback = setTimeout(() => els.forEach(reveal), 1500);
+    // Immediate synchronous pass: reveal everything currently on screen right away
+    els.forEach((el) => { if (inView(el)) { reveal(el); } else { this._io.observe(el); } });
+    // Safety net on the next frame: never leave anything invisible on first paint
+    this._revealFallback = requestAnimationFrame(() => els.forEach((el) => { if (inView(el)) reveal(el); }));
   };
 
   submitLogin = (e) => {
