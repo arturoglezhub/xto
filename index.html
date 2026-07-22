@@ -604,9 +604,25 @@ class Component extends DCLogic {
   logout = () => this.setState({ loggedIn: false, userName: '' });
   submitLogin = (e) => {
     e.preventDefault();
-    const email = (this.emailRef.current && this.emailRef.current.value) || '';
-    const name = email.split('@')[0] || 'Miembro';
-    this.setState({ loggedIn: true, userName: name });
+    const email = (this.emailRef.current && this.emailRef.current.value || '').trim().toLowerCase();
+    const password = (this.passRef.current && this.passRef.current.value || '').trim();
+
+    // 1. Define la base de datos de usuarios, credenciales y su página de destino
+    const usersDatabase = {
+      "zyriane@xto.com": { pass: "zyriane2026", redirect: "zyrianetowers.html" },
+      "presentacion@xto.com": { pass: "xto2026", redirect: "modeloxto.html" },
+      // Puedes agregar más usuarios y páginas fácilmente aquí en el futuro:
+      "socio@xto.com": { pass: "password123", redirect: "dashboard.html" }
+    };
+
+    // 2. Valida si el usuario existe y la contraseña coincide
+    if (usersDatabase[email] && usersDatabase[email].pass === password) {
+      // Redirige al archivo HTML configurado para ese usuario
+      window.location.href = usersDatabase[email].redirect;
+    } else {
+      // Muestra una alerta o error si los datos son incorrectos
+      alert(this.state.lang === 'es' ? 'Correo o contraseña incorrectos.' : 'Incorrect email or password.');
+    }
   };
 
   openProp = (i) => this.setState({ openProp: i, galleryIndex: 0 });
