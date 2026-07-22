@@ -1,13 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<script src="./support.js"></script>
-</head>
-<body>
-<x-dc>
-<helmet>
+<title>XTO — Integración Vertical</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -26,9 +22,10 @@
   .serif{font-family:'Cormorant Garamond',serif}
   .gold{color:#c6a15b}
 
-  /* reveal */
-  [data-rv]{opacity:0;transform:translateY(22px);transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
-  [data-rv][data-in]{opacity:1;transform:none}
+  /* reveal — el texto es visible por defecto; la animacion solo adorna */
+  [data-rv]{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
+  .js-anim [data-rv]{opacity:0;transform:translateY(22px)}
+  .js-anim [data-rv][data-in]{opacity:1;transform:none}
   [data-rv][data-d="1"]{transition-delay:.12s}
   [data-rv][data-d="2"]{transition-delay:.24s}
   [data-rv][data-d="3"]{transition-delay:.36s}
@@ -62,10 +59,12 @@
   .track .axis{position:absolute;left:0;right:0;top:74px;height:1px;background:rgba(247,243,236,0.3)}
   .track .bar{position:absolute;height:26px;display:flex;align-items:center;overflow:hidden;white-space:nowrap}
   .track .bar b{font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0 14px}
-  .track .bar-xto{top:40px;left:0;width:0;background:#c6a15b;color:#081420;transition:width 1.3s cubic-bezier(.22,.61,.36,1) .15s}
-  .track[data-in] .bar-xto{width:100%}
-  .track .bar-otros{top:6px;left:60%;width:0;background:repeating-linear-gradient(45deg,rgba(247,243,236,0.06),rgba(247,243,236,0.06) 5px,rgba(247,243,236,0.13) 5px,rgba(247,243,236,0.13) 10px);border:1px solid rgba(247,243,236,0.2);color:rgba(247,243,236,0.7);transition:width 1s cubic-bezier(.22,.61,.36,1) .5s}
-  .track[data-in] .bar-otros{width:40%}
+  .track .bar-xto{top:40px;left:0;width:100%;background:#c6a15b;color:#081420;transition:width 1.3s cubic-bezier(.22,.61,.36,1) .15s}
+  .js-anim .track .bar-xto{width:0}
+  .js-anim .track[data-in] .bar-xto{width:100%}
+  .track .bar-otros{top:6px;left:60%;width:40%;background:repeating-linear-gradient(45deg,rgba(247,243,236,0.06),rgba(247,243,236,0.06) 5px,rgba(247,243,236,0.13) 5px,rgba(247,243,236,0.13) 10px);border:1px solid rgba(247,243,236,0.2);color:rgba(247,243,236,0.7);transition:width 1s cubic-bezier(.22,.61,.36,1) .5s}
+  .js-anim .track .bar-otros{width:0}
+  .js-anim .track[data-in] .bar-otros{width:40%}
   .track .phases{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr)}
   .track .phase{position:relative;border-left:1px dashed rgba(247,243,236,0.16);padding-top:88px}
   .track .phase:last-child{border-right:1px dashed rgba(247,243,236,0.16)}
@@ -160,12 +159,14 @@
   .vt-item{position:relative;display:grid;grid-template-columns:132px 1fr;gap:clamp(24px,4vw,56px);padding:0 0 clamp(38px,5vw,54px) 0}
   .vt-item:last-child{padding-bottom:0}
   .vt-rail{position:relative;display:flex;flex-direction:column;align-items:flex-end;text-align:right}
-  .vt-num{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,3.4vw,44px);line-height:.9;color:rgba(247,243,236,0.28);letter-spacing:-.01em;transition:color .8s ease}
-  .vt-item[data-in] .vt-num{color:#c6a15b}
+  .vt-num{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,3.4vw,44px);line-height:.9;color:#c6a15b;letter-spacing:-.01em;transition:color .8s ease}
+  .js-anim .vt-num{color:rgba(247,243,236,0.28)}
+  .js-anim .vt-item[data-in] .vt-num{color:#c6a15b}
   .vt-body{position:relative;border-left:1px solid rgba(247,243,236,0.16);padding:2px 0 0 clamp(24px,3vw,40px)}
   .vt-item:last-child .vt-body{border-left-color:transparent}
-  .vt-dot{position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:#081420;border:2px solid rgba(247,243,236,0.3);transition:border-color .6s ease,background .6s ease,box-shadow .6s ease}
-  .vt-item[data-in] .vt-dot{border-color:#c6a15b;background:#c6a15b;box-shadow:0 0 0 4px rgba(198,161,91,0.15)}
+  .vt-dot{position:absolute;left:-6px;top:6px;width:11px;height:11px;border-radius:50%;background:#c6a15b;border:2px solid #c6a15b;box-shadow:0 0 0 4px rgba(198,161,91,0.15);transition:border-color .6s ease,background .6s ease,box-shadow .6s ease}
+  .js-anim .vt-dot{background:#081420;border-color:rgba(247,243,236,0.3);box-shadow:none}
+  .js-anim .vt-item[data-in] .vt-dot{border-color:#c6a15b;background:#c6a15b;box-shadow:0 0 0 4px rgba(198,161,91,0.15)}
   .vt-body h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(22px,2.5vw,28px);color:#f7f3ec;letter-spacing:-.01em;line-height:1.15}
   .vt-body p{font-size:clamp(15px,1.35vw,16.5px);line-height:1.7;color:rgba(247,243,236,0.76);font-weight:300;margin-top:12px;max-width:62ch}
   @media (max-width:640px){
@@ -194,6 +195,8 @@
   .gate h3{font-family:'Cormorant Garamond',serif;font-size:34px;font-weight:600;line-height:1.05}
   .gate input{font-family:'Jost',sans-serif;font-size:15px;color:#0d1c2b;background:#fff;border:1px solid rgba(13,28,43,0.2);padding:14px 16px;transition:border-color .3s ease;width:100%}
 
+  [hidden]{display:none!important}
+
   /* print */
   @media print{
     @page{margin:0}
@@ -205,50 +208,48 @@
     .hero{min-height:auto;padding:40px 0}
     .hero-img{opacity:.4}
     .section{padding:34px 0}
-    .track[data-in] .bar-xto{width:100%}
-    .track .bar-otros{width:40%}
+    .track .bar-xto{width:100%!important}
+    .track .bar-otros{width:40%!important}
     .pillar,.step,.off,.fig,.dev,.cmp-row,.agent,.record .top,.hero h1,.sec-head,.vt-item,.closing .in{break-inside:avoid;page-break-inside:avoid}
-    .vt-item[data-in] .vt-num{color:#c6a15b}
-    .vt-item[data-in] .vt-dot{border-color:#c6a15b;background:#c6a15b}
+    .vt-num{color:#c6a15b!important}
+    .vt-dot{border-color:#c6a15b!important;background:#c6a15b!important}
     .devs,.figs,.pillars,.flow,.offices{break-inside:avoid}
     h1,h2,h3,h4{break-after:avoid}
-    .wrap{padding:0 16mm}
   }
 </style>
-</helmet>
-
+</head>
+<body>
 <div class="pv">
   <div class="grid-bg"></div>
 
-  <sc-if value="{{ notAuthed }}" hint-placeholder-val="{{ true }}">
-    <div class="gate">
-      <img class="mk" src="images/logo.png" alt="XTO Realty Group"/>
-      <div class="card">
-        <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="width:34px;height:1px;background:#c6a15b"></span><span style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#b08d47">Acceso ejecutivo</span></div>
-        <h3>Modelo XTO · Integración vertical</h3>
-        <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:14px;color:#5c5850;margin-top:8px">Presentación reservada para clientes y aliados de XTO Realty Group México.</p>
-        <form onSubmit="{{ submitLogin }}" style="margin-top:26px;display:flex;flex-direction:column;gap:14px">
-          <input ref="{{ userRef }}" type="email" required placeholder="Correo electrónico" autocomplete="email"/>
-          <input ref="{{ passRef }}" type="password" required placeholder="Contraseña" autocomplete="current-password"/>
-          <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}"><p style="font-family:'Jost',sans-serif;font-size:13px;color:#a8443a;margin-top:-2px">{{ error }}</p></sc-if>
-          <button type="submit" class="btn btn-gold" style="margin-top:6px;justify-content:center;padding:16px">Entrar</button>
-        </form>
-        <a href="index.html" style="display:inline-block;margin-top:20px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.06em;color:#6b675f;border-bottom:1px solid rgba(13,28,43,0.2);padding-bottom:3px">← Regresar a inicio</a>
-      </div>
+  <!-- LOGIN -->
+  <div class="gate" id="gate">
+    <img class="mk" src="images/logo.png" alt="XTO Realty Group"/>
+    <div class="card">
+      <div style="display:flex;align-items:center;gap:12px;margin-bottom:10px"><span style="width:34px;height:1px;background:#c6a15b"></span><span style="font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:#b08d47">Acceso ejecutivo</span></div>
+      <h3>Modelo XTO · Integración vertical</h3>
+      <p style="font-family:'Jost',sans-serif;font-weight:300;font-size:14px;color:#5c5850;margin-top:8px">Presentación reservada para clientes y aliados de XTO Realty Group México.</p>
+      <form id="loginForm" style="margin-top:26px;display:flex;flex-direction:column;gap:14px">
+        <input id="userInput" type="email" required placeholder="Correo electrónico" autocomplete="email"/>
+        <input id="passInput" type="password" required placeholder="Contraseña" autocomplete="current-password"/>
+        <p id="loginError" style="font-family:'Jost',sans-serif;font-size:13px;color:#a8443a;margin-top:-2px" hidden></p>
+        <button type="submit" class="btn btn-gold" style="margin-top:6px;justify-content:center;padding:16px">Entrar</button>
+      </form>
+      <a href="index.html" style="display:inline-block;margin-top:20px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.06em;color:#6b675f;border-bottom:1px solid rgba(13,28,43,0.2);padding-bottom:3px">← Regresar a inicio</a>
     </div>
-  </sc-if>
+  </div>
 
-  <sc-if value="{{ authed }}" hint-placeholder-val="{{ false }}">
-  <div style="position:relative;z-index:1">
+  <!-- CONTENIDO -->
+  <div id="content" style="position:relative;z-index:1" hidden>
 
     <nav class="nav no-print">
       <img src="images/logo.png" alt="XTO Realty Group"/>
       <div class="navbtns">
-        <button onClick="{{ downloadPdf }}" class="btn btn-ghost" aria-label="Descargar PDF">
+        <button type="button" id="btnPdf" class="btn btn-ghost" aria-label="Descargar PDF">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M8 11l4 4 4-4"/><path d="M4 17v2a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-2"/></svg>
           <span class="lbl-full">Descargar PDF</span>
         </button>
-        <button onClick="{{ backToHome }}" class="btn btn-gold" aria-label="Regresar">
+        <button type="button" id="btnHome" class="btn btn-gold" aria-label="Regresar">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-8 9 8"/><path d="M5 10v10h14V10"/></svg>
           Regresar
         </button>
@@ -295,9 +296,11 @@
       <div class="sec-head"><h2 data-rv>¿Qué cambia con la integración vertical?</h2></div>
       <div class="cmp" data-rv>
         <div class="cmp-head"><div>Variable</div><div>Convencional</div><div class="gd">Modelo XTO</div></div>
-        <sc-for list="{{ contrast }}" as="c" hint-placeholder-count="5">
-          <div class="cmp-row"><div class="cmp-var">{{ c.v }}</div><div class="cmp-old">{{ c.old }}</div><div class="cmp-xto">{{ c.xto }}</div></div>
-        </sc-for>
+        <div class="cmp-row"><div class="cmp-var">Momento de entrada</div><div class="cmp-old">Con el producto ya definido.</div><div class="cmp-xto">Desde que el proyecto toma forma.</div></div>
+        <div class="cmp-row"><div class="cmp-var">Responsable del resultado</div><div class="cmp-old">Distribuido; nadie responde por la absorción.</div><div class="cmp-xto">Un solo equipo, con la absorción como meta.</div></div>
+        <div class="cmp-row"><div class="cmp-var">Costo de coordinación</div><div class="cmp-old">Lo absorbe el desarrollador.</div><div class="cmp-xto">Interno; no se traslada al cliente.</div></div>
+        <div class="cmp-row"><div class="cmp-var">Marketing</div><div class="cmp-old">Comunica el producto que recibe.</div><div class="cmp-xto">Define el producto que comunica.</div></div>
+        <div class="cmp-row"><div class="cmp-var">Ajuste de producto</div><div class="cmp-old">Tardío y caro, o no ocurre.</div><div class="cmp-xto">Temprano y con margen de decisión.</div></div>
       </div>
     </section>
 
@@ -387,80 +390,102 @@
     </footer>
 
   </div>
-  </sc-if>
-
 </div>
-</x-dc>
-<script type="text/x-dc" data-dc-script data-props="{&quot;$preview&quot;:{&quot;width&quot;:1280,&quot;height&quot;:940},&quot;previewUnlocked&quot;:{&quot;editor&quot;:&quot;boolean&quot;,&quot;default&quot;:false,&quot;tsType&quot;:&quot;boolean&quot;,&quot;section&quot;:&quot;Vista previa&quot;}}">
-class Component extends DCLogic {
-  userRef = React.createRef();
-  passRef = React.createRef();
-  state = { authed: false, error: '' };
 
-  isAuthed() { return this.state.authed || !!this.props.previewUnlocked; }
+<script>
+(function () {
+  'use strict';
 
-  componentDidMount() {
-    try { document.title = 'XTO — Integración Vertical'; } catch (e) {}
-    try { if (sessionStorage.getItem('xto_iv_auth') === '1') this.setState({ authed: true }); } catch (e) {}
-    if (this.isAuthed()) this.setupReveal();
+  var AUTH_KEY = 'xto_iv_auth';
+  var VALID_USER = 'overview@xtorealtygroup.com';
+  var VALID_PASS = 'Ejecutivo2026';
+
+  var gate = document.getElementById('gate');
+  var content = document.getElementById('content');
+  var form = document.getElementById('loginForm');
+  var userInput = document.getElementById('userInput');
+  var passInput = document.getElementById('passInput');
+  var loginError = document.getElementById('loginError');
+
+  function showContent() {
+    gate.hidden = true;
+    content.hidden = false;
+    // El texto ya es visible (opacity:1 por defecto). La animacion se activa
+    // solo como enhancement en el siguiente frame; nunca bloquea la lectura.
+    requestAnimationFrame(setupReveal);
   }
-  componentDidUpdate(prevProps, prevState) {
-    if (this.isAuthed() && !(prevState.authed || prevProps.previewUnlocked)) this.setupReveal();
+
+  function isAuthed() {
+    try { return sessionStorage.getItem(AUTH_KEY) === '1'; } catch (e) { return false; }
   }
-  componentWillUnmount() { if (this._io) this._io.disconnect(); if (this._revealFallback) cancelAnimationFrame(this._revealFallback); }
 
-  setupReveal = () => {
-    if (this._io) return;
-    const els = document.querySelectorAll('[data-rv]');
-    if (!els.length) { this._revealTries = (this._revealTries || 0) + 1; if (this._revealTries < 20) setTimeout(this.setupReveal, 80); return; }
-    const reveal = (el) => el.setAttribute('data-in', '1');
-    const inView = (el) => { const r = el.getBoundingClientRect(); return r.top < (window.innerHeight || document.documentElement.clientHeight) * 0.92 && r.bottom > 0; };
-    this._io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => { if (e.isIntersecting) { reveal(e.target); this._io.unobserve(e.target); } });
-    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
-    // Immediate synchronous pass: reveal everything currently on screen right away
-    els.forEach((el) => { if (inView(el)) { reveal(el); } else { this._io.observe(el); } });
-    // Safety net on the next frame: never leave anything invisible on first paint
-    this._revealFallback = requestAnimationFrame(() => els.forEach((el) => { if (inView(el)) reveal(el); }));
-  };
+  if (isAuthed()) { showContent(); }
 
-  submitLogin = (e) => {
+  form.addEventListener('submit', function (e) {
     e.preventDefault();
-    const u = ((this.userRef.current && this.userRef.current.value) || '').trim().toLowerCase();
-    const p = (this.passRef.current && this.passRef.current.value) || '';
-    if (u === 'overview@xtorealtygroup.com' && p === 'Ejecutivo2026') {
-      try { sessionStorage.setItem('xto_iv_auth', '1'); } catch (e) {}
-      this.setState({ authed: true, error: '' });
+    var u = (userInput.value || '').trim().toLowerCase();
+    var p = passInput.value || '';
+    if (u === VALID_USER && p === VALID_PASS) {
+      try { sessionStorage.setItem(AUTH_KEY, '1'); } catch (err) {}
+      loginError.hidden = true;
+      showContent();
     } else {
-      this.setState({ error: 'Usuario o contraseña incorrectos.' });
+      loginError.textContent = 'Usuario o contraseña incorrectos.';
+      loginError.hidden = false;
     }
-  };
+  });
 
-  backToHome = () => {
-    try { sessionStorage.removeItem('xto_iv_auth'); } catch (e) {}
-    this.setState({ authed: false });
-    window.location.href = 'index.html';
-  };
-
-  downloadPdf = () => { setTimeout(() => window.print(), 40); };
-
-  renderVals() {
-    const authed = this.isAuthed();
-    return {
-      userRef: this.userRef, passRef: this.passRef,
-      authed, notAuthed: !authed,
-      error: this.state.error, hasError: !!this.state.error,
-      contrast: [
-        { v: 'Momento de entrada', old: 'Con el producto ya definido.', xto: 'Desde que el proyecto toma forma.' },
-        { v: 'Responsable del resultado', old: 'Distribuido; nadie responde por la absorción.', xto: 'Un solo equipo, con la absorción como meta.' },
-        { v: 'Costo de coordinación', old: 'Lo absorbe el desarrollador.', xto: 'Interno; no se traslada al cliente.' },
-        { v: 'Marketing', old: 'Comunica el producto que recibe.', xto: 'Define el producto que comunica.' },
-        { v: 'Ajuste de producto', old: 'Tardío y caro, o no ocurre.', xto: 'Temprano y con margen de decisión.' }
-      ],
-      submitLogin: this.submitLogin, backToHome: this.backToHome, downloadPdf: this.downloadPdf
-    };
+  var btnHome = document.getElementById('btnHome');
+  if (btnHome) {
+    btnHome.addEventListener('click', function () {
+      try { sessionStorage.removeItem(AUTH_KEY); } catch (err) {}
+      window.location.href = 'index.html';
+    });
   }
-}
+
+  var btnPdf = document.getElementById('btnPdf');
+  if (btnPdf) {
+    btnPdf.addEventListener('click', function () { window.print(); });
+  }
+
+  // Reveal opcional. El contenido YA es visible sin esto; solo agrega la
+  // animacion de entrada al hacer scroll. Si algo falla, el texto sigue ahi.
+  function setupReveal() {
+    try {
+      var els = document.querySelectorAll('#content [data-rv]');
+      if (!els.length) return;
+
+      document.body.classList.add('js-anim');
+
+      var reveal = function (el) { el.setAttribute('data-in', '1'); };
+      var inView = function (el) {
+        var r = el.getBoundingClientRect();
+        var h = window.innerHeight || document.documentElement.clientHeight;
+        return r.top < h * 0.92 && r.bottom > 0;
+      };
+
+      if (!('IntersectionObserver' in window)) {
+        Array.prototype.forEach.call(els, reveal);
+        return;
+      }
+
+      var io = new IntersectionObserver(function (entries) {
+        entries.forEach(function (en) {
+          if (en.isIntersecting) { reveal(en.target); io.unobserve(en.target); }
+        });
+      }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+
+      Array.prototype.forEach.call(els, function (el) {
+        if (inView(el)) { reveal(el); } else { io.observe(el); }
+      });
+
+      // Red de seguridad: en 1.2s revelar cualquier cosa que siga oculta
+      setTimeout(function () { Array.prototype.forEach.call(els, reveal); }, 1200);
+    } catch (err) {
+      document.body.classList.remove('js-anim');
+    }
+  }
+})();
 </script>
 </body>
 </html>
