@@ -16,13 +16,16 @@
   ::selection{background:#c6a15b;color:#081420}
   input:focus{outline:none;border-color:#c6a15b!important}
   .pv{background:#081420;overflow-x:hidden;min-height:100vh;position:relative}
-  .wrap{max-width:1120px;margin:0 auto;padding:0 clamp(20px,4vw,48px)}
+  
+  /* MARGEN LATERAL GLOBAL DESKTOP Y CONTENEDOR */
+  .wrap{width:100%;max-width:1240px;margin:0 auto;padding:0 clamp(28px,6vw,72px)}
+  
   .grid-bg{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:linear-gradient(rgba(198,161,91,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(198,161,91,0.06) 1px,transparent 1px);background-size:60px 60px;-webkit-mask-image:radial-gradient(ellipse 90% 55% at 50% 0%,#000 15%,transparent 80%);mask-image:radial-gradient(ellipse 90% 55% at 50% 0%,#000 15%,transparent 80%)}
   .eyebrow{font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.22em;text-transform:uppercase;color:#c6a15b;font-weight:500}
   .serif{font-family:'Cormorant Garamond',serif}
   .gold{color:#c6a15b}
 
-  /* reveal — el texto es visible por defecto; la animacion solo adorna */
+  /* reveal */
   [data-rv]{opacity:1;transform:none;transition:opacity .9s cubic-bezier(.22,.61,.36,1),transform .9s cubic-bezier(.22,.61,.36,1)}
   .js-anim [data-rv]{opacity:0;transform:translateY(22px)}
   .js-anim [data-rv][data-in]{opacity:1;transform:none}
@@ -32,7 +35,7 @@
   @media (prefers-reduced-motion:reduce){[data-rv]{opacity:1!important;transform:none!important}}
 
   /* nav */
-  .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:12px clamp(16px,4vw,44px);background:rgba(8,20,32,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(247,243,236,0.08)}
+  .nav{position:sticky;top:0;z-index:50;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px clamp(28px,6vw,72px);background:rgba(8,20,32,0.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);border-bottom:1px solid rgba(247,243,236,0.08)}
   .nav img{height:34px;width:auto;display:block}
   .navbtns{display:flex;align-items:center;gap:10px}
   .btn{cursor:pointer;display:inline-flex;align-items:center;gap:8px;font-family:'Jost',sans-serif;font-size:12px;letter-spacing:.12em;text-transform:uppercase;font-weight:500;padding:11px 18px;transition:all .3s ease;border:none;white-space:nowrap}
@@ -40,46 +43,27 @@
   .btn-ghost:hover{border-color:#c6a15b;color:#d9b978}
   .btn-gold{background:#c6a15b;color:#081420}
   .btn-gold:hover{background:#d9b978}
-  @media (max-width:600px){.btn{padding:10px 13px;font-size:11px;letter-spacing:.08em}.btn .lbl-full{display:none}}
 
   /* hero */
   .hero{position:relative;min-height:clamp(520px,86vh,760px);display:flex;align-items:flex-end;overflow:hidden}
   .hero-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.5}
   .hero-ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,32,0.55) 0%,rgba(8,20,32,0.35) 40%,rgba(8,20,32,0.96) 100%)}
   .hero-in{position:relative;z-index:2;width:100%;padding-bottom:clamp(48px,7vw,80px)}
-  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6.2vw,82px);line-height:1.02;letter-spacing:-.01em;color:#f7f3ec;max-width:16ch}
-  .hero .lede{margin-top:24px;max-width:52ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:rgba(247,243,236,0.82);font-weight:300}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(38px,6.2vw,82px);line-height:1.02;letter-spacing:-.01em;color:#f7f3ec;max-width:18ch}
+  .hero .lede{margin-top:24px;max-width:56ch;font-size:clamp(16px,1.5vw,20px);line-height:1.6;color:rgba(247,243,236,0.82);font-weight:300}
 
   .section{padding:clamp(56px,8vw,104px) 0}
   .sec-head{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;border-bottom:1px solid rgba(247,243,236,0.16);padding-bottom:16px;margin-bottom:clamp(28px,4vw,44px)}
   .sec-head h2{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(26px,3.4vw,40px);color:#f7f3ec;letter-spacing:-.01em}
 
-  /* timeline */
-  .track{position:relative;height:150px;margin-top:8px}
-  .track .axis{position:absolute;left:0;right:0;top:74px;height:1px;background:rgba(247,243,236,0.3)}
-  .track .bar{position:absolute;height:26px;display:flex;align-items:center;overflow:hidden;white-space:nowrap}
-  .track .bar b{font-family:'Jost',sans-serif;font-size:10px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0 14px}
-  .track .bar-xto{top:40px;left:0;width:100%;background:#c6a15b;color:#081420;transition:width 1.3s cubic-bezier(.22,.61,.36,1) .15s}
-  .js-anim .track .bar-xto{width:0}
-  .js-anim .track[data-in] .bar-xto{width:100%}
-  .track .bar-otros{top:6px;left:60%;width:40%;background:repeating-linear-gradient(45deg,rgba(247,243,236,0.06),rgba(247,243,236,0.06) 5px,rgba(247,243,236,0.13) 5px,rgba(247,243,236,0.13) 10px);border:1px solid rgba(247,243,236,0.2);color:rgba(247,243,236,0.7);transition:width 1s cubic-bezier(.22,.61,.36,1) .5s}
-  .js-anim .track .bar-otros{width:0}
-  .js-anim .track[data-in] .bar-otros{width:40%}
-  .track .phases{position:absolute;inset:0;display:grid;grid-template-columns:repeat(5,1fr)}
-  .track .phase{position:relative;border-left:1px dashed rgba(247,243,236,0.16);padding-top:88px}
-  .track .phase:last-child{border-right:1px dashed rgba(247,243,236,0.16)}
-  .track .phase span{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:rgba(247,243,236,0.55);padding-left:10px;display:block;line-height:1.4}
-  .tl-note{margin-top:22px;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(18px,2vw,24px);line-height:1.45;color:rgba(247,243,236,0.85);max-width:40ch}
-  @media (max-width:600px){.track{height:132px}.track .phase span{font-size:8.5px}.track .bar b{font-size:8.5px;padding:0 9px}}
-
-  /* pillars */
-  .pillars{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(247,243,236,0.12)}
-  .pillar{padding:30px 26px 32px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)}
-  .pillar:last-child{border-right:none}
-  .pillar .tag{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b}
-  .pillar h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:#f7f3ec;margin:14px 0 10px;letter-spacing:-.01em}
-  .pillar p{font-size:15px;line-height:1.62;color:rgba(247,243,236,0.72);font-weight:300}
-  @media (max-width:760px){.pillars{grid-template-columns:1fr}.pillar{border-right:none}}
+  /* pillars & offices */
+  .pillars, .offices{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(247,243,236,0.12)}
+  .pillar, .off{padding:30px 26px 32px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)}
+  .pillar:last-child, .off:last-child{border-right:none}
+  .pillar .tag, .off .rg{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b}
+  .pillar h3, .off .nm{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:24px;color:#f7f3ec;margin:14px 0 10px;letter-spacing:-.01em}
+  .off .rg{margin:7px 0 12px}
+  .pillar p, .off p{font-size:15px;line-height:1.62;color:rgba(247,243,236,0.72);font-weight:300}
 
   /* comparison */
   .cmp{border-top:1px solid rgba(247,243,236,0.3)}
@@ -91,17 +75,23 @@
   .cmp-var{font-weight:500;color:#f7f3ec}
   .cmp-old{color:rgba(247,243,236,0.55);font-weight:300}
   .cmp-xto{color:#f4efe7;background:rgba(198,161,91,0.09)}
-  @media (max-width:760px){
-    .cmp-head{display:none}
-    .cmp-row{grid-template-columns:1fr;gap:0;padding:8px 0 14px;border-bottom:1px solid rgba(247,243,236,0.14)}
-    .cmp-row>div{padding:8px 4px}
-    .cmp-var{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;padding-bottom:4px}
-    .cmp-old,.cmp-xto{background:transparent;font-size:14.5px;padding-left:16px;position:relative}
-    .cmp-old::before,.cmp-xto::before{display:block;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
-    .cmp-old::before{content:"Convencional";color:rgba(247,243,236,0.4)}
-    .cmp-xto::before{content:"Modelo XTO";color:#c6a15b}
-    .cmp-xto{border-left:2px solid #c6a15b;margin-top:8px}
-  }
+
+  /* GRAPHIC COMPONENT */
+  .xto-chart-container{margin-top: clamp(40px, 5vw, 64px);background:#0b1826;border:1px solid rgba(198,161,91,0.25);padding:clamp(24px,4vw,40px);border-radius:2px}
+  .xto-chart-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:16px;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid rgba(247,243,236,0.1)}
+  .xto-chart-header h3{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,2.8vw,30px);font-weight:500;color:#f7f3ec}
+  .xto-chart-toggle{display:inline-flex;background:rgba(8,20,32,0.8);padding:4px;border:1px solid rgba(247,243,236,0.15)}
+  .xto-toggle-btn{background:transparent;border:none;color:rgba(247,243,236,0.6);padding:8px 16px;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.12em;text-transform:uppercase;cursor:pointer;transition:all .3s ease}
+  .xto-toggle-btn.active{background:#c6a15b;color:#081420;font-weight:500}
+
+  .xto-chart-body{display:flex;flex-direction:column;gap:22px}
+  .xto-chart-metric{display:flex;flex-direction:column;gap:8px}
+  .xto-chart-labels{display:flex;justify-content:space-between;align-items:baseline;font-size:14px}
+  .xto-metric-title{color:#f7f3ec;font-weight:400}
+  .xto-metric-val{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:#c6a15b;transition:color .4s ease}
+  .xto-chart-track{width:100%;height:10px;background:rgba(247,243,236,0.08);position:relative;overflow:hidden}
+  .xto-chart-fill{height:100%;background:linear-gradient(90deg, #967433 0%, #c6a15b 100%);width:0%;transition:width 1s cubic-bezier(.22,.61,.36,1)}
+  .xto-chart-track.old .xto-chart-fill{background:rgba(247,243,236,0.3)}
 
   /* record */
   .record{background:#0b1826;border-top:2px solid #c6a15b}
@@ -115,44 +105,9 @@
   .fig:last-child{border-right:none}
   .fig .n{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(30px,3.6vw,46px);line-height:1;letter-spacing:-.01em;color:#f7f3ec}
   .fig .l{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(247,243,236,0.55);margin-top:12px;line-height:1.5}
-  @media (max-width:860px){.record .top{grid-template-columns:1fr}.figs{grid-template-columns:repeat(2,1fr)}.fig:nth-child(2){border-right:none}.fig:nth-child(1),.fig:nth-child(2){border-bottom:1px solid rgba(247,243,236,0.12)}}
-
-  /* developments gallery */
-  .devs{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(12px,1.6vw,20px)}
-  .dev{position:relative;overflow:hidden;aspect-ratio:3/4;background:#0b1826}
-  .dev img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.85;transition:transform 1s cubic-bezier(.22,.61,.36,1)}
-  .dev:hover img{transform:scale(1.06)}
-  .dev .ov{position:absolute;inset:0;background:linear-gradient(180deg,rgba(8,20,32,0.05) 0%,rgba(8,20,32,0.2) 45%,rgba(8,20,32,0.85) 100%)}
-  .dev .cap{position:absolute;left:0;bottom:0;padding:22px 22px 24px;z-index:2}
-  .dev .cap .nm{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#f7f3ec}
-  .dev .cap .rg{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#c6a15b;margin-top:4px}
-  @media (max-width:760px){.devs{grid-template-columns:1fr;gap:12px}.dev{aspect-ratio:16/10}}
-
-  /* offices */
-  .offices{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(247,243,236,0.3)}
-  .off{padding:26px 26px 28px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)}
-  .off:last-child{border-right:none}
-  .off .nm{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:22px;color:#f7f3ec;letter-spacing:-.01em}
-  .off .rg{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:#c6a15b;margin:7px 0 12px}
-  .off p{font-size:14.5px;line-height:1.6;color:rgba(247,243,236,0.72);font-weight:300}
-  @media (max-width:760px){.offices{grid-template-columns:1fr}.off{border-right:none}}
 
   /* methodology */
   .method-intro{max-width:62ch;font-family:'Cormorant Garamond',serif;font-style:italic;font-weight:400;font-size:clamp(19px,2.1vw,26px);line-height:1.45;color:rgba(247,243,236,0.9);margin-bottom:clamp(32px,4vw,44px)}
-  .flow{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid rgba(247,243,236,0.3)}
-  .step{padding:26px 24px 28px;border-right:1px solid rgba(247,243,236,0.12);border-bottom:1px solid rgba(247,243,236,0.12)}
-  .step:last-child{border-right:none}
-  .step .st{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.16em;color:#c6a15b}
-  .step h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:20px;color:#f7f3ec;margin:12px 0 8px}
-  .step p{font-size:14px;line-height:1.6;color:rgba(247,243,236,0.72);font-weight:300}
-  @media (max-width:860px){.flow{grid-template-columns:repeat(2,1fr)}.step:nth-child(2){border-right:none}}
-  @media (max-width:520px){.flow{grid-template-columns:1fr}.step{border-right:none}}
-  .agent{margin-top:clamp(34px,4vw,48px);display:grid;grid-template-columns:1fr 1.35fr;gap:clamp(24px,3vw,52px);align-items:start;border-left:2px solid #c6a15b;padding-left:clamp(20px,3vw,32px)}
-  .agent h3{font-family:'Cormorant Garamond',serif;font-weight:500;font-size:clamp(23px,2.5vw,28px);color:#f7f3ec;letter-spacing:-.01em;line-height:1.2;margin-top:12px}
-  .agent p{font-size:16px;line-height:1.68;color:rgba(247,243,236,0.78);font-weight:300}
-  .labels{display:flex;flex-wrap:wrap;gap:8px;margin-top:22px}
-  .labels span{font-family:'Jost',sans-serif;font-size:10px;letter-spacing:.14em;text-transform:uppercase;padding:7px 12px;border:1px solid rgba(247,243,236,0.16);color:rgba(247,243,236,0.72)}
-  @media (max-width:760px){.agent{grid-template-columns:1fr;gap:18px}}
 
   /* vertical methodology timeline */
   .vt{position:relative;margin-top:clamp(28px,4vw,44px);padding-left:0}
@@ -169,13 +124,6 @@
   .js-anim .vt-item[data-in] .vt-dot{border-color:#c6a15b;background:#c6a15b;box-shadow:0 0 0 4px rgba(198,161,91,0.15)}
   .vt-body h4{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(22px,2.5vw,28px);color:#f7f3ec;letter-spacing:-.01em;line-height:1.15}
   .vt-body p{font-size:clamp(15px,1.35vw,16.5px);line-height:1.7;color:rgba(247,243,236,0.76);font-weight:300;margin-top:12px;max-width:62ch}
-  @media (max-width:640px){
-    .vt-item{grid-template-columns:1fr;gap:0}
-    .vt-rail{flex-direction:row;align-items:baseline;text-align:left;gap:12px;margin-bottom:12px}
-    .vt-body{border-left:none;padding-left:0}
-    .vt-dot{display:none}
-    .vt-num{font-size:34px}
-  }
 
   /* closing */
   .closing{background:#0b1826;border-top:2px solid #c6a15b}
@@ -184,7 +132,6 @@
   .closing blockquote{font-family:'Cormorant Garamond',serif;font-weight:400;font-style:italic;font-size:clamp(22px,2.8vw,34px);line-height:1.32;color:#f7f3ec;letter-spacing:-.01em}
   .closing .sign{font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:#c6a15b;margin-top:24px}
   .closing .sign span{display:block;font-size:13px;letter-spacing:0;text-transform:none;color:rgba(247,243,236,0.6);margin-top:5px;font-weight:300}
-  @media (max-width:640px){.closing .in{grid-template-columns:1fr;gap:22px;text-align:center;justify-items:center}}
 
   footer.ft{border-top:1px solid rgba(247,243,236,0.16);display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;font-family:'Jost',sans-serif;font-size:11px;letter-spacing:.1em;color:rgba(247,243,236,0.5);padding:26px 0 56px}
 
@@ -197,6 +144,43 @@
 
   [hidden]{display:none!important}
 
+  /* REGLAS RESPONSIVAS PARA PANTALLAS DE CELULAR (<760px) */
+  @media (max-width:760px){
+    .wrap{padding:0 20px!important;width:100%!important}
+    .nav{padding:12px 20px!important}
+    .btn{padding:10px 13px;font-size:11px;letter-spacing:.08em}
+    .btn .lbl-full{display:none}
+    .hero-in{padding-bottom:40px!important}
+    .hero h1{font-size:clamp(32px, 8vw, 44px)!important;max-width:100%!important}
+    .hero .lede{font-size:15px!important;max-width:100%!important}
+    .section{padding:44px 0!important}
+    .sec-head{margin-bottom:24px!important}
+    .sec-head h2{font-size:28px!important}
+    .pillars, .offices{grid-template-columns:1fr!important}
+    .pillar, .off{border-right:none!important;padding:20px 0!important}
+    .cmp-head{display:none!important}
+    .cmp-row{grid-template-columns:1fr!important;gap:0;padding:8px 0 14px;border-bottom:1px solid rgba(247,243,236,0.14)}
+    .cmp-row>div{padding:8px 4px}
+    .cmp-var{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;padding-bottom:4px}
+    .cmp-old,.cmp-xto{background:transparent;font-size:14.5px;padding-left:16px;position:relative}
+    .cmp-old::before,.cmp-xto::before{display:block;font-family:'Jost',sans-serif;font-size:9px;letter-spacing:.14em;text-transform:uppercase;margin-bottom:3px}
+    .cmp-old::before{content:"Convencional";color:rgba(247,243,236,0.4)}
+    .cmp-xto::before{content:"Modelo XTO";color:#c6a15b}
+    .cmp-xto{border-left:2px solid #c6a15b;margin-top:8px}
+    .xto-chart-container{padding:20px 16px!important;margin-top:32px!important}
+    .xto-chart-header{flex-direction:column!important;align-items:flex-start!important;gap:12px!important}
+    .record .top{grid-template-columns:1fr!important}
+    .figs{grid-template-columns:repeat(2,1fr)!important}
+    .fig:nth-child(2){border-right:none!important}
+    .fig:nth-child(1),.fig:nth-child(2){border-bottom:1px solid rgba(247,243,236,0.12)}
+    .vt-item{grid-template-columns:1fr!important;gap:0}
+    .vt-rail{flex-direction:row!important;align-items:baseline!important;text-align:left!important;gap:12px!important;margin-bottom:12px}
+    .vt-body{border-left:none!important;padding-left:0!important}
+    .vt-dot{display:none!important}
+    .vt-num{font-size:34px!important}
+    .closing .in{grid-template-columns:1fr!important;gap:22px!important;text-align:center!important;justify-items:center!important}
+  }
+
   /* print */
   @media print{
     @page{margin:0}
@@ -208,9 +192,7 @@
     .hero{min-height:auto;padding:40px 0}
     .hero-img{opacity:.4}
     .section{padding:34px 0}
-    .track .bar-xto{width:100%!important}
-    .track .bar-otros{width:40%!important}
-    .pillar,.step,.off,.fig,.dev,.cmp-row,.agent,.record .top,.hero h1,.sec-head,.vt-item,.closing .in{break-inside:avoid;page-break-inside:avoid}
+    .pillar,.step,.off,.fig,.dev,.cmp-row,.agent,.record .top,.hero h1,.sec-head,.vt-item,.closing .in,.xto-chart-container{break-inside:avoid;page-break-inside:avoid}
     .vt-num{color:#c6a15b!important}
     .vt-dot{border-color:#c6a15b!important;background:#c6a15b!important}
     .devs,.figs,.pillars,.flow,.offices{break-inside:avoid}
@@ -260,125 +242,147 @@
       <img class="hero-img" src="images/hero2.png" alt=""/>
       <div class="hero-ov"></div>
       <div class="hero-in wrap">
-        <p class="eyebrow" data-rv>Modelo XTO · Integración vertical</p>
-        <h1 data-rv data-d="1" style="margin-top:18px">La absorción se define desde que el proyecto <em style="font-style:italic" class="gold">toma forma</em>.</h1>
-        <p class="lede" data-rv data-d="2">Una sola plataforma que acompaña el desarrollo desde la primera decisión estratégica hasta la venta del último inventario. Un mismo equipo responsable del producto, del mensaje y del resultado comercial.</p>
+        <p class="eyebrow" data-rv>XTO Realty Group México</p>
+        <h1 data-rv data-d="1" style="margin-top:18px">El Modelo de Integración Vertical en Comercialización Inmobiliaria</h1>
+        <p class="lede" data-rv data-d="2">Estrategia, Inteligencia de Mercado y Absorción Continua para Desarrollos de Alta Gama. Formato: Dossier Ejecutivo 2026</p>
       </div>
     </header>
-
-    <section class="section wrap">
-      <div class="sec-head"><h2 data-rv>Diferencia del Modelo XTO</h2><p class="eyebrow" data-rv>Línea de vida del proyecto</p></div>
-      <div class="track" data-rv>
-        <div class="axis"></div>
-        <div class="bar bar-xto"><b>XTO — desde la concepción del proyecto</b></div>
-        <div class="bar bar-otros"><b>Comercializadora convencional</b></div>
-        <div class="phases">
-          <div class="phase"><span>Planeación<br>y factibilidad</span></div>
-          <div class="phase"><span>Definición<br>de producto</span></div>
-          <div class="phase"><span>Planos<br>ejecutivos</span></div>
-          <div class="phase"><span>Obra</span></div>
-          <div class="phase"><span>Venta<br>y entrega</span></div>
-        </div>
-      </div>
-      <p class="tl-note" data-rv data-d="1">El valor de un desarrollo se decide antes de la primera venta. Intervenir a tiempo previene errores y convierte cada fortaleza de producto en una ventaja de absorción.</p>
-    </section>
-
-    <section class="section wrap" style="padding-top:0">
-      <div class="sec-head"><h2 data-rv>Tres capacidades en un solo equipo</h2></div>
-      <div class="pillars">
-        <article class="pillar" data-rv><p class="tag">Inteligencia</p><h3>Transparencia</h3><p>Inteligencia de mercado viva, con cada dato es traducido a las necesidades del proyecto. Sabemos cómo estamos validando los datos y qué tan sólidos son para convertirlos en una decisión.</p></article>
-        <article class="pillar" data-rv data-d="1"><p class="tag">Experiencia</p><h3>Criterio</h3><p>Dos décadas leyendo producto desde el punto de vista de la decisión de compra, no desde el plano. Traducimos superficies, precios y fases al lenguaje real del comprador y del mercado que lo rodea.</p></article>
-        <article class="pillar" data-rv data-d="2"><p class="tag">Comercialización</p><h3>Continuidad</h3><p>Marca, campañas, CRM, red de Brokers y cierre operados por un solo equipo de principio a fin. Sin costuras entre proveedores y sin diluir la responsabilidad del resultado.</p></article>
-      </div>
-    </section>
-
-    <section class="section wrap" style="padding-top:0">
-      <div class="sec-head"><h2 data-rv>¿Qué cambia con la integración vertical?</h2></div>
-      <div class="cmp" data-rv>
-        <div class="cmp-head"><div>Variable</div><div>Convencional</div><div class="gd">Modelo XTO</div></div>
-        <div class="cmp-row"><div class="cmp-var">Momento de entrada</div><div class="cmp-old">Con el producto ya definido.</div><div class="cmp-xto">Desde que el proyecto toma forma.</div></div>
-        <div class="cmp-row"><div class="cmp-var">Responsable del resultado</div><div class="cmp-old">Distribuido; nadie responde por la absorción.</div><div class="cmp-xto">Un solo equipo, con la absorción como meta.</div></div>
-        <div class="cmp-row"><div class="cmp-var">Costo de coordinación</div><div class="cmp-old">Lo absorbe el desarrollador.</div><div class="cmp-xto">Interno; no se traslada al cliente.</div></div>
-        <div class="cmp-row"><div class="cmp-var">Marketing</div><div class="cmp-old">Comunica el producto que recibe.</div><div class="cmp-xto">Define el producto que comunica.</div></div>
-        <div class="cmp-row"><div class="cmp-var">Ajuste de producto</div><div class="cmp-old">Tardío y caro, o no ocurre.</div><div class="cmp-xto">Temprano y con margen de decisión.</div></div>
-      </div>
-    </section>
 
     <section class="record">
       <div class="wrap section">
         <div class="top">
           <div data-rv>
-            <p class="eyebrow">Trayectoria</p>
-            <h2 style="margin-top:16px">Dos décadas moviendo <em style="font-style:italic" class="gold">producto real</em>.</h2>
-            <p class="who">Emmanuel Carreño<span>Director General · XTO Realty Group México</span></p>
+            <p class="eyebrow">Integración de valor</p>
+            <h2 style="margin-top:16px">Solvencia Operativa</h2>
           </div>
-          <div data-rv data-d="1"><p class="bio">Veinte años construyendo estrategias de comercialización, posicionamiento y absorción para Desarrollos Residenciales y Turísticos Premium en México. Preventa, absorción escalonada, redes de Brokers de alcance nacional y generación de demanda para el segmento de lujo.</p><p class="bio" style="margin-top:16px">Es un criterio forjado moviendo producto real en mercados reales, y hoy se pone al servicio del proyecto desde la primera conversación sobre el producto, no cuando ya no queda margen para decidir.</p></div>
+          <div data-rv data-d="1">
+            <p class="bio">En el dinámico panorama del desarrollo inmobiliario contemporáneo, la diferencia entre la aceleración comercial sustentable y el estancamiento del inventario radica en la capacidad de ejecutar una estrategia unificada. XTO Realty Group no actúa como un intermediario pasivo ni como una agencia fragmentada; operamos como una plataforma estratégica de comercialización e integración vertical que asume la responsabilidad integral del activo, desde la concepción del producto hasta la colocación final de la última unidad.</p>
+            <p class="bio" style="margin-top:16px">Al alinear los objetivos del desarrollador con las dinámicas reales de absorción del mercado, consolidamos tres pilares de desempeño que garantizan certidumbre operativa y retorno sobre la inversión:</p>
+          </div>
         </div>
         <div class="figs" data-rv>
-          <div class="fig"><div class="n">+4,300</div><div class="l">Unidades comercializadas</div></div>
-          <div class="fig"><div class="n">$8,400<span style="font-size:.5em"> MDP</span></div><div class="l">Valor agregado en proyectos</div></div>
-          <div class="fig"><div class="n">+20</div><div class="l">Años en el sector inmobiliario</div></div>
-          <div class="fig"><div class="n">3</div><div class="l">Plazas: CDMX, Riviera Maya y Bajío</div></div>
+          <div class="fig"><div class="n">+4,300</div><div class="l">Unidades Comercializadas con éxito en mercados exigentes.</div></div>
+          <div class="fig"><div class="n">$8,400<span style="font-size:.5em"> MDP</span></div><div class="l">Valor comercial acumulado y optimizado.</div></div>
+          <div class="fig"><div class="n">+20 Años</div><div class="l">Criterio probado en colocación y absorción.</div></div>
+          <div class="fig"><div class="n">3 Regiones</div><div class="l">Conexión CDMX, Riviera Maya y Bajío.</div></div>
         </div>
       </div>
     </section>
 
-    <section class="section wrap">
-      <div class="sec-head"><h2 data-rv>Desarrollos representativos</h2><p class="eyebrow" data-rv>Producto de autor</p></div>
-      <div class="devs">
-        <div class="dev" data-rv><img src="images/dev-atzaro.png" alt="Atzaró"/><div class="ov"></div><div class="cap"><div class="nm">Atzaró</div><div class="rg">Tulum</div></div></div>
-        <div class="dev" data-rv data-d="1"><img src="images/dev-cocobeach.png" alt="Coco Beach"/><div class="ov"></div><div class="cap"><div class="nm">Coco Beach</div><div class="rg">Playa del Carmen</div></div></div>
-        <div class="dev" data-rv data-d="2"><img src="images/dev-hoxul.png" alt="Hoxul"/><div class="ov"></div><div class="cap"><div class="nm">Hoxul</div><div class="rg">Riviera Maya</div></div></div>
+    <section class="section wrap" style="padding-top:0">
+      <div class="sec-head"><h2 data-rv>Pilares de Desempeño</h2></div>
+      <div class="pillars">
+        <article class="pillar" data-rv><p class="tag">Auditoría</p><h3>Inteligencia Viva</h3><p>Procesamiento y auditoría de datos de mercado en tiempo real. Remplazamos los reportes estáticos iniciales por una lectura continua que respalda decisiones estratégicas sobre precios por metro cuadrado, ritmo de absorción y posicionamiento frente a la competencia.</p></article>
+        <article class="pillar" data-rv data-d="1"><p class="tag">Perspectiva</p><h3>Criterio Experto</h3><p>Más de dos décadas de lectura del desarrollo inmobiliario desde la perspectiva del inversionista y comprador final. Traducimos planos, amenidades y áreas privativas en argumentos comerciales de alta deseabilidad y aceleración.</p></article>
+        <article class="pillar" data-rv data-d="2"><p class="tag">Ejecución</p><h3>Continuidad Operativa</h3><p>Un equipo multidisciplinario coordinado a cargo de la narrativa de marca, pauta publicitaria segmentada, administración de CRM, alineación de la red nacional de Brokers y el cierre transaccional. Sin brechas de responsabilidad.</p></article>
       </div>
     </section>
 
+    <!-- SECCIÓN: TRES PLAZAS, COBERTURA NACIONAL -->
     <section class="section wrap" style="padding-top:0">
       <div class="sec-head"><h2 data-rv>Tres plazas, cobertura nacional</h2><p class="eyebrow" data-rv>Radio de operación</p></div>
       <div class="offices">
-        <div class="off" data-rv><div class="nm">Playa del Carmen</div><div class="rg">Riviera Maya</div><p>Corredor Cancún–Puerto Morelos–Playa del Carmen–Tulum. Producto turístico, segunda residencia, lujo y branded residences, con un comprador nacional e Internacional que busca rentabilidad y estilo de vida.</p></div>
-        <div class="off" data-rv data-d="1"><div class="nm">León, Guanajuato</div><div class="rg">Bajío y Pacífico centro</div><p>Del corredor Industrial del Bajío hasta Costa Alegre. Un mercado residencial en plena expansión, con comprador de capacidad probada para segunda residencia y una red inmobiliaria regional consolidada.</p></div>
-        <div class="off" data-rv data-d="2"><div class="nm">Ciudad de México</div><div class="rg">Alcance nacional</div><p>Origen del comprador de inversión y punto de encuentro con la banca. Desde aquí se articula la red de Brokers que conecta el producto del Caribe con la demanda del centro del país.</p></div>
-      </div>
-    </section>
-
-    <section class="section wrap" style="padding-top:0">
-      <div class="sec-head"><h2 data-rv>¿Cómo creamos Inteligencia de Mercado?</h2><p class="eyebrow" data-rv>Metodología</p></div>
-      <p class="method-intro" data-rv>Inteligencia de Mercado que no se adquiere: Se produce, en un ciclo continuo asistido por iA y dirigido por el equipo. No es una fotografía estática al arrancar el proyecto, sino un sistema vivo que aprende y se corrige a lo largo de toda la absorción.</p>
-      <div class="flow">
-        <article class="step" data-rv><p class="st">Fase 01</p><h4>Recolección</h4><p>Barrido continuo de fuentes públicas, Institucionales y de mercado.</p></article>
-        <article class="step" data-rv data-d="1"><p class="st">Fase 02</p><h4>Contraste</h4><p>Convergencia entre fuentes independientes; se marca todo incentivo comercial.</p></article>
-        <article class="step" data-rv data-d="2"><p class="st">Fase 03</p><h4>Etiquetado</h4><p>Cada dato recibe su nivel de validación; lo ambiguo se elimina.</p></article>
-        <article class="step" data-rv data-d="3"><p class="st">Fase 04</p><h4>Aplicación</h4><p>Ayudamos en la decisiones sobre el producto, precio y mensaje, y lo medimos contra el embudo de venta.</p></article>
-      </div>
-      <div class="agent">
-        <div data-rv><p class="eyebrow">Capa tecnológica</p><h3>Razonamiento continuo, criterio humano.</h3></div>
-        <div data-rv data-d="1">
-          <p>Operamos una arquitectura de agentes de Inteligencia Artificial construida sobre modelos de razonamiento de última generación —con Claude, de Anthropic, como motor principal— conectada a bases de datos propias del proyecto y a fuentes de mercado en tiempo real.</p>
-          <p style="margin-top:16px">Lo distintivo no es la automatización, sino la capacidad de razonar sobre información incompleta: Relacionar una señal de absorción con una decisión de producto, detectar que dos fuentes cuentan historias distintas del mismo mercado y anticipar cómo un cambio del entorno se traduce en demanda. El equipo dirige, cuestiona y decide; la tecnología amplía las capacidades de cuánto podemos revisar y con qué profundidad.</p>
-          <div class="labels"><span>Razonamiento</span><span>Memoria de proyecto</span><span>Análisis documental</span><span>Monitoreo continuo</span></div>
+        <div class="off" data-rv>
+          <div class="nm">Playa del Carmen</div>
+          <div class="rg">Riviera Maya</div>
+          <p>Corredor Cancún–Puerto Morelos–Playa del Carmen–Tulum. Concentración estratégica para producto turístico, segunda residencia y branded residences, articulando un comprador nacional e internacional de alto perfil.</p>
+        </div>
+        <div class="off" data-rv data-d="1">
+          <div class="nm">León, Guanajuato</div>
+          <div class="rg">Bajío y Pacífico Centro</div>
+          <p>Cobertura desde el corredor industrial del Bajío hasta la zona costera. Conexión directa con mercados residenciales en expansión y redes regionales de inversionistas consolidados.</p>
+        </div>
+        <div class="off" data-rv data-d="2">
+          <div class="nm">Ciudad de México</div>
+          <div class="rg">Alcance Nacional</div>
+          <p>Epicentro de origen del capital de inversión y banca patrimonial. Desde aquí se articula la red de brókeres de alcance nacional que vincula la demanda del centro del país con los proyectos destino.</p>
         </div>
       </div>
     </section>
 
     <section class="section wrap" style="padding-top:0">
-      <div class="sec-head"><h2 data-rv>Metodología</h2><p class="eyebrow" data-rv>Cinco etapas, un solo plan</p></div>
+      <div class="sec-head">
+        <h2 data-rv>La Evolución frente al Esquema Tradicional</h2>
+        <p class="eyebrow" data-rv>Disruptiva Sistémica</p>
+      </div>
+      <p class="method-intro" data-rv style="margin-bottom:32px;">La comercialización inmobiliaria convencional padece una falla estructural histórica: la fragmentación del ecosistema. En el esquema tradicional, la consultora analiza el mercado, el despacho de arquitectura diseña, la agencia de marketing comunica y el bróker intenta vender. Si el ritmo de absorción se detiene, ningún proveedor asume la responsabilidad del resultado global. El Modelo XTO de Integración Vertical resuelve esta desconexión asumiendo la responsabilidad única del ciclo comercial, interviniendo preventivamente en el diseño y parametrización del producto para asegurar su encaje inmediato con la demanda real.</p>
+      
+      <!-- MATRIZ COMPARATIVA -->
+      <div class="cmp" data-rv>
+        <div class="cmp-head"><div>Criterio Analizado</div><div>Comercializadora Convencional</div><div class="gd">Modelo XTO (Integración Vertical)</div></div>
+        <div class="cmp-row"><div class="cmp-var">Momento de Entrada</div><div class="cmp-old">Tardio. Ingresa cuando el producto está definido, sin margen de ajuste estructural.</div><div class="cmp-xto">Desde el origen. Participa en la concepción, planeación y factibilidad del desarrollo.</div></div>
+        <div class="cmp-row"><div class="cmp-var">Responsabilidad</div><div class="cmp-old">Fragmentada. Ningún actor responde por la meta global de absorción comercial.</div><div class="cmp-xto">Única y Centralizada. Asunción directa del compromiso y el ritmo de colocación.</div></div>
+        <div class="cmp-row"><div class="cmp-var">Eficiencia de Costos</div><div class="cmp-old">Alto costo de gestión y coordinación entre múltiples agencias dispares.</div><div class="cmp-xto">Estructura integrada internamente que optimiza recursos sin sobrecostos.</div></div>
+        <div class="cmp-row"><div class="cmp-var">Marketing & Marca</div><div class="cmp-old">Pasivo. Comunicación limitada a promocionar el producto exacto que recibe.</div><div class="cmp-xto">Estratégico. Modula la propuesta de valor y atributos antes de su lanzamiento.</div></div>
+        <div class="cmp-row"><div class="cmp-var">Ajustes de Producto</div><div class="cmp-old">Reactivo y costoso. Correcciones aplicadas cuando las ventas se han frenado.</div><div class="cmp-xto">Preventivo y Dinámico. Calibración continua de precios y tipologías con base en datos vivos.</div></div>
+      </div>
+
+      <!-- GRAFICA ANIMADA: DIFERENCIA DEL MODELO XTO -->
+      <div class="xto-chart-container" data-rv data-d="1">
+        <div class="xto-chart-header">
+          <div>
+            <p class="eyebrow" style="font-size:10px;margin-bottom:4px">Evaluación de Desempeño</p>
+            <h3>Diferencia del Modelo XTO</h3>
+          </div>
+          <div class="xto-chart-toggle">
+            <button type="button" class="xto-toggle-btn active" id="btnModeXto">Modelo XTO</button>
+            <button type="button" class="xto-toggle-btn" id="btnModeOld">Tradicional</button>
+          </div>
+        </div>
+        <div class="xto-chart-body" id="xtoChartBody">
+          <div class="xto-chart-metric">
+            <div class="xto-chart-labels">
+              <span class="xto-metric-title">Integración en Fases Tempranas (Concepción)</span>
+              <span class="xto-metric-val" id="mVal1">100%</span>
+            </div>
+            <div class="xto-chart-track" id="mTrack1"><div class="xto-chart-fill" style="width:100%"></div></div>
+          </div>
+          <div class="xto-chart-metric">
+            <div class="xto-chart-labels">
+              <span class="xto-metric-title">Alineación de Responsabilidad Unificada</span>
+              <span class="xto-metric-val" id="mVal2">100%</span>
+            </div>
+            <div class="xto-chart-track" id="mTrack2"><div class="xto-chart-fill" style="width:100%"></div></div>
+          </div>
+          <div class="xto-chart-metric">
+            <div class="xto-chart-labels">
+              <span class="xto-metric-title">Uso de Inteligencia de Mercado Viva (IA)</span>
+              <span class="xto-metric-val" id="mVal3">95%</span>
+            </div>
+            <div class="xto-chart-track" id="mTrack3"><div class="xto-chart-fill" style="width:95%"></div></div>
+          </div>
+          <div class="xto-chart-metric">
+            <div class="xto-chart-labels">
+              <span class="xto-metric-title">Eficiencia en Velocidad de Absorción</span>
+              <span class="xto-metric-val" id="mVal4">+85%</span>
+            </div>
+            <div class="xto-chart-track" id="mTrack4"><div class="xto-chart-fill" style="width:85%"></div></div>
+          </div>
+        </div>
+      </div>
+
+    </section>
+
+    <section class="section wrap" style="padding-top:0">
+      <div class="sec-head"><h2 data-rv>Arquitectura Metodológica: El Ciclo de Colocación Estratégica</h2></div>
+      <p class="method-intro" data-rv>Sustentamos la comercialización en un ciclo riguroso de cinco etapas consecutivas, potenciadas por motores de Inteligencia Artificial propietarios para el procesamiento masivo de métricas de mercado y supervisadas por la dirección senior de la firma.</p>
       <div class="vt">
-        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">01</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Análisis del producto</h4><p>Estudiamos el proyecto a fondo antes de comunicarlo: Arquitectura, mezcla de producto, superficies, amenidades y propuesta de valor. Identificamos sus fortalezas reales —lo que lo hace distinto y deseable— y las convertimos en argumentos de venta concretos, capaces de sostener el precio y de diferenciarlo de la competencia directa.</p></div></div>
-        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">02</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Inteligencia de mercado</h4><p>Los datos marcan la pauta. Cruzamos tendencias, ubicación y entorno del proyecto con variables de economía, segmentación del mercado y hábitos de compra del comprador objetivo. De ese análisis surge una lectura precisa de a quién le hablamos, con qué mensaje y en qué momento, esto es la base de toda la estrategia de comunicación y comercialización.</p></div></div>
-        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">03</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Comunicación</h4><p>Traducimos la estrategia en una plataforma de marketing: Identidad, narrativa y los canales adecuados para cada perfil de comprador. Diseñamos las etapas de campaña, la pauta de anuncios y el arsenal de materiales y herramientas de venta que el equipo necesita para convertir el interés en visitas y las visitas en oportunidades reales.</p></div></div>
-        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">04</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Comercialización</h4><p>Todo lo anterior se ordena en un plan de absorción con metas claras en tiempo y forma. Integramos y capacitamos equipos de venta, activamos y alineamos la red de Brokers y gestionamos su desempeño con indicadores medibles, de modo que cada esfuerzo comercial empuje hacia el mismo objetivo de colocación.</p></div></div>
-        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">05</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Mejora continua</h4><p>Acompañamos el proyecto durante toda la absorción. Ajustamos marketing y materiales de venta según el comportamiento real del embudo, actualizamos estudios e Inteligencia de Mercado y refinamos el plan tantas veces como el mercado lo exija, hasta colocar la última unidad.</p></div></div>
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">01</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Diagnóstico de Producto y Atributos de Competitividad</h4><p>Auditoría profunda de la propuesta arquitectónica, superficies privativas, mezcla de tipologías y amenidades. Identificamos los factores diferenciadores y los estructuramos en argumentos comerciales sólidos capaces de blindar el valor por metro cuadrado.</p></div></div>
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">02</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Inteligencia de Mercado Aplicada (Motor IA + Criterio Senior)</h4><p>Despliegue de agentes algorítmicos especializados en contraste de datos en tiempo real para determinar el perfil del comprador objetivo, monitorear la absorción de la competencia directa y definir la curva óptima de precios.</p></div></div>
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">03</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Plataforma de Comunicación y Ecosistema de Ventas</h4><p>Traducción de la estrategia comercial en identidades de marca de alto impacto, campañas digitales hipersegmentadas y un herramental de ventas diseñado para dotar de velocidad a la fuerza comercial.</p></div></div>
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">04</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Activación Comercial y Red Nacional de Brokers</h4><p>Conexión e incentivación de la red de brókeres más influyente en los corredores inmobiliarios estratégicos del país (CDMX, Riviera Maya y Bajío), gestionando el desempeño bajo estrictos indicadores de conversión.</p></div></div>
+        <div class="vt-item" data-rv><div class="vt-rail"><span class="vt-num">05</span></div><div class="vt-body"><span class="vt-dot"></span><h4>Optimización Continua del Embudo de Absorción</h4><p>Acompañamiento permanente durante toda la vida útil del proyecto. Monitoreamos y ajustamos la estrategia de atracción, pauta publicitaria y precios según el comportamiento del mercado hasta lograr el cierre total del activo.</p></div></div>
       </div>
     </section>
 
     <section class="closing">
       <div class="wrap section">
         <div class="in">
-          <img class="portrait" src="images/emmanuel.png" alt="Emmanuel Carreño" data-rv/>
+          <img class="portrait" src="images/emmanuel.png" alt="Emmanuel Carreño"/>
           <div data-rv data-d="1">
             <p class="eyebrow" style="margin-bottom:18px">Un mensaje personal</p>
-            <blockquote>Gracias por el tiempo y por la confianza de recibir esta información. Detrás de cada dato y cada etapa hay un compromiso sencillo: Hacer del proyecto un éxito comercial medible. Será un privilegio poner este modelo a trabajar a su lado.</blockquote>
-            <p class="sign">Emmanuel Carreño<span>Director General · XTO Realty Group México</span></p>
+            <blockquote>Veinte años construyendo estrategias de comercialización, posicionamiento y absorción para desarrollos residenciales y turísticos premium en México nos han enseñado que el valor real de un proyecto inmobiliario se decide mucho antes de la primera venta. Ponemos este criterio, tecnología y modelo de trabajo al servicio de su desarrollo desde nuestra primera conversación.</blockquote>
+            <p class="sign">Emmanuel Carreño<span>Director General | XTO Realty Group México</span></p>
           </div>
         </div>
       </div>
@@ -397,8 +401,10 @@
   'use strict';
 
   var AUTH_KEY = 'xto_iv_auth';
-  var VALID_USER = 'overview@xtorealtygroup.com';
-  var VALID_PASS = 'Ejecutivo2026';
+  
+  /* CREDENCIALES ACTUALIZADAS */
+  var VALID_USER = 'presentacion@xto.com';
+  var VALID_PASS = 'xto2026';
 
   var gate = document.getElementById('gate');
   var content = document.getElementById('content');
@@ -410,8 +416,6 @@
   function showContent() {
     gate.hidden = true;
     content.hidden = false;
-    // El texto ya es visible (opacity:1 por defecto). La animacion se activa
-    // solo como enhancement en el siguiente frame; nunca bloquea la lectura.
     requestAnimationFrame(setupReveal);
   }
 
@@ -448,8 +452,54 @@
     btnPdf.addEventListener('click', function () { window.print(); });
   }
 
-  // Reveal opcional. El contenido YA es visible sin esto; solo agrega la
-  // animacion de entrada al hacer scroll. Si algo falla, el texto sigue ahi.
+  /* LOGICA DE LA GRAFICA DIFERENCIA DEL MODELO XTO */
+  var btnXto = document.getElementById('btnModeXto');
+  var btnOld = document.getElementById('btnModeOld');
+  var mVal1 = document.getElementById('mVal1');
+  var mVal2 = document.getElementById('mVal2');
+  var mVal3 = document.getElementById('mVal3');
+  var mVal4 = document.getElementById('mVal4');
+  var mTracks = [
+    document.getElementById('mTrack1'),
+    document.getElementById('mTrack2'),
+    document.getElementById('mTrack3'),
+    document.getElementById('mTrack4')
+  ];
+
+  var dataXto = { v1: '100%', v2: '100%', v3: '95%', v4: '+85%', w: [100, 100, 95, 85] };
+  var dataOld = { v1: '15%', v2: '20%', v3: '10%', v4: '30%', w: [15, 20, 10, 30] };
+
+  function renderChart(data, isXto) {
+    mVal1.textContent = data.v1;
+    mVal2.textContent = data.v2;
+    mVal3.textContent = data.v3;
+    mVal4.textContent = data.v4;
+
+    mTracks.forEach(function(track, i) {
+      var fill = track.querySelector('.xto-chart-fill');
+      fill.style.width = data.w[i] + '%';
+      if (isXto) {
+        track.classList.remove('old');
+      } else {
+        track.classList.add('old');
+      }
+    });
+  }
+
+  if (btnXto && btnOld) {
+    btnXto.addEventListener('click', function() {
+      btnXto.classList.add('active');
+      btnOld.classList.remove('active');
+      renderChart(dataXto, true);
+    });
+
+    btnOld.addEventListener('click', function() {
+      btnOld.classList.add('active');
+      btnXto.classList.remove('active');
+      renderChart(dataOld, false);
+    });
+  }
+
   function setupReveal() {
     try {
       var els = document.querySelectorAll('#content [data-rv]');
@@ -479,7 +529,6 @@
         if (inView(el)) { reveal(el); } else { io.observe(el); }
       });
 
-      // Red de seguridad: en 1.2s revelar cualquier cosa que siga oculta
       setTimeout(function () { Array.prototype.forEach.call(els, reveal); }, 1200);
     } catch (err) {
       document.body.classList.remove('js-anim');
