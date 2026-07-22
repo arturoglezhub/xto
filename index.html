@@ -602,26 +602,48 @@ class Component extends DCLogic {
   closeLogin = () => this.setState({ showLogin: false });
   stop = (e) => { e.stopPropagation(); };
   logout = () => this.setState({ loggedIn: false, userName: '' });
+ 
   submitLogin = (e) => {
     e.preventDefault();
-    const email = (this.emailRef.current && this.emailRef.current.value || '').trim().toLowerCase();
-    const password = (this.passRef.current && this.passRef.current.value || '').trim();
+    const email = (this.emailRef.current && this.emailRef.current.value) || '';
+    // Si tienes un input de contraseña referenciado, puedes capturarlo aquí también:
+    const pass = (this.passRef.current && this.passRef.current.value) || '';
 
-    // 1. Define la base de datos de usuarios, credenciales y su página de destino
-    const usersDatabase = {
-      "zyriane@xto.com": { pass: "zyriane2026", redirect: "zyrianetowers.html" },
-      "presentacion@xto.com": { pass: "xto2026", redirect: "modeloxto.html" },
-      // Puedes agregar más usuarios y páginas fácilmente aquí en el futuro:
-      "socio@xto.com": { pass: "password123", redirect: "dashboard.html" }
-    };
+    // 1. Define tu base de datos de usuarios, credenciales y páginas de destino.
+    // Puedes agregar cuantos usuarios necesites en el futuro simplemente sumando elementos aquí.
+    const usuariosPermitidos = [
+      {
+        correo: 'zyriane@xto.com',
+        password: 'zyriane2026',
+        destino: 'zyrianetowers.html'
+      },
+      {
+        correo: 'admin@xto.com',
+        password: 'admin2026',
+        destino: 'modeloxto.html'
+      },
+      {
+        correo: 'socio@xto.com',
+        password: 'socio2026',
+        destino: 'portafolio.html' // Ejemplo de futura página
+      }
+    ];
 
-    // 2. Valida si el usuario existe y la contraseña coincide
-    if (usersDatabase[email] && usersDatabase[email].pass === password) {
-      // Redirige al archivo HTML configurado para ese usuario
-      window.location.href = usersDatabase[email].redirect;
+    // 2. Buscamos si las credenciales coinciden con algún registro
+    const usuarioEncontrado = usuariosPermitidos.find(
+      (u) => u.correo.toLowerCase() === email.toLowerCase() && u.password === pass
+    );
+
+    if (usuarioEncontrado) {
+      // Si las credenciales son correctas, guardamos sesión y redirigimos
+      const name = email.split('@')[0] || 'Miembro';
+      this.setState({ loggedIn: true, userName: name });
+      
+      // Redirección automática al archivo HTML correspondiente
+      window.location.href = usuarioEncontrado.destino;
     } else {
-      // Muestra una alerta o error si los datos son incorrectos
-      alert(this.state.lang === 'es' ? 'Correo o contraseña incorrectos.' : 'Incorrect email or password.');
+      // Si fallan, puedes mostrar una alerta o manejar el error visualmente
+      alert('Correo o contraseña incorrectos. Por favor, verifícalos.');
     }
   };
 
